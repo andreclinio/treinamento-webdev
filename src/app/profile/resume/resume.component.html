@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="row panel">
+      <div class="col-xs-12 col-md-6">
+        <div tt-avatar name='{{$ctrl.user.getName()}}'></div>
+        <h1>{{$ctrl.user.getName()}}</h1>
+        <span ui-sref-active="active">
+           <a ui-sref="private.profile.edit">
+              <span class="fa fa-pencil"></span><br>
+           </a>
+        </span>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <tt-profile-contacts user='$ctrl.user'></tt-profile-contacts>
+      </div>
+  </div>
+</div>
