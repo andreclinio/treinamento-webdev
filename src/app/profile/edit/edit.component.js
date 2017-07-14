@@ -13,10 +13,9 @@
 	});
 
 	/** @ngInject */
-	function controller() {	
+	function controller() {
 		var $ctrl = this;
 		$ctrl.$onInit = function() {
-			
 		}
 	}
 
