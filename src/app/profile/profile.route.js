@@ -11,7 +11,7 @@
     $stateProvider.state('private.profile', {
         url: '/profile',
         abstract: true,
-        template: '<ui-view></ui-view>',
+        template: '<ui-view></ui-view>'
     });
 
     $stateProvider.state('private.profile.view', {
@@ -19,9 +19,8 @@
         template: '<tt-profile-view user="$ctrl.user"></tt-profile-view>',
         controllerAs: '$ctrl',
         controller: ['resolveUser', function (resolveUser) {
-          console.log("U0: ", resolveUser);
           this.user = resolveUser;
-        }],
+        }]
      });
 
       $stateProvider.state('private.profile.edit', {
@@ -29,11 +28,19 @@
           template: '<tt-profile-edit user="$ctrl.user"></tt-profile-edit>',
           controllerAs: '$ctrl',
           controller: ['resolveUser', function (resolveUser) {
-            console.log("U1: ", resolveUser);
             this.user = resolveUser;
-          }],
+          }]
       });
 
+    $stateProvider
+      .state('private.profile.example', {
+        url: '/example',
+        template: '<tt-example  user="$ctrl.user"></tt-example>',        
+          controllerAs: '$ctrl',
+          controller: ['resolveUser', function (resolveUser) {
+            this.user = resolveUser;
+          }]
+      });
   }
 
 })();
