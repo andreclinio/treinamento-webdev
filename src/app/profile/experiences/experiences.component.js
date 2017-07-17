@@ -23,7 +23,7 @@
           { name: 'Data', field: 'date'},
           { name: 'Competências', field: 'skills'},
           { name: 'Projeto', field: 'project', cellTemplate: '<span class="badge">{{grid.getCellValue(row, col)}}</span>'},
-          { name: '', field: 'delete', cellTemplate: '<button class="fa fa-trash" ng-click="console.log(1)"></button>'}
+          { name: '', field: 'delete', cellTemplate: '<button ng-click="x()"><span class="fa fa-trash"></span></button>'}
         ],
         data: []
       };
