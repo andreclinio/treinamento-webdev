@@ -22,10 +22,9 @@
            template: '<tt-main-page></tt-main-page>',
            resolve: {
              resolveUser: ['userDataService', '$location', function (userDataService, $location) {
-               var email = "rodnei@tecgraf.puc-rio.br";
+               var email = "clinio@tecgraf.puc-rio.br";
                // var email = $location.search().email;
                var result = userDataService.get(email);
-               console.log("private", email);
                return result;
              }]
            }
