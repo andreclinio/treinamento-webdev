@@ -32,6 +32,16 @@
           }]
       });
 
+      $stateProvider.state('private.profile.new-experience', {
+          url: '/new-experience',
+          template: '<tt-profile-new-experience user="$ctrl.user"></tt-profile-new-experience>',
+          controllerAs: '$ctrl',
+          controller: ['resolveUser', function (resolveUser) {
+            this.user = resolveUser;
+          }]
+      });
+
+
     $stateProvider
       .state('private.profile.example', {
         url: '/example',
