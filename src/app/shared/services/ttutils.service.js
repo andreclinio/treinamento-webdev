@@ -16,7 +16,7 @@
         *
         * @param {string} text texto a ser exibido.
         */
-       function showMessage(title, text){
+       function showMessage(title, text) {
           var modalInstance = $uibModal.open({
            animation: true,
            controller: function() {
