@@ -28,7 +28,7 @@
         enableColumnResizing: true,
         enableColumnMenus: false,
         columnDefs: [ 
-          { name: 'Nome', field: 'name', cellTooltip: 'Nome', enableColumnMenus: false, width: '25%' },
+          { name: 'Título', field: 'title', cellTooltip: 'Título', enableColumnMenus: false, width: '25%' },
           { name: 'Data', field: 'date', width: '15%' },
           { name: 'Competências', field: 'skills', cellTemplate: skillsCellTemplate, width: '40%' },
           { name: 'Projeto', field: 'project', cellTemplate: projectCellTemplate, cellTooltip: 'Projeto', width: '15%' },
@@ -40,7 +40,7 @@
       for (var i = 0; i < experiences.length; i++) {
          var exp = experiences[i];
          gData.data[i] = {
-           name: exp.getTitle(),
+           title: exp.getTitle(),
            date: exp.getStartDate() + " - " + exp.getEndDate(),
            skills: exp.getSkills(),
            project: exp.getProject(),
@@ -65,7 +65,7 @@
     }
 
     $scope.showProjectDetails = function(project) {
-      var desc = "(sem texto disponível)"; // project.getDescription() || "(sem texto disponível)";
+      var desc = project.getDescription() || "(sem texto disponível)";
       var html = '<h2>' + project.getName() + '</h2>' + 
                  '<p>' + desc + '</p>';
       ttUtilService.showMessage("Projeto de " + $ctrl.user.getName(), html);

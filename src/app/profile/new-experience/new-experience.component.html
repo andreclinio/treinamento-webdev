@@ -1,0 +1,42 @@
+<h1>Adição de Experiência para {{$ctrl.user.getName()}}</h1>
+
+<form class="form-horizontal">
+  <div class="form-group">
+
+    <label for="title" class="col-sm-1">Título:</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" id="title">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="project" class="col-sm-1">Projeto:</label>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" id="project">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="start" class="col-sm-1">Início:</label>
+    <div class="col-sm-3">
+       <div uib-datepicker ng-model="startDate" class="well well-sm" datepicker-options="options" id="start"></div>
+    </div>
+    <label for="end" class="col-sm-1">Fim:</label>
+    <div class="col-sm-3">
+       <div uib-datepicker ng-model="endDate" class="well well-sm" datepicker-options="options" id="end"></div>
+    </div>
+
+  </div>
+
+    <div class="form-group">
+    <label for="description" class="col-sm-1">Descrição:</label>
+    <div class="col-sm-7">
+       <textarea class="form-control" id="description"></textarea>
+    </div>
+  </div>
+
+
+  <button class="btn">Adicionar</button>
+  <button class="btn">Cancelar</button>
+
+</form>
