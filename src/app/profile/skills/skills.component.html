@@ -1,8 +1,11 @@
-<h1>Competências</h1>
-<div id="skills-grid" ui-grid="$ctrl.gridData" class="grid" ui-grid-resize-columns></div>
-
-<!-- <h1>Competências de {{$ctrl.user.getName()}}</h1>
-
-<ul>
-  <li ng-repeat="s in $ctrl.user.getSkills()">{{s}}</li>
-</ul> -->
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+        Competências
+        <span class="fa fa-plus-circle text-right" ui-sref="private.profile.new-skill"></span>
+    </h2>
+  </div>
+  <div class="panel-body">
+     <div id="skills-grid" ui-grid="$ctrl.gridData" class="grid" ui-grid-resize-columns></div>
+  </div>
+</div>

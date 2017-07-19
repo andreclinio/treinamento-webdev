@@ -1,7 +1,17 @@
 
 
-<h1>Experiências</h1>
-<span class="fa fa-plus" ui-sref="private.profile.new-experience"></span>
-<div id="experiences-grid" ui-grid="$ctrl.gridData" class="grid"></div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+        Experiências 
+        <span class="fa fa-plus-circle text-right" ng-click="$ctrl.addExperience()"></span>
+    </h2>
+  </div>
+  <div class="panel-body">
+     <div id="experiences-grid" ui-grid="$ctrl.gridData" class="grid"></div>
+  </div>
+</div>
+
+
 
 
