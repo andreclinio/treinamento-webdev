@@ -13,7 +13,7 @@
     <div class="col-sm-11">
       <ui-select ng-model="$ctrl.project" name="project">
         <ui-select-match placeholder="Escolha um projeto...">{{$select.selected.getName()}}</ui-select-match>
-        <ui-select-choices repeat="p in $ctrl.projects | filter: { '__search' : $select.search }">
+        <ui-select-choices repeat="p in $ctrl.projects | filter: { '_name' : $select.search }">
           <span ng-bind-html="p.getName() | highlight: $select.search"></span>
         </ui-select-choices>
       </ui-select>

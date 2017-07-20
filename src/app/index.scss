@@ -3,7 +3,7 @@
 }
 
 * {
-  font-family: "Open Sans"
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #tecgraf-logo-img {
@@ -26,4 +26,10 @@ tt-profile-resume {
   top: 12px;
   margin: 0 auto;
   left: 50%;
+}
+
+.badge-primary {
+  font-size: 1em;
+  background: #337ab7;
+  font-weight: normal;
 }

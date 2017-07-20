@@ -4,6 +4,7 @@
   angular
     .module('shared')
     .factory('ttUtilService', service)
+    .controller('CpController', CpController)
     .config(toastConfig);
 
 
@@ -22,8 +23,22 @@
     });
   }
 
+      /** ngInject */
+    function CpController($log, $scope, $uibModalInstance, project, projects) {
+          var vm = this;
+          vm.project = project;
+          vm.projects = projects;
+          vm.cancel = function () {
+            $uibModalInstance.dismiss();
+          }
+          vm.confirm = function () {
+            $log.log("Confirm: ", vm.project);
+            $uibModalInstance.close(vm.project);
+          }
+    }
+
   /** @ngInject */
-  function service($uibModal, toastr) {
+  function service($uibModal, $log, toastr, projectDataService) {
     var formOperationEventName = "FORM_OP_EV_NAME";
 
     return {
@@ -32,12 +47,57 @@
       showErrorMessage: showErrorMessage,
       confirmWarningMessage: confirmWarningMessage,
       runFormOperation: runFormOperation,
-      isformOperationEventName: isformOperationEventName,
-      FORM_OPERATION_EVENT_NAME: formOperationEventName
+      isFormOperationEventName: isFormOperationEventName,
+      mountFormOperationEventName: mountFormOperationEventName,
+      chooseProject: chooseProject
     }
 
-    function isformOperationEventName(eventName) {
-      return eventName.equals(formOperationEventName);
+    function isFormOperationEventName(eventName, formName) {
+      return eventName.equals(mountFormOperationEventName(formName));
+    }
+
+    function mountFormOperationEventName(formName) {
+      return "__" + formOperationEventName + "_" + formName;
+    }
+
+
+
+
+    function chooseProject(inProject) {
+      var cancelText = "Cancelar";
+      var confirmText = "Confirmar";
+      var title = "Projetos";
+      $log.log("Entrada: ", inProject);
+      var modalInstance = $uibModal.open({
+        animation: true,
+        size: "sm",
+        controllerAs: '$ctrl',
+        controller: function(objProject, projects) {
+           var $ctrl = this;
+          $ctrl.objProject = objProject;
+          $ctrl.projects = projects;
+          $ctrl.cancel = function () {
+            modalInstance.dismiss();
+          }
+          $ctrl.confirm = function () {
+            $log.log("Confirm: ", $ctrl.objProject.project.getId());
+            modalInstance.close($ctrl.objProject.project);
+          }
+        },
+        resolve: {
+            objProject: function() { return { project: inProject }; },
+            projects: projectDataService.list()
+        },
+        template: '<div class="modal-header"><h1 class="text-info">' + title + '</h1></div>' +
+          '<div class="modal-body">' +
+          '<tt-project-chooser projects="$ctrl.projects" obj-project="$ctrl.objProject"></tt-project-chooser>' +
+          '</div>' +
+          '<div class="modal-footer">' +
+          '<button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">' + cancelText + '</button>' +
+          '<button class="btn btn-primary" type="button" ng-click="$ctrl.confirm()">' + confirmText + '</button>' +
+          '</div>'
+      });
+      return modalInstance.result;
     }
 
     /**
@@ -96,7 +156,7 @@
           text +
           '</div>' +
           '<div class="modal-footer">' +
-          '<button class="btn btn-primary" type="button" ng-click="$ctrl.cancel()">' + cancelText + '</button>' +
+          '<button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">' + cancelText + '</button>' +
           '<button class="btn btn-danger" type="button" ng-click="$ctrl.confirm()">' + confirmText + '</button>' +
           '</div>'
       });
@@ -135,7 +195,7 @@
           html +
           '</div>' +
           '<div class="modal-footer">' +
-          '<button class="btn btn-primary" type="button" ng-click="$ctrl.cancel()">' + cancelText + '</button>' +
+          '<button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">' + cancelText + '</button>' +
           '<button ng-disabled="' + formName + '.$invalid" class="btn btn-primary" type="button" ng-click="$ctrl.confirm()">' + confirmText + '</button>' +
           '</div>'
       });

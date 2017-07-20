@@ -13,7 +13,8 @@
   function controller($rootScope, $log, Experience, ttUtilService, userDataService, projectDataService) {
     var $ctrl = this;
     $ctrl.$onInit = function () {
-      $ctrl.listener = $rootScope.$on(ttUtilService.FORM_OPERATION_EVENT_NAME, function (event, data) {
+      var eventName = ttUtilService.mountFormOperationEventName("newExperienceForm");
+      $ctrl.listener = $rootScope.$on(eventName, function (event, data) {
         if (!data) return;
         $ctrl.addExperience(data.user);
       });
@@ -22,7 +23,6 @@
       var prm = projectDataService.list();
       prm.then(function (projs) {
         angular.forEach(projs, function (p) {
-          p.__search = p.getName();
           $ctrl.projects.push(p);
         });
       }, function () {});
@@ -30,15 +30,6 @@
 
     $ctrl.$onDestroy = function () {
       $ctrl.listener();
-    }
-
-    $ctrl.true = function () {
-      return true;
-    }
-
-    $ctrl.projectComparator = function (a, b) {
-      $log.log("---", a, b);
-      return true;
     }
 
     $ctrl.addExperience = function (user) {

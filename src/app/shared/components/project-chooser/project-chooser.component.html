@@ -1,0 +1,12 @@
+<!-- <form class="form" name="projectChooserForm" novalidate> -->
+
+  <div class="form-group">
+    <label for="outProjectId">Projeto:</label>
+    <div>
+      <select ng-model="$ctrl.outProjectId" name="outProjectId" ng-selected="$ctrl.update()">
+          <option ng-repeat="p in $ctrl.projects" value="{{p.getId()}}">{{p.getName()}}</option>
+      </select>
+    </div>
+  </div>
+
+<!-- </form> -->

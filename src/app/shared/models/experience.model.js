@@ -85,7 +85,7 @@
          * @param [SkillUser | Skill] skill competencia com seu nivel
          */
         Experience.prototype.removeSkill = function(skill){
-            if (!(skill instanceof SkillUser) || !(skill instanceof SkillUser)) throw "Experience.removeSkill: Illegal Argument exception"
+            if (!(skill instanceof Skill) && !(skill instanceof SkillUser)) throw "Experience.removeSkill: Illegal Argument exception"
             this.fire(skill);
             return ModelHelper.removeItemById(skill, this._skills);
         }
