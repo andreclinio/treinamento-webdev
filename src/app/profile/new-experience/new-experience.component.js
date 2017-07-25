@@ -26,6 +26,9 @@
           $ctrl.projects.push(p);
         });
       }, function () {});
+
+      $ctrl.startDate = new Date();
+      $ctrl.endDate = new Date();
     }
 
     $ctrl.$onDestroy = function () {
@@ -43,8 +46,8 @@
       try {
         var experience = new Experience(title);
         experience.setProject(project);
-        experience.setStartDate("01/2000");
-        experience.setEndDate("01/2005");
+        experience.setStartDate(ttUtilService.dateToString($ctrl.startDate));
+        experience.setEndDate(ttUtilService.dateToString($ctrl.endDate));
         experience.setDescription(description);
         user.addExperience(experience);
         userDataService.update(user);

@@ -23,11 +23,11 @@
   <div class="form-group">
     <label for="start" class="col-sm-1">Início:</label>
     <div class="col-sm-5">
-      <div uib-datepicker ng-model="$ctrl.startDate" class="well well-sm" datepicker-options="options" id="start"></div>
+      <div uib-datepicker ng-model="$ctrl.startDate" class="well well-sm" datepicker-popup="MM/yyyy" datepicker-options="{minMode: 'month'}" datepicker-mode="'month'" id="start"></div>
     </div>
     <label for="end" class="col-sm-1">Fim:</label>
     <div class="col-sm-5">
-      <div uib-datepicker ng-model="$ctrl.endDate" class="well well-sm" datepicker-options="options" id="end"></div>
+      <div uib-datepicker ng-model="$ctrl.endDate" class="well well-sm" datepicker-popup="MM/yyyy" datepicker-options="{minMode: 'month'}" datepicker-mode="'month'" id="end"></div>
     </div>
 
   </div>

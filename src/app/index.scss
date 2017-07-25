@@ -1,9 +1,36 @@
+
+$tt-primary-color: #337ab7;
+$tt-secondary-color: #385687;
+
+$tt-skill-advanced-color: #af3311;
+$tt-skill-medium-color: #cc7d14;
+$tt-skill-basic-color: #147020;
+
+$tt-widget-color: #000088;
+
+$tt-margin: 30px;
+
 *:focus {
     outline: none !important;
 }
 
 * {
   font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box
+}
+
+body {
+	background: url(../assets/images/background.jpg) repeat;
+  background-position: top left;
+  margin: $tt-margin;
+}
+
+header {
+  margin-top: $tt-margin;
+}
+
+footer {
+  margin-bottom: $tt-margin;
 }
 
 #tecgraf-logo-img {
@@ -14,10 +41,14 @@
   margin: 0px 0px 0px 0px;
 }
 
+div.tt-background {
+  background-color: #eeeeee;
+}
+
 tt-profile-resume {
   h1 {
     font-size: 2.0rem;
-    color: #ff0000;
+    color: $tt-primary-color;
     display: inline;
   }
 }
@@ -28,8 +59,58 @@ tt-profile-resume {
   left: 50%;
 }
 
-.badge-primary {
+.tt-badge {
   font-size: 1em;
-  background: #337ab7;
   font-weight: normal;
+}
+
+.tt-text {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+.tt-badge-primary {
+  @extend .tt-badge;
+  background-color: $tt-primary-color;
+}
+
+.tt-badge-skill-advanced {
+  @extend .tt-badge;
+  background-color: $tt-skill-advanced-color;
+}
+
+.tt-badge-skill-medium {
+  @extend .tt-badge;
+  background-color: $tt-skill-medium-color;
+}
+
+.tt-badge-skill-basic {
+  @extend .tt-badge;
+  background-color: $tt-skill-basic-color;
+}
+
+.tt-text-primary {
+  @extend .tt-text;
+  color: $tt-primary-color;
+}
+
+.tt-text-skill-advanced {
+  @extend .tt-text;
+  color: $tt-skill-advanced-color;
+}
+
+.tt-text-skill-medium {
+  @extend .tt-text;
+  color: $tt-skill-medium-color;
+}
+
+.tt-text-skill-basic {
+  @extend .tt-text;
+  color: $tt-skill-basic-color;
+}
+
+
+span.tt-fa-widget {
+   margin-left: 10px;
+   color: $tt-widget-color;
 }

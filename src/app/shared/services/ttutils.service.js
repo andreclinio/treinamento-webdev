@@ -33,7 +33,11 @@
       isFormOperationEventName: isFormOperationEventName,
       mountFormOperationEventName: mountFormOperationEventName,
       chooseProject: chooseProject,
-      chooseFromList: chooseFromList
+      chooseFromList: chooseFromList,
+      chooseDate: chooseDate,
+      chooseString: chooseString,
+      dateToString: dateToString,
+      stringToDate: stringToDate
     }
 
     function isFormOperationEventName(eventName, formName) {
@@ -45,6 +49,103 @@
       return "__" + formOperationEventName + "_" + formName;
     }
 
+    function stringToDate(text) {
+      if (!text) return new Date();
+
+      try {
+        var split = text.split("/");
+        var m = parseInt(split[0]) - 1;
+        var y = parseInt(split[1]);
+        var date = new Date(y, m);
+        return date;
+      }
+      catch (ex) {
+        showErrorMessage(ex);
+        return new Date();
+      }
+    }
+
+    function dateToString(date) {
+      var newdate = new Date(Date.parse(date));
+      var dtTxt = (newdate.getMonth()+1) + "/" + newdate.getFullYear();
+      if (dtTxt.length < 7) dtTxt = "0" + dtTxt;
+      return dtTxt;
+    }
+
+    function chooseDate(title, text, date) {
+      var cancelText = "Cancelar";
+      var confirmText = "Confirmar";
+      title = title || "Data";
+      text = text || "Escolha uma data";
+      date = stringToDate(date);
+      var modalInstance = $uibModal.open({
+        animation: true,
+        size: "md",
+        controllerAs: '$ctrl',
+        controller: function() {
+          var $ctrl = this;
+          $ctrl.date = date;
+          $ctrl.cancel = function () {
+            modalInstance.dismiss();
+          }
+          $ctrl.confirm = function () {
+            var dtTxt = dateToString($ctrl.date);
+            modalInstance.close(dtTxt);
+          }
+        },
+        template: '<div class="modal-header"><h1 class="text-info">' + title + '</h1></div>' +
+          '<div class="modal-body">' +
+          '<p>' + text + '</p>' +
+          '<div uib-datepicker ng-model="$ctrl.date" class="well well-sm" formats="[MM/yyyy]" datepicker-options="{minMode: \'month\'}" datepicker-mode="\'month\'" id="date"></div>' +
+          '<div class="modal-footer">' +
+          '<button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">' + cancelText + '</button>' +
+          '<button class="btn btn-primary" type="button" ng-click="$ctrl.confirm()">' + confirmText + '</button>' +
+          '</div>'
+      });
+      return modalInstance.result;
+    }
+
+    function chooseString(title, text, string, multi) {
+      var cancelText = "Cancelar";
+      var confirmText = "Confirmar";
+      title = title || "Texto";
+      text = text || "Escolhao texto associado";
+      multi = multi || false;
+
+      var widget = '<input type="text" ng-model="$ctrl.string" class="form-control" id="string"></input>';
+      var sz = "sm";
+      if (multi) {
+         widget = '<textarea ng-model="$ctrl.string" class="form-control" id="string"></textarea>';
+         sz = "md";
+      }
+      var modalInstance = $uibModal.open({
+        animation: true,
+        size: sz,
+        controllerAs: '$ctrl',
+        controller: function() {
+          var $ctrl = this;
+          $ctrl.string = string;
+          $ctrl.cancel = function () {
+            modalInstance.dismiss();
+          }
+          $ctrl.confirm = function () {
+            modalInstance.close($ctrl.string);
+          }
+        },
+        template: '<div class="modal-header"><h1 class="text-info">' + title + '</h1></div>' +
+          '<div class="modal-body">' +
+          '<div class="container-fluid">' +
+          '<p>' + text + '</p>' +
+           widget +
+          '</div>' +
+          '</div>' +
+          '<div class="modal-footer">' +
+          '<button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">' + cancelText + '</button>' +
+          '<button class="btn btn-primary" type="button" ng-click="$ctrl.confirm()">' + confirmText + '</button>' +
+          '</div>'
+      });
+      return modalInstance.result;
+    }
 
     function chooseProject(inProject) {
       var cancelText = "Cancelar";
