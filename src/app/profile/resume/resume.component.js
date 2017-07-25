@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('core')
+    .module('profile')
     .component('ttProfileResume', {
       templateUrl: 'app/profile/resume/resume.component.html',
       controller: controller,

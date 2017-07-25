@@ -4,7 +4,6 @@
   angular
     .module('shared')
     .factory('ttUtilService', service)
-    .controller('CpController', CpController)
     .config(toastConfig);
 
 
@@ -23,24 +22,8 @@
     });
   }
 
-      /** ngInject */
-    function CpController($log, $scope, $uibModalInstance, project, projects) {
-          var vm = this;
-          vm.project = project;
-          vm.projects = projects;
-          vm.cancel = function () {
-            $uibModalInstance.dismiss();
-          }
-          vm.confirm = function () {
-            $log.log("Confirm: ", vm.project);
-            $uibModalInstance.close(vm.project);
-          }
-    }
-
   /** @ngInject */
   function service($uibModal, $log, toastr, projectDataService) {
-    var formOperationEventName = "FORM_OP_EV_NAME";
-
     return {
       showMessage: showMessage,
       showInfoMessage: showInfoMessage,
@@ -49,7 +32,8 @@
       runFormOperation: runFormOperation,
       isFormOperationEventName: isFormOperationEventName,
       mountFormOperationEventName: mountFormOperationEventName,
-      chooseProject: chooseProject
+      chooseProject: chooseProject,
+      chooseFromList: chooseFromList
     }
 
     function isFormOperationEventName(eventName, formName) {
@@ -57,10 +41,9 @@
     }
 
     function mountFormOperationEventName(formName) {
+      var formOperationEventName = "FORM_OP_EV_NAME";
       return "__" + formOperationEventName + "_" + formName;
     }
-
-
 
 
     function chooseProject(inProject) {
@@ -80,7 +63,6 @@
             modalInstance.dismiss();
           }
           $ctrl.confirm = function () {
-            $log.log("Confirm: ", $ctrl.objProject.project.getId());
             modalInstance.close($ctrl.objProject.project);
           }
         },
@@ -99,6 +81,45 @@
       });
       return modalInstance.result;
     }
+
+
+    function chooseFromList(title, inItem, itemsPromisse) {
+      var cancelText = "Cancelar";
+      var confirmText = "Confirmar";
+      title = title || "Escolha opção";
+      $log.log("Entrada: ", inItem);
+      var modalInstance = $uibModal.open({
+        animation: true,
+        size: "sm",
+        controllerAs: '$ctrl',
+        controller: function(objItem, items) {
+           var $ctrl = this;
+          $ctrl.objItem = objItem;
+          $ctrl.items = items;
+          $ctrl.cancel = function () {
+            modalInstance.dismiss();
+          }
+          $ctrl.confirm = function () {
+            modalInstance.close($ctrl.objItem.item);
+          }
+        },
+        resolve: {
+            objItem: function() { return { item: inItem }; },
+            items: itemsPromisse
+        },
+        template: '<div class="modal-header"><h1 class="text-info">' + title + '</h1></div>' +
+          '<div class="modal-body">' +
+          '<tt-item-chooser items="$ctrl.items" obj-item="$ctrl.objItem" label="' + title + '"></tt-item-chooser>' +
+          '</div>' +
+          '<div class="modal-footer">' +
+          '<button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">' + cancelText + '</button>' +
+          '<button class="btn btn-primary" type="button" ng-click="$ctrl.confirm()">' + confirmText + '</button>' +
+          '</div>'
+      });
+      return modalInstance.result;
+    }
+
+
 
     /**
      * Mostra mensagem de popup na tela
@@ -173,12 +194,13 @@
      * @param {string} confirmText texto a ser exibido no botão de confirmação da operação.
      * @param {string} cancelText texto a ser exibido no botão de cancelamento da operação.
      */
-    function runFormOperation($rootScope, formName, data, title, html, confirmText, cancelText) {
+    function runFormOperation($rootScope, formName, data, title, html, confirmText, cancelText, size) {
       cancelText = cancelText || "Cancelar";
       confirmText = confirmText || "Confirmar";
       title = title || "";
+      size = size || "lg";
       var modalInstance = $uibModal.open({
-        size: 'lg',
+        size: size,
         animation: true,
         controller: function () {
           var $ctrl = this;
@@ -201,16 +223,18 @@
       });
       var promisse = modalInstance.result;
       promisse.then(function () {
-        $rootScope.$emit(formOperationEventName, data);
+        var evName = mountFormOperationEventName(formName);
+        $rootScope.$emit(evName, data);
       }, function () {
-        $rootScope.$emit(formOperationEventName, null);
+        var evName = mountFormOperationEventName(formName);
+        $rootScope.$emit(evName, null);
       });
     }
 
     /**
      * Mostra um mensagem informativa rápida para o usuário.
-     * @param {string} title 
-     * @param {string} text 
+     * @param {string} title
+     * @param {string} text
      */
     function showInfoMessage(title, text) {
       toastr.info(text, title);
@@ -218,11 +242,12 @@
 
     /**
      * Mostra um mensagem de erro rápida para o usuário.
-     * @param {string} title 
-     * @param {string} text 
+     * @param {string} title
+     * @param {string} text
      */
     function showErrorMessage(title, text) {
-      toastr.error(text, title);
+      toastr.error(text + "", title);
+      $log.log("ERROR: " + text);
     }
 
   }

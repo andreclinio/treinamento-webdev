@@ -1,0 +1,9 @@
+
+  <div class="form-group">
+    <label for="outItemtId">{{$ctrl.label}}:</label>
+    <div>
+      <select ng-model="$ctrl.outItemId" name="outItemtId" ng-selected="$ctrl.update()">
+          <option ng-repeat="i in $ctrl.items" value="{{i.getId()}}">{{i.getName()}}</option>
+      </select>
+    </div>
+  </div>

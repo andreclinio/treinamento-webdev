@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('core')
+    .module('profile')
     .component('ttProfileExperiences', {
       templateUrl: 'app/profile/experiences/experiences.component.html',
       controller: controller,
@@ -13,24 +13,24 @@
     });
 
   /** @ngInject */
-  function controller($rootScope, $scope, $log, userDataService, ttUtilService) {
+  function controller($rootScope, $scope, $log, userDataService, skillDataService, ttUtilService, SkillUser) {
     var $ctrl = this;
 
     $ctrl.mountGridData = function (experiences) {
 
       var skillsCellTemplate = '<span ng-repeat="s in grid.getCellValue(row, col).getSkills()" class="badge badge-primary">' +
-      '<span class=" fa fa-times" ng-click="grid.appScope.delSkill(grid.getCellValue(row, col), $index)"></span>' + 
-      '<span class=" fa fa-eye" ng-click="grid.appScope.showSkillDetails(grid.getCellValue(row, col).getSkills()[$index])"></span>' + 
-      '<span>{{grid.getCellValue(row, col).getSkills()[$index].getName()}}</span>' + 
-      '</span><span>&nbsp;</span>' + 
+      '<span class=" fa fa-times" ng-click="grid.appScope.delSkill(grid.getCellValue(row, col), $index)"></span>' +
+      '<span class=" fa fa-eye" ng-click="grid.appScope.showSkillDetails(grid.getCellValue(row, col).getSkills()[$index])"></span>' +
+      '<span>{{grid.getCellValue(row, col).getSkills()[$index].getName()}}</span>' +
+      '</span><span>&nbsp;</span>' +
       '<span class="fa fa-plus-circle" ng-click="grid.appScope.addSkill(grid.getCellValue(row, col))"></span>';
 
-      var projectCellTemplate = '<span ng-if="grid.getCellValue(row, col).getProject()">' + 
-      '<span class="badge badge-primary">' + 
-      '<span class=" fa fa-times" ng-click="grid.appScope.delProject(grid.getCellValue(row, col))"></span>' + 
-      '<span class=" fa fa-eye" ng-click="grid.appScope.showProjectDetails(grid.getCellValue(row, col))"></span>' + 
-      '{{grid.getCellValue(row, col).getProject().getName()}}</span>' + 
-      '</span><span>&nbsp;</span>' + 
+      var projectCellTemplate = '<span ng-if="grid.getCellValue(row, col).getProject()">' +
+      '<span class="badge badge-primary">' +
+      '<span class=" fa fa-times" ng-click="grid.appScope.delProject(grid.getCellValue(row, col))"></span>' +
+      '<span class=" fa fa-eye" ng-click="grid.appScope.showProjectDetails(grid.getCellValue(row, col))"></span>' +
+      '{{grid.getCellValue(row, col).getProject().getName()}}</span>' +
+      '</span><span>&nbsp;</span>' +
       '<span class="fa fa-pencil" ng-click="grid.appScope.editProject(grid.getCellValue(row, col))"></span>' +
       '</span>';
 
@@ -120,6 +120,27 @@
       ttUtilService.showInfoMessage(null, "Competência " + skill.getName() + " removida.");
     }
 
+
+    $ctrl.addSkillCallback = function(data, skillUser) {
+      var user = data.user;
+      var experience = data.experience;
+      experience.addSkill(skillUser);
+      userDataService.update(user);
+      ttUtilService.showInfoMessage(null, "Competência " + skillUser.getName() + " inserida");
+    }
+
+    $scope.addSkill = function (experience) {
+      var title = "Adição de Competência";
+      var html = '<tt-profile-new-skill-user></tt-profile-new-skill-user>';
+      var formName = "newSkillUserForm";
+      var data = {
+        user: $ctrl.user,
+        callback: $ctrl.addSkillCallback,
+        experience: experience
+      };
+      ttUtilService.runFormOperation($rootScope, formName, data, title, html, "Inserir", null, "md");
+    }
+
     $scope.delProject = function (experience) {
       experience.setProject(null);
       userDataService.update($ctrl.user);
@@ -129,12 +150,11 @@
     $scope.editProject = function (experience) {
       var prm = ttUtilService.chooseProject(experience.getProject());
       prm.then(function(prj) {
-        
         $log.log("projeto selecionado: ", prj);
         experience.setProject(prj);
         userDataService.update($ctrl.user);
         ttUtilService.showInfoMessage(null, "Projeto ajustado");
-      }, 
+      },
       function() {
       })
       .catch(function (exception) {

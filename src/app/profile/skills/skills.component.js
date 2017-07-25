@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('core')
+    .module('profile')
     .component('ttProfileSkills', {
       templateUrl: 'app/profile/skills/skills.component.html',
       controller: controller,
@@ -13,7 +13,7 @@
     });
 
   /** @ngInject */
-  function controller($scope, $log, toastr, userDataService, ttUtilService) {
+  function controller($rootScope, $scope, $log, toastr, userDataService, ttUtilService) {
     var $ctrl = this;
 
     $ctrl.$onInit = function() {
@@ -119,5 +119,24 @@
                  '</div>'
       ttUtilService.showMessage("Projeto de " + $ctrl.user.getName(), html);
     }
+
+    $ctrl.addSkillUserCallback = function(data, skillUser) {
+      var user = data.user;
+      user.addSkill(skillUser);
+      userDataService.update(user);
+      ttUtilService.showInfoMessage(null, "Competência " + skillUser.getName() + " inserida");
+    }
+
+    $ctrl.addSkillUser = function () {
+      var title = "Adição de Competência";
+      var html = '<tt-profile-new-skill-user></tt-profile-new-skill-user>';
+      var formName = "newSkillUserForm";
+      var data = {
+        user: $ctrl.user,
+        callback: $ctrl.addSkillUserCallback
+      };
+      ttUtilService.runFormOperation($rootScope, formName, data, title, html, "Criar", null, "md");
+    }
+
   }
 })();
