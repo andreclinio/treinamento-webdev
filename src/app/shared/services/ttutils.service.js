@@ -118,6 +118,7 @@
          widget = '<textarea ng-model="$ctrl.string" class="form-control" id="string"></textarea>';
          sz = "md";
       }
+        
       var modalInstance = $uibModal.open({
         animation: true,
         size: sz,
