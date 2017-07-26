@@ -22,10 +22,10 @@
         return "tt-badge-skill-basic";
       }
       else if (level == 2) {
-return "tt-badge-skill-medium";
+        return "tt-badge-skill-medium";
       }
       else if (level == 3) {
-return "tt-badge-skill-advanced";
+        return "tt-badge-skill-advanced";
       }
       else {
         return "";
@@ -248,7 +248,7 @@ return "tt-badge-skill-advanced";
     }
 
     $scope.showExperienceDetails = function (experience) {
-      var desc = experience.getDescription() || "(sem texto disponível)";
+      var desc = experience.getDescription() || "(sem texto de descrição disponível)";
       var prjName = experience.getProject() ? experience.getProject().getName() : "(sem projeto associado)";
       var html = '<h2>' + experience.getTitle() + '</h2>' +
         '<h3> Projeto: ' + prjName + '</h3>' +
