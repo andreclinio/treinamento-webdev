@@ -1,3 +1,52 @@
-<h1> {{$ctrl.user.getName()}}</h1>
-<br>
-<div uib-alert class="alert-warning">Edit!</div>
+<form class="form-horizontal" name="editProfileForm" novalidate>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h1> Edição de Perfil: {{$ctrl.user.getName()}}</h1>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="name" class="col-md-12 col-lg-1">Nome:</label>
+        <div class="col-md-12 col-lg-11">
+          <input ng-model="$ctrl.name" type="text" class="form-control" name="name" required>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="col-md-12 col-lg-1">Email:</label>
+        <div class="col-md-12 col-lg-11">
+          <input ng-model="$ctrl.email" type="email" class="form-control" name="email" required readonly>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lattes" class="col-md-12 col-lg-1">Lattes:</label>
+        <div class="col-md-12 col-lg-11">
+          <input ng-model="$ctrl.lattes" type="url" class="form-control" name="lattes">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="linkedin" class="col-md-12 col-lg-1">LinkedIn:</label>
+        <div class="col-md-12 col-lg-11">
+          <input ng-model="$ctrl.linkedin" type="url" class="form-control" name="linkedin">
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div ng-if="editProfileForm.name.$error.required && editProfileForm.name.$touched" class="alert alert-warning">O campo nome é obrigatório</div>
+      <div ng-if="editProfileForm.lattes.$error.url && editProfileForm.lattes.$touched" class="alert alert-warning">URL inválida para Lattes</div>
+      <div ng-if="editProfileForm.linkedin.$error.url && editProfileForm.linkedin.$touched" class="alert alert-warning">URL inválida para LinkedIn</div>
+      </ul>
+    </div>
+
+    <div class="panel-footer">
+      <button class="btn btn-default" type="button" ui-sref="private.profile.view">Cancelar</button>
+      <button ng-disabled="editProfileForm.$invalid" class="btn btn-primary" type="button" ng-click="$ctrl.updateUser()"> Alterar </button>
+    </div>
+
+  </div>
+
+</form>

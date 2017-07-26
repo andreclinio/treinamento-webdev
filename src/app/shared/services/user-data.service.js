@@ -208,7 +208,7 @@
                 experiences: {}         
             };
             toSend.user.name = user.getName();
-            if (user.getLinkedIn()) toSend.userlinkedIn = user.getLinkedIn();
+            if (user.getLinkedIn()) toSend.user.linkedIn = user.getLinkedIn();
             if (user.getLattes())  toSend.user.lattes = user.getLattes();
 
             var skills = user.getSkills();

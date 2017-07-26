@@ -20,7 +20,7 @@
     }
 
     $ctrl.onDestroy = function() {
-      $('#wordsCloud').jQCloud('destroy');
+      angular.element('#wordsCloud').jQCloud('destroy');
     }
 
     var updateWords = function() {
@@ -29,7 +29,8 @@
       angular.forEach(skills, function(s) {
         $ctrl.words.push({ text: s.getName(), weight: s.getLevel()});
       });
-      $('#wordsCloud').jQCloud($ctrl.words, { delay: 10, shape: 'rectangular', height: 300, center: { x: 0.45, y: 0.5} });
+      var props = { delay: 10, shape: 'rectangular', height: 300, center: { x: 0.45, y: 0.5 } };
+      angular.element('#wordsCloud').jQCloud($ctrl.words, props);
     }
   }
 

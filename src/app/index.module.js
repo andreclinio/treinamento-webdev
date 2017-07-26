@@ -16,7 +16,8 @@
         'search',
         'skill',
         'profile',
-        'shared'
+        'shared',
+        'login'
     ]);
 
 })();

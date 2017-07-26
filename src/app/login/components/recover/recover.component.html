@@ -1,0 +1,32 @@
+<div class="container">
+        <div class="row">
+      
+          <div class="login-absolute-center panel panel-body">
+            <div id="logo-container"></div>
+            <div class="col-sm-12 col-md-10 col-md-offset-1">
+      
+              <form name="recoverForm" novalidate>
+                <h1>Recuperação de Senha</h1>
+                <div class="form-group input-group">
+                  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                  <input class="form-control" ng-model="$ctrl.email" type="email" name='email' placeholder="Email do usuário" required/>
+                </div>
+
+                <div class="form-group text-center">
+                  <button ng-disabled="recoverForm.$invalid" type="button" class="btn btn-primary" ng-click="$ctrl.recover()">Recuperar</button>
+                  <button type="button" class="btn btn-default" ui-sref="public.login">Cancelar</button>
+                </div>
+      
+                <div>
+                  <div ng-if="recoverForm.email.$error.email && recoverForm.email.$touched" class="alert alert-warning">Email de entrada inválido!</div>
+                  <div ng-if="recoverForm.email.$error.required && recoverForm.email.$touched" class="alert alert-warning">Email de entrada é obrigatório!</div>
+                </div>
+      
+              </form>
+      
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      

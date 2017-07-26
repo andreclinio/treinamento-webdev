@@ -114,3 +114,23 @@ span.tt-fa-widget {
    margin-left: 10px;
    color: $tt-widget-color;
 }
+
+#logo-container{
+  margin: auto;
+  margin-bottom: 10px;
+  width:227px;
+  height:222px;
+   background: url('../assets/images/tecgraf-intro-logo.jpg') no-repeat;
+}
+
+.login-absolute-center {
+  margin: auto;
+  position: absolute;
+  top: 10%; left: 10%;
+  width: 80%; 
+  height: 80%;
+  min-width: 220px;
+  max-width: 1000px;
+  padding: 40px;
+}
+
