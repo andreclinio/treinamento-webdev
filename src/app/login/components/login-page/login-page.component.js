@@ -10,15 +10,20 @@
     });
 
   /** @ngInject */
-  function controller($log, $state, $window, userDataService, ttModelUtilService, ttGuiUtilService) {
+  function controller($log, $state, $cookies, userDataService, ttModelUtilService, ttGuiUtilService) {
     var $ctrl = this;
+    var cookieEmail = "__TT_EMAIL_COOKIE";
+    var cookiePassword = "__TT_PASSWORD_COOKIE";
 
     $ctrl.$onInit = function () {
-      var email = $window.localStorage.tt_login_email;
-      var password = $window.localStorage.tt_login_password;
+      var email = $cookies.get(cookieEmail);
+      var password = $cookies.get(cookiePassword);
 
-      if (email) $ctrl.email = email;
-      if (password) $ctrl.password = password;
+      if (email && password) {
+        $ctrl.email = email;
+        $ctrl.password = password;
+        $ctrl.remember = true;
+      }
     }
 
     $ctrl.onDestroy = function () {
@@ -36,8 +41,8 @@
         }
         $state.go("private.profile.view");
         if ($ctrl.remember) {
-          $window.localStorage.tt_login_email = email;
-          $window.localStorage.tt_login_password = password;
+          $cookies.put(cookieEmail, email);
+          $cookies.put(cookiePassword, password);
         }
       }, function () {
           ttGuiUtilService.showErrorMessage("Falha de Login", "Usuário não cadastrado no sistema!");
