@@ -10,7 +10,7 @@
     });
 
   /** @ngInject */
-  function controller($rootScope, $log, Experience, ttGuiUtilService, userDataService, projectDataService) {
+  function controller($rootScope, $log, Experience, ttGuiUtilService, ttModelUtilService, userDataService, projectDataService) {
     var $ctrl = this;
     $ctrl.$onInit = function () {
       var eventName = ttGuiUtilService.mountFormOperationEventName("newExperienceForm");
@@ -46,8 +46,8 @@
       try {
         var experience = new Experience(title);
         experience.setProject(project);
-        experience.setStartDate(ttGuiUtilService.dateToString($ctrl.startDate));
-        experience.setEndDate(ttGuiUtilService.dateToString($ctrl.endDate));
+        experience.setStartDate(ttModelUtilService.dateToString($ctrl.startDate));
+        experience.setEndDate(ttModelUtilService.dateToString($ctrl.endDate));
         experience.setDescription(description);
         user.addExperience(experience);
         userDataService.update(user);
