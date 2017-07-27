@@ -3,7 +3,7 @@
 
   angular
     .module('shared')
-    .factory('ttUtilService', service)
+    .factory('ttGuiUtilService', service)
     .config(toastConfig);
 
 
@@ -23,7 +23,7 @@
   }
 
   /** @ngInject */
-  function service($uibModal, $log, toastr, projectDataService) {
+  function service($uibModal, $log, toastr, projectDataService, ttModelUtilService) {
     return {
       showMessage: showMessage,
       showInfoMessage: showInfoMessage,
@@ -35,9 +35,7 @@
       chooseProject: chooseProject,
       chooseFromList: chooseFromList,
       chooseDate: chooseDate,
-      chooseString: chooseString,
-      dateToString: dateToString,
-      stringToDate: stringToDate
+      chooseString: chooseString
     }
 
     function isFormOperationEventName(eventName, formName) {
@@ -49,35 +47,12 @@
       return "__" + formOperationEventName + "_" + formName;
     }
 
-    function stringToDate(text) {
-      if (!text) return new Date();
-
-      try {
-        var split = text.split("/");
-        var m = parseInt(split[0]) - 1;
-        var y = parseInt(split[1]);
-        var date = new Date(y, m);
-        return date;
-      }
-      catch (ex) {
-        showErrorMessage(ex);
-        return new Date();
-      }
-    }
-
-    function dateToString(date) {
-      var newdate = new Date(Date.parse(date));
-      var dtTxt = (newdate.getMonth()+1) + "/" + newdate.getFullYear();
-      if (dtTxt.length < 7) dtTxt = "0" + dtTxt;
-      return dtTxt;
-    }
-
     function chooseDate(title, text, date) {
       var cancelText = "Cancelar";
       var confirmText = "Confirmar";
       title = title || "Data";
       text = text || "Escolha uma data";
-      date = stringToDate(date);
+      date = ttModelUtilService.stringToDate(date);
       var modalInstance = $uibModal.open({
         animation: true,
         size: "md",
@@ -89,7 +64,7 @@
             modalInstance.dismiss();
           }
           $ctrl.confirm = function () {
-            var dtTxt = dateToString($ctrl.date);
+            var dtTxt = ttModelUtilService.dateToString($ctrl.date);
             modalInstance.close(dtTxt);
           }
         },
