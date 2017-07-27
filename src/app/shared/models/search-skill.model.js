@@ -9,7 +9,7 @@
     function factory() {
         //construtor
         function SearchSkill(name, id, projectCount, experienceCount, level) {
-            if( !name || !id || !projectCount || !experienceCount ||  !level ) 
+            if( !name || !id || !level ) 
                 throw "name, id, projectCount and experienceCount are required"; 
             
             this._name = name;

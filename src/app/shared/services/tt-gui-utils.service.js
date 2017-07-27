@@ -35,9 +35,24 @@
       chooseProject: chooseProject,
       chooseFromList: chooseFromList,
       chooseDate: chooseDate,
-      chooseString: chooseString
+      chooseString: chooseString,
+      getBadgeClassForSkillLevel: getBadgeClassForSkillLevel
     }
 
+    function getBadgeClassForSkillLevel(level) {
+      if (level == 1) {
+        return "tt-badge-skill-basic";
+      }
+      else if (level == 2) {
+        return "tt-badge-skill-medium";
+      }
+      else if (level == 3) {
+        return "tt-badge-skill-advanced";
+      }
+      else {
+        return "";
+      }
+    }
     function isFormOperationEventName(eventName, formName) {
       return eventName.equals(mountFormOperationEventName(formName));
     }

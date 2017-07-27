@@ -150,23 +150,6 @@
        }
 
        /**
-        * Retorna lista de competencias
-        *
-        * @return {Array<Skill>} array de competencias.
-        */
-          function list(){
-               return firebaseService.database().ref('/skills').once('value').then(function(snapshot){
-                   var ret = [];
-                   var data = snapshot.val();
-                   if( !data ) return [];
-                   for (var skillId in data) {
-                       ret.push(Skill.buildFromServer(data[skillId]));
-                   }
-                   return ret;
-               });
-          }
-
-       /**
         * Cria uma habilidade nova
         *
         * @param {Skill} skill

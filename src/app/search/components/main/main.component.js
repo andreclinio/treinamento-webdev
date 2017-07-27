@@ -8,16 +8,27 @@
         controller: controller,
         controllerAs: '$ctrl',
         bindings: {
+          skills: '<'
         }
       });
   
     /** @ngInject */
-    function controller() {
+    function controller($rootScope, $log, skillDataService) {
       var $ctrl = this;
+
       $ctrl.$onInit = function() {
+        $ctrl.skills = [];
       }
   
       $ctrl.onDestroy = function() {
+      }
+
+      $ctrl.loadSkills = function(query) {
+        return skillDataService.search(query);
+      }
+
+      $ctrl.update = function() {
+        $rootScope.$emit("search.updated", null);
       }
     }
   

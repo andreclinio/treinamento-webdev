@@ -8,7 +8,7 @@
         controller: controller,
         controllerAs: '$ctrl',
         bindings: {
-          skillsList: '<'
+          skills: '<'
         }
       });
   
@@ -16,26 +16,15 @@
     function controller($rootScope, $scope, $log, userDataService, skillDataService, ttGuiUtilService) {
       var $ctrl = this;
   
-      $ctrl.mountGridData = function (users) {
+      $ctrl.mountGridData = function (projects) {
   
-        var experiencesCellTemplate = '<span ng-repeat="s in grid.getCellValue(row, col).getSkills()" class="badge {{grid.appScope.getSkillBadgeClass(grid.getCellValue(row, col).getSkills()[$index])}}">' +
-        '<span class=" fa fa-times" ng-click="grid.appScope.delSkill(grid.getCellValue(row, col), $index)"></span>' +
-        '<span class=" fa fa-eye" ng-click="grid.appScope.showSkillDetails(grid.getCellValue(row, col).getSkills()[$index])"></span>' +
-        '<span>{{grid.getCellValue(row, col).getSkills()[$index].getName()}}</span>' +
-        '</span>' +
-        '<span class="fa fa-plus-circle tt-fa-widget" ng-click="grid.appScope.addSkill(grid.getCellValue(row, col))"></span>';
-
-        var usersCellTemplate = '<span ng-repeat="s in grid.getCellValue(row, col).getSkills()" class="badge {{grid.appScope.getSkillBadgeClass(grid.getCellValue(row, col).getSkills()[$index])}}">' +
-        '<span class=" fa fa-times" ng-click="grid.appScope.delSkill(grid.getCellValue(row, col), $index)"></span>' +
-        '<span class=" fa fa-eye" ng-click="grid.appScope.showSkillDetails(grid.getCellValue(row, col).getSkills()[$index])"></span>' +
-        '<span>{{grid.getCellValue(row, col).getSkills()[$index].getName()}}</span>' +
-        '</span>' +
-        '<span class="fa fa-plus-circle tt-fa-widget" ng-click="grid.appScope.addSkill(grid.getCellValue(row, col))"></span>';
+        var experiencesCellTemplate =         '<span> {{grid.getCellValue(row, col).getName()}}</span>';
+        var usersCellTemplate =         '<span> {{grid.getCellValue(row, col).getName()}}</span>';
 
         var nameCellTemplate = 
         '<span> {{grid.getCellValue(row, col).getName()}}</span>';
   
-        var gData = {
+        var gridData = {
           enableColumnResizing: true,
           enableColumnMenus: false,
           columnDefs: [
@@ -46,15 +35,29 @@
           data: []
         };
   
-        angular.forEach(users, function(v, i){
-          gData.data[i] = { user: v }
+        angular.forEach(projects, function(v, i){
+          gridData.data[i] = { project: v }
         });
-        return gData;
+        return gridData;
       }
   
-      $ctrl.$onInit = function () {
-        $ctrl.gridData = $ctrl.mountGridData($ctrl.skillList);
+      $ctrl.update = function() {
+        var projects = [];
+        $ctrl.gridData = $ctrl.mountGridData(projects);
       }
+
+      $ctrl.$onInit = function () {
+        $ctrl.gridData = { data:[] };
+        $ctrl.update();
+        $ctrl.listener = $rootScope.$on("search.updated", function() {
+            $ctrl.update();
+        });
+      }
+  
+      $ctrl.$onDestroy = function () {
+          $ctrl.listener();
+      }
+    
     }
   
   

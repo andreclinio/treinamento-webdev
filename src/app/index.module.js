@@ -12,6 +12,7 @@
         'toastr',
         'ui.grid',
         'ui.grid.resizeColumns',
+        'ngTagsInput',
         'core',
         'search',
         'skill',

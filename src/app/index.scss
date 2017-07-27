@@ -123,14 +123,21 @@ span.tt-fa-widget {
    background: url('../assets/images/tecgraf-intro-logo.jpg') no-repeat;
 }
 
-.login-absolute-center {
+.login-absolute-center-large {
   margin: auto;
   position: absolute;
-  top: 10%; left: 10%;
-  width: 80%; 
-  height: 80%;
-  min-width: 220px;
+  top: 5%; left: 5%;
+  width: 90%; 
+  height: 90%;
+  min-width: 320px;
   max-width: 1000px;
-  padding: 40px;
+  padding: 30px;
 }
 
+.login-absolute-center-small {
+  @extend .login-absolute-center-large;
+  top: 15%; left: 15%;
+  width: 70%; 
+  height: 70%;
+  padding: 40px;
+}
