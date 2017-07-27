@@ -10,7 +10,7 @@
     });
 
   /** @ngInject */
-  function controller($log, $state, $window, ttUtilService) {
+  function controller($log, $state, $window, userDataService, ttModelUtilService, ttGuiUtilService) {
     var $ctrl = this;
 
     $ctrl.$onInit = function () {
@@ -21,22 +21,32 @@
       if (password) $ctrl.password = password;
     }
 
-    $ctrl.onDestroy = function () {}
+    $ctrl.onDestroy = function () {
+
+    }
 
     $ctrl.login = function () {
       var email = $ctrl.email;
       var password = $ctrl.password;
-      if (email == "clinio@tecgraf.puc-rio.br" && password == "1234") {
+      var prm = userDataService.get(email);
+      prm.then(function () {
+        if (!ttModelUtilService.checkPassword(email, password)) {
+          ttGuiUtilService.showErrorMessage("Falha de Login", "Senha inválida para o usuário!");
+          return;
+        }
         $state.go("private.profile.view");
         if ($ctrl.remember) {
           $window.localStorage.tt_login_email = email;
           $window.localStorage.tt_login_password = password;
         }
-      } else {
-        ttUtilService.showErrorMessage("Falha de Login", "Dados de usuário/senha inválidos!");
-      }
+      }, function () {
+          ttGuiUtilService.showErrorMessage("Falha de Login", "Usuário não cadastrado no sistema!");
+      })
+      .catch(function (ex) {
+          ttGuiUtilService.showErrorMessage(null, ex);
+      });
     }
-
   }
+
 
 })();

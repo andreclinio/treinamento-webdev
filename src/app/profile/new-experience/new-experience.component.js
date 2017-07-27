@@ -10,10 +10,10 @@
     });
 
   /** @ngInject */
-  function controller($rootScope, $log, Experience, ttUtilService, userDataService, projectDataService) {
+  function controller($rootScope, $log, Experience, ttGuiUtilService, userDataService, projectDataService) {
     var $ctrl = this;
     $ctrl.$onInit = function () {
-      var eventName = ttUtilService.mountFormOperationEventName("newExperienceForm");
+      var eventName = ttGuiUtilService.mountFormOperationEventName("newExperienceForm");
       $ctrl.listener = $rootScope.$on(eventName, function (event, data) {
         if (!data) return;
         $ctrl.addExperience(data.user);
@@ -46,15 +46,15 @@
       try {
         var experience = new Experience(title);
         experience.setProject(project);
-        experience.setStartDate(ttUtilService.dateToString($ctrl.startDate));
-        experience.setEndDate(ttUtilService.dateToString($ctrl.endDate));
+        experience.setStartDate(ttGuiUtilService.dateToString($ctrl.startDate));
+        experience.setEndDate(ttGuiUtilService.dateToString($ctrl.endDate));
         experience.setDescription(description);
         user.addExperience(experience);
         userDataService.update(user);
         var infoMsg = "Experiência '" + title + "'inserida com sucesso."
-        ttUtilService.showInfoMessage(null, infoMsg);
+        ttGuiUtilService.showInfoMessage(null, infoMsg);
       } catch (exception) {
-        ttUtilService.showErrorMessage(null, exception);
+        ttGuiUtilService.showErrorMessage(null, exception);
       }
     }
   }

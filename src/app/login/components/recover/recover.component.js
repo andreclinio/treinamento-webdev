@@ -10,7 +10,7 @@
     });
 
   /** @ngInject */
-  function controller($log, $state, ttUtilService) {
+  function controller($log, $state, ttGuiUtilService) {
     var $ctrl = this;
 
     $ctrl.$onInit = function () {

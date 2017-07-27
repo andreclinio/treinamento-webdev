@@ -13,7 +13,7 @@
     });
 
   /** @ngInject */
-  function controller($rootScope, $scope, $log, userDataService, skillDataService, ttUtilService) {
+  function controller($rootScope, $scope, $log, userDataService, skillDataService, ttGuiUtilService) {
     var $ctrl = this;
 
     $scope.getSkillBadgeClass = function(s) {
@@ -92,12 +92,12 @@
     $scope.delExperience = function (experience) {
       var title = experience.getTitle();
       var warnMsg = "Deseja realmente apagar a experiência '" + title + "'?";
-      var promisse = ttUtilService.confirmWarningMessage(null, warnMsg, "Apagar");
+      var promisse = ttGuiUtilService.confirmWarningMessage(null, warnMsg, "Apagar");
       promisse.then(function () {
         $ctrl.user.removeExperience(experience);
         userDataService.update($ctrl.user);
         var infoMsg = "Experiência '" + title + "'apagada com sucesso."
-        ttUtilService.showInfoMessage(null, infoMsg);
+        ttGuiUtilService.showInfoMessage(null, infoMsg);
       }, function () {
         $log.log('operação cancelada');
       });
@@ -107,7 +107,7 @@
       var desc = skill.getDescription() || "(sem texto disponível)";
       var html = '<h2>' + skill.getName() + '</h2>' +
         '<p>' + desc + '</p>';
-      ttUtilService.showMessage("Competência de " + $ctrl.user.getName(), html);
+      ttGuiUtilService.showMessage("Competência de " + $ctrl.user.getName(), html);
     }
 
     $scope.delSkill = function (experience, index) {
@@ -115,7 +115,7 @@
       var skill = skills[index];
       experience.removeSkill(skill);
       userDataService.update($ctrl.user);
-      ttUtilService.showInfoMessage(null, "Competência " + skill.getName() + " removida.");
+      ttGuiUtilService.showInfoMessage(null, "Competência " + skill.getName() + " removida.");
     }
 
 
@@ -124,7 +124,7 @@
       var experience = data.experience;
       experience.addSkill(skillUser);
       userDataService.update(user);
-      ttUtilService.showInfoMessage(null, "Competência " + skillUser.getName() + " inserida");
+      ttGuiUtilService.showInfoMessage(null, "Competência " + skillUser.getName() + " inserida");
     }
 
     $scope.addSkill = function (experience) {
@@ -136,27 +136,27 @@
         callback: $ctrl.addSkillCallback,
         experience: experience
       };
-      ttUtilService.runFormOperation($rootScope, formName, data, title, html, "Inserir", null, "md");
+      ttGuiUtilService.runFormOperation($rootScope, formName, data, title, html, "Inserir", null, "md");
     }
 
     $scope.delProject = function (experience) {
       experience.setProject(null);
       userDataService.update($ctrl.user);
-      ttUtilService.showInfoMessage(null, "Projeto de removido");
+      ttGuiUtilService.showInfoMessage(null, "Projeto de removido");
     }
 
     $scope.editProject = function (experience) {
-      var prm = ttUtilService.chooseProject(experience.getProject());
+      var prm = ttGuiUtilService.chooseProject(experience.getProject());
       prm.then(function(prj) {
         $log.log("projeto selecionado: ", prj);
         experience.setProject(prj);
         userDataService.update($ctrl.user);
-        ttUtilService.showInfoMessage(null, "Projeto ajustado");
+        ttGuiUtilService.showInfoMessage(null, "Projeto ajustado");
       },
       function() {
       })
       .catch(function (exception) {
-        ttUtilService.showErrorMessage(null, exception);
+        ttGuiUtilService.showErrorMessage(null, exception);
       });
     }
 
@@ -164,10 +164,10 @@
       try{ 
       experience.setStartDate(null);
       userDataService.update($ctrl.user);
-      ttUtilService.showInfoMessage(null, "Data apagada");
+      ttGuiUtilService.showInfoMessage(null, "Data apagada");
       }
       catch(exception) {
-        ttUtilService.showErrorMessage(null, exception);
+        ttGuiUtilService.showErrorMessage(null, exception);
       }
     }
 
@@ -175,66 +175,66 @@
       try{ 
       experience.setEndDate(null);
       userDataService.update($ctrl.user);
-      ttUtilService.showInfoMessage(null, "Data apagada");
+      ttGuiUtilService.showInfoMessage(null, "Data apagada");
       }
       catch(exception) {
-        ttUtilService.showErrorMessage(null, exception);
+        ttGuiUtilService.showErrorMessage(null, exception);
       }
     }
 
     $scope.editStartDate = function (experience) {
-      var prm = ttUtilService.chooseDate(null, null, experience.getStartDate());
+      var prm = ttGuiUtilService.chooseDate(null, null, experience.getStartDate());
       prm.then(function(date) {
         experience.setStartDate(date);
         userDataService.update($ctrl.user);
-        ttUtilService.showInfoMessage(null, "Data ajustada");
+        ttGuiUtilService.showInfoMessage(null, "Data ajustada");
       },
       function() {
       })
       .catch(function (exception) {
-        ttUtilService.showErrorMessage(null, exception);
+        ttGuiUtilService.showErrorMessage(null, exception);
       });
     }
 
     $scope.editEndDate = function (experience) {
-      var prm = ttUtilService.chooseDate(null, null, experience.getEndDate());
+      var prm = ttGuiUtilService.chooseDate(null, null, experience.getEndDate());
       prm.then(function(date) {
         experience.setEndDate(date);
         userDataService.update($ctrl.user);
-        ttUtilService.showInfoMessage(null, "Data ajustada");
+        ttGuiUtilService.showInfoMessage(null, "Data ajustada");
       },
       function() {
       })
       .catch(function (exception) {
-        ttUtilService.showErrorMessage(null, exception);
+        ttGuiUtilService.showErrorMessage(null, exception);
       });
     }
 
     $scope.editDescription = function (experience) {
-      var prm = ttUtilService.chooseString("Descrição", "Entre com a nova descrição.", experience.getDescription(), true);
+      var prm = ttGuiUtilService.chooseString("Descrição", "Entre com a nova descrição.", experience.getDescription(), true);
       prm.then(function(string) {
         experience.setDescription(string);
         userDataService.update($ctrl.user);
-        ttUtilService.showInfoMessage(null, "Descrição da experiência ajustada");
+        ttGuiUtilService.showInfoMessage(null, "Descrição da experiência ajustada");
       },
       function() {
       })
       .catch(function (exception) {
-        ttUtilService.showErrorMessage(null, exception);
+        ttGuiUtilService.showErrorMessage(null, exception);
       });
     }
 
     $scope.editTitle = function (experience) {
-      var prm = ttUtilService.chooseString("Título", "Entre com o novo título.", experience.getTitle(), false);
+      var prm = ttGuiUtilService.chooseString("Título", "Entre com o novo título.", experience.getTitle(), false);
       prm.then(function(string) {
         experience.setTitle(string);
         userDataService.update($ctrl.user);
-        ttUtilService.showInfoMessage(null, "Título da experiência ajustada.");
+        ttGuiUtilService.showInfoMessage(null, "Título da experiência ajustada.");
       },
       function() {
       })
       .catch(function (exception) {
-        ttUtilService.showErrorMessage(null, exception);
+        ttGuiUtilService.showErrorMessage(null, exception);
       });
     }
 
@@ -244,7 +244,7 @@
       var desc = project.getDescription() || "(sem texto disponível)";
       var html = '<h2>' + project.getName() + '</h2>' +
         '<p>' + desc + '</p>';
-      ttUtilService.showMessage("Projeto de " + $ctrl.user.getName(), html);
+      ttGuiUtilService.showMessage("Projeto de " + $ctrl.user.getName(), html);
     }
 
     $scope.showExperienceDetails = function (experience) {
@@ -253,7 +253,7 @@
       var html = '<h2>' + experience.getTitle() + '</h2>' +
         '<h3> Projeto: ' + prjName + '</h3>' +
         '<p>' + desc + '</p>';
-      ttUtilService.showMessage("Experiência de " + $ctrl.user.getName(), html);
+      ttGuiUtilService.showMessage("Experiência de " + $ctrl.user.getName(), html);
     }
 
 
@@ -264,7 +264,7 @@
       var data = {
         user: $ctrl.user
       };
-      ttUtilService.runFormOperation($rootScope, formName, data, title, html, "Criar");
+      ttGuiUtilService.runFormOperation($rootScope, formName, data, title, html, "Criar");
     }
 
     $ctrl.$onInit = function () {

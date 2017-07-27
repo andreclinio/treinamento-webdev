@@ -13,7 +13,7 @@
     });
 
   /** @ngInject */
-  function controller($state, ttUtilService, userDataService) {
+  function controller($state, ttGuiUtilService, userDataService) {
     var $ctrl = this;
     $ctrl.$onInit = function () {
       $ctrl.name = $ctrl.user.getName();
@@ -30,10 +30,10 @@
       try {
         userDataService.update($ctrl.user);
         var infoMsg = "Atualização do usuário feita com sucesso."
-		ttUtilService.showInfoMessage(null, infoMsg);
+		ttGuiUtilService.showInfoMessage(null, infoMsg);
 		$state.go("private.profile.view");
       } catch (exception) {
-        ttUtilService.showErrorMessage(null, exception);
+        ttGuiUtilService.showErrorMessage(null, exception);
       }
     }
   }

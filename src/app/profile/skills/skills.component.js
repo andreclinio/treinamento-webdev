@@ -13,7 +13,7 @@
     });
 
   /** @ngInject */
-  function controller($rootScope, $scope, $log, toastr, userDataService, ttUtilService) {
+  function controller($rootScope, $scope, $log, toastr, userDataService, ttGuiUtilService) {
     var $ctrl = this;
 
     $ctrl.$onInit = function() {
@@ -107,7 +107,7 @@
       var html = '<h2>' + experience.getTitle() + '</h2>' +
                  '<h3> Projeto: ' + prj.getName() + '</h3>' +
                  '<p>' + desc + '</p>';
-      ttUtilService.showMessage("Experiência de " + $ctrl.user.getName(), html);
+      ttGuiUtilService.showMessage("Experiência de " + $ctrl.user.getName(), html);
     }
 
      $scope.showProjectsDetails = function(projects) {
@@ -117,14 +117,14 @@
                     '<h2>Nome: {{p.getName()}}</h2>' +
                     '<p>Desc: {{p.getDescription()}}</p>' +
                  '</div>'
-      ttUtilService.showMessage("Projeto de " + $ctrl.user.getName(), html);
+      ttGuiUtilService.showMessage("Projeto de " + $ctrl.user.getName(), html);
     }
 
     $ctrl.addSkillUserCallback = function(data, skillUser) {
       var user = data.user;
       user.addSkill(skillUser);
       userDataService.update(user);
-      ttUtilService.showInfoMessage(null, "Competência " + skillUser.getName() + " inserida");
+      ttGuiUtilService.showInfoMessage(null, "Competência " + skillUser.getName() + " inserida");
     }
 
     $ctrl.addSkillUser = function () {
@@ -135,7 +135,7 @@
         user: $ctrl.user,
         callback: $ctrl.addSkillUserCallback
       };
-      ttUtilService.runFormOperation($rootScope, formName, data, title, html, "Criar", null, "md");
+      ttGuiUtilService.runFormOperation($rootScope, formName, data, title, html, "Criar", null, "md");
     }
 
   }
