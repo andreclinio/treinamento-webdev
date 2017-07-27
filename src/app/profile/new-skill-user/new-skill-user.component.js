@@ -13,11 +13,11 @@
     });
 
   /** @ngInject */
-  function controller($rootScope, $log, Experience, ttUtilService, userDataService, skillDataService, SkillUser) {
+  function controller($rootScope, $log, Experience, ttGuiUtilService, userDataService, skillDataService, SkillUser) {
     var $ctrl = this;
     $ctrl.$onInit = function () {
       $ctrl.level = "1";
-      var eventName = ttUtilService.mountFormOperationEventName("newSkillUserForm");
+      var eventName = ttGuiUtilService.mountFormOperationEventName("newSkillUserForm");
       $ctrl.listener = $rootScope.$on(eventName, function (event, data) {
         if (!data) return;
         $ctrl.addSkillUser(data);
@@ -44,7 +44,7 @@
         var cb = data.callback;
         cb(data, skillUser);
       } catch (exception) {
-        ttUtilService.showErrorMessage(null, exception + "");
+        ttGuiUtilService.showErrorMessage(null, exception + "");
       }
     }
 
