@@ -1,6 +1,7 @@
 <h3 class="panel-title">{{$ctrl.title}}</h3>
 <ul>
-      <span class="fa fa-circle tt-text-skill-advanced"></span>&nbsp;Avançado <br>
-      <span class="fa fa-circle tt-text-skill-medium"></span>&nbsp;Intermediário <br>
-      <span class="fa fa-circle tt-text-skill-basic"></span>&nbsp;Básico
+      <div ng-repeat="l in $ctrl.levels">
+        <span class="fa fa-circle {{l.class}}"></span>
+        <span>&nbsp;{{l.text}}</span>
+      </div>
 </ul>
