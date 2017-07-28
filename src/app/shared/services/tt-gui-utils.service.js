@@ -23,7 +23,7 @@
   }
 
   /** @ngInject */
-  function service($uibModal, $log, toastr, projectDataService, ttModelUtilService) {
+  function service($uibModal, $log, $sce, toastr, projectDataService, ttModelUtilService) {
     return {
       showMessage: showMessage,
       showInfoMessage: showInfoMessage,
@@ -36,7 +36,24 @@
       chooseFromList: chooseFromList,
       chooseDate: chooseDate,
       chooseString: chooseString,
-      getBadgeClassForSkillLevel: getBadgeClassForSkillLevel
+      getTextClassForSkillLevel: getTextClassForSkillLevel,
+      getBadgeClassForSkillLevel: getBadgeClassForSkillLevel,
+      getHtmlForSkillLevel: getHtmlForSkillLevel
+    }
+
+    function getTextClassForSkillLevel(level) {
+      if (level == 1) {
+        return "tt-text-skill-basic";
+      }
+      else if (level == 2) {
+        return "tt-text-skill-medium";
+      }
+      else if (level == 3) {
+        return "tt-text-skill-advanced";
+      }
+      else {
+        return "";
+      }
     }
 
     function getBadgeClassForSkillLevel(level) {
@@ -53,6 +70,11 @@
         return "";
       }
     }
+
+    function getHtmlForSkillLevel(level, text) {
+        return "<span class='" + getBadgeClassForSkillLevel(level) + "'>" + $sce.trustAsHtml(text) + "</span>";
+    }
+
     function isFormOperationEventName(eventName, formName) {
       return eventName.equals(mountFormOperationEventName(formName));
     }
