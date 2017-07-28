@@ -11,8 +11,30 @@
       hasUserWithEmail: hasUserWithEmail,
       checkPassword: checkPassword,
       stringToDate: stringToDate,
-      dateToString: dateToString
+      dateToString: dateToString,
+      getSkillLevelName: getSkillLevelName
     };
+
+
+    /**
+     * Retorna o nome de um nível de competência.
+     * @param {int} level nível
+     * @return (string} texto.
+     */
+    function getSkillLevelName(level) {
+      if (level == 1) {
+        return "Básico";
+      }
+      else if (level == 2) {
+        return "Médio";
+      }
+      else if (level == 3) {
+        return "Avançado";
+      }
+      else {
+        return "";
+      }
+    }
 
     function checkPassword(email, password) {
       if (password != "1234") return false;
