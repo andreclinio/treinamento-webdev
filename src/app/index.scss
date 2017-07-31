@@ -44,8 +44,10 @@ footer {
 }
 .tecgraf-logo-img-mini {
   @extend .tecgraf-logo-img;
-  width: 30px;
-  height: 30px;
+  background: url('../assets/images/tecgraf-50-50.png') no-repeat;
+  background-size: 30px 30px;
+  // width: 30px;
+  // height: 30px;
 }
 
 div.tt-background {
@@ -183,13 +185,8 @@ span.tt-fa-widget {
   margin: auto;
   position: absolute;
   top: 5%; left: 5%;
-<<<<<<< 3c9e61ab4c202cf296caa1c73d0cbad19dac733a
-  width: 90%; 
-  // height: 90%;
-=======
   width: 90%;
-  height: 90%;
->>>>>>> cviana:
+  // height: 90%;
   min-width: 320px;
   // max-width: 1000px;
   padding: 30px;
@@ -198,13 +195,8 @@ span.tt-fa-widget {
 .login-absolute-center-small {
   @extend .login-absolute-center-large;
   top: 15%; left: 15%;
-<<<<<<< 3c9e61ab4c202cf296caa1c73d0cbad19dac733a
-  width: 70%; 
-  // height: 70%;
-=======
   width: 70%;
-  height: 70%;
->>>>>>> cviana:
+  // height: 70%;
   padding: 40px;
 }
 
