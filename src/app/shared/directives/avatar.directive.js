@@ -8,9 +8,9 @@
         .directive('ttAvatar', directive);
 
     /**
-     * 
-     * @param {*}  
-     * @param {*} cbHashColorFilter 
+     *
+     * @param {*}
+     * @param {*} cbHashColorFilter
      */
     /** @ngInject */
     function directive($window) {
@@ -22,7 +22,8 @@
                 name: '@',
                 url: '@',
                 square: '@',
-                height: '@'
+                height: '@',
+                marginTop: '@',
             },
             link: function(scope, element, attrs) {
                 var redraw = function(){
@@ -32,6 +33,7 @@
                     var height = scope.height ? scope.height : width;
                     var fontSize = scope.fontSize ? scope.fontSize : "18px"
                     var square = (scope.square == 'true') ? true: false;
+                    var margintop = scope.marginTop ? scope.marginTop: '0px';
 
                     if (!scope.url) {
                         var color = getColor(name);
@@ -48,6 +50,8 @@
 
                     element.css('width', width);
                     element.css('height', height);
+
+                    element.css('margin-top', margintop);
 
                     if( !square ) {
                         element.css('border-radius', '50%');
@@ -74,7 +78,7 @@
                             '#00a99e', '#76c379', '#5aba4b', '#e74c3c', '#d35828']
 
                         return COLORS[Math.abs(generateHashCode(str)) % COLORS.length];
-                        
+
                     }
 
                     function generateHashCode(str) {
@@ -89,7 +93,7 @@
                     }
 
                 } /*redraw*/
-                
+
                 redraw();
 
                 scope.$watch('name', function(newValue, oldValue) {

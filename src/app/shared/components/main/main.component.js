@@ -6,7 +6,10 @@
 		.component('ttMainPage', {
 			templateUrl: 'app/shared/components/main/main.component.html',
 			controller: controller,
-			controllerAs: '$ctrl'
+      controllerAs: '$ctrl',
+      bindings: {
+        user: '<'
+      }
 	});
 
 	/** @ngInject */

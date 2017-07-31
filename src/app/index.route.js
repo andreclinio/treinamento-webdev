@@ -19,13 +19,17 @@
     $stateProvider
       .state('private', {
         url: '/private',
-        template: '<tt-main-page></tt-main-page>',
+        template: '<tt-main-page user="$ctrl.user"></tt-main-page>',
+        controllerAs: '$ctrl',
+        controller: ['resolveUser', function(resolveUser) {
+          this.user = resolveUser;
+        }],
         resolve: {
           resolveUser: ['userDataService', '$location', function (userDataService, $location) {
             var email = "clinio@tecgraf.puc-rio.br";
             // var email = $location.search().email;
-            var result = userDataService.get(email);
-            return result;
+            var user = userDataService.get(email);
+            return user;
           }]
         }
       });
