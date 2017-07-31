@@ -50,7 +50,7 @@
       var prm = userDataService.get(email);
       prm.then(function () {
           if (!ttModelUtilService.checkPassword(email, password)) {
-            ttGuiUtilService.showErrorMessage("Falha de Login", "Senha inválida para o usuário!");
+            ttGuiUtilService.showErrorMessage("Falha de Login", "Senha errada para o usuário!");
             return;
           }
           $state.go("private.profile.view");
