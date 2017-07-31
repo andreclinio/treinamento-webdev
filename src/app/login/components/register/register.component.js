@@ -19,6 +19,29 @@
     $ctrl.onDestroy = function () {
     }
 
+    /**
+     * Mostra/esconde as senhas digitadas pelo usuário na tela.
+     */
+    $ctrl.showHidePassword = function () {
+      var widget1 = angular.element("#password")[0];
+      var widget2 = angular.element("#password2")[0];
+      if (!widget1 || !widget2) {
+        $log.log("Falha no widget de senha em login");
+        return;
+      }
+
+      if ($ctrl.showPassword) {
+        widget1.type = "text";
+        widget2.type = "text";
+      } else {
+        widget1.type = "password";
+        widget2.type = "password";
+      }
+    }
+
+    /**
+     * Função que executa o registro.
+     */
     $ctrl.register = function () {
       var email = $ctrl.email;
       if ($ctrl.exists(email)) {
