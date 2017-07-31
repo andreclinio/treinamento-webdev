@@ -24,8 +24,8 @@
       var prm = userDataService.get(email);
       prm.then(function () {
         var msg = "<p> Foi enviado um e-mail para '"+ email + "' com instruções para a recuperação e/ou redefinição de sua senha." +
-        "<p>Ao receber este e-mail, siga a instruções."
-        ttGuiUtilService.showMessage("Recuperação se Senha", msg);
+        "<p>Ao receber este e-mail, siga a instruções lá contidas."
+        ttGuiUtilService.showMessage("Recuperação de Senha", msg);
         $state.go("private.profile.view");
         }, function () {
           ttGuiUtilService.showErrorMessage("Erro", "Usuário '" + email + "' não cadastrado no sistema!");
