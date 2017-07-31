@@ -31,6 +31,10 @@
             firebaseService.database().ref('/users/' + userId).once('value')
                 .then(function (snapshot) {
                     var data = snapshot.val();
+                    if (!data) {
+                        errorHandler();
+                        return;
+                    }
                     data.email = email;
                     var user = User.buildFromServer(data);
 
