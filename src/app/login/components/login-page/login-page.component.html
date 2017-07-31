@@ -9,7 +9,7 @@
           <h1>Login no Sistema</h1>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <input class="form-control" ng-model="$ctrl.email" type="email" name='email' placeholder="Email do usuário" required/>
+            <input class="form-control" ng-model="$ctrl.email" type="email" name='email' tt-email-tecgraf placeholder="Email do usuário" required/>
           </div>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
@@ -38,8 +38,9 @@
 
           <div>
             <div ng-if="loginForm.email.$error.email && loginForm.email.$touched" class="alert alert-warning">Email de entrada inválido!</div>
+            <div ng-if="loginForm.email.$error.ttemailtecgraf && loginForm.email.$touched" class="alert alert-danger">Somente e-mails com o domínio Tecgraf (@tecgraf.puc-rio.br) podem acessar o sistema!</div>
             <div ng-if="loginForm.email.$error.required && loginForm.email.$touched" class="alert alert-warning">Email de entrada é obrigatório!</div>
-            <div ng-if="loginForm.password.$error.required && loginForm.password.$touched" class="alert alert-warning">Preencha a senha!</div>
+            <div ng-if="loginForm.password.$error.required && loginForm.password.$touched" class="alert alert-warning">É necessário o preenchimento da senha!</div>
           </div>
 
         </form>

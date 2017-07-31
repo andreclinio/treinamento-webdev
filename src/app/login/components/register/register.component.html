@@ -15,7 +15,7 @@
           
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-            <input class="form-control" ng-model="$ctrl.email" type="email" name='email' placeholder="Email do usuário" required/>
+            <input class="form-control" ng-model="$ctrl.email" type="email" name='email' tt-email-tecgraf placeholder="Email do usuário" required/>
           </div>
 
           <div class="form-group input-group">
@@ -47,9 +47,9 @@
 
           <div>
             <div ng-if="registerForm.name.$error.required && registerForm.name.$touched" class="alert alert-warning">Nome é obrigatório!</div>
+            <div ng-if="registerForm.email.$error.ttemailtecgraf && registerForm.email.$touched" class="alert alert-danger">Somente e-mails com o domínio Tecgraf (@tecgraf.puc-rio.br) podem acessar o sistema!</div>
             <div ng-if="registerForm.email.$error.email && registerForm.email.$touched" class="alert alert-warning">Email de entrada inválido!</div>
             <div ng-if="registerForm.email.$error.required && registerForm.email.$touched" class="alert alert-warning">Email de entrada é obrigatório!</div>
-            <div ng-if="registerForm.email2.$error.required && registerForm.email2.$touched" class="alert alert-warning">Confirmação de email de entrada é obrigatório!</div>
             <div ng-if="registerForm.password.$error.ttpasswordcheckgood && registerForm.password.$touched" class="alert alert-warning">Senha deve ter oito caracteres com números e maiúsculas</div>
             <div ng-if="registerForm.password2.$error.ttfieldcheckequal && registerForm.password2.$touched" class="alert alert-warning">Senha e confirmação diferem!</div>
             <div ng-if="registerForm.email2.$error.ttfieldcheckequal && registerForm.email2.$touched" class="alert alert-warning">Email e confirmação diferem!</div>
