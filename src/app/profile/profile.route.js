@@ -41,7 +41,6 @@
           }]
       });
 
-
     $stateProvider
       .state('private.profile.example', {
         url: '/example',

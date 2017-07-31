@@ -30,6 +30,7 @@
       showErrorMessage: showErrorMessage,
       confirmWarningMessage: confirmWarningMessage,
       runFormOperation: runFormOperation,
+      openForm: openForm,
       isFormOperationEventName: isFormOperationEventName,
       mountFormOperationEventName: mountFormOperationEventName,
       chooseProject: chooseProject,
@@ -44,14 +45,11 @@
     function getTextClassForSkillLevel(level) {
       if (level == 1) {
         return "tt-text-skill-basic";
-      }
-      else if (level == 2) {
+      } else if (level == 2) {
         return "tt-text-skill-medium";
-      }
-      else if (level == 3) {
+      } else if (level == 3) {
         return "tt-text-skill-advanced";
-      }
-      else {
+      } else {
         return "";
       }
     }
@@ -59,20 +57,17 @@
     function getBadgeClassForSkillLevel(level) {
       if (level == 1) {
         return "tt-badge-skill-basic";
-      }
-      else if (level == 2) {
+      } else if (level == 2) {
         return "tt-badge-skill-medium";
-      }
-      else if (level == 3) {
+      } else if (level == 3) {
         return "tt-badge-skill-advanced";
-      }
-      else {
+      } else {
         return "";
       }
     }
 
     function getHtmlForSkillLevel(level, text) {
-        return "<span class='" + getBadgeClassForSkillLevel(level) + "'>" + $sce.trustAsHtml(text) + "</span>";
+      return "<span class='" + getBadgeClassForSkillLevel(level) + "'>" + $sce.trustAsHtml(text) + "</span>";
     }
 
     function isFormOperationEventName(eventName, formName) {
@@ -94,7 +89,7 @@
         animation: true,
         size: "md",
         controllerAs: '$ctrl',
-        controller: function() {
+        controller: function () {
           var $ctrl = this;
           $ctrl.date = date;
           $ctrl.cancel = function () {
@@ -127,15 +122,15 @@
       var widget = '<input type="text" ng-model="$ctrl.string" class="form-control" id="string"></input>';
       var sz = "sm";
       if (multi) {
-         widget = '<textarea ng-model="$ctrl.string" class="form-control" id="string"></textarea>';
-         sz = "md";
+        widget = '<textarea ng-model="$ctrl.string" class="form-control" id="string"></textarea>';
+        sz = "md";
       }
-        
+
       var modalInstance = $uibModal.open({
         animation: true,
         size: sz,
         controllerAs: '$ctrl',
-        controller: function() {
+        controller: function () {
           var $ctrl = this;
           $ctrl.string = string;
           $ctrl.cancel = function () {
@@ -149,7 +144,7 @@
           '<div class="modal-body">' +
           '<div class="container-fluid">' +
           '<p>' + text + '</p>' +
-           widget +
+          widget +
           '</div>' +
           '</div>' +
           '<div class="modal-footer">' +
@@ -169,8 +164,8 @@
         animation: true,
         size: "sm",
         controllerAs: '$ctrl',
-        controller: function(objProject, projects) {
-           var $ctrl = this;
+        controller: function (objProject, projects) {
+          var $ctrl = this;
           $ctrl.objProject = objProject;
           $ctrl.projects = projects;
           $ctrl.cancel = function () {
@@ -181,8 +176,12 @@
           }
         },
         resolve: {
-            objProject: function() { return { project: inProject }; },
-            projects: projectDataService.list()
+          objProject: function () {
+            return {
+              project: inProject
+            };
+          },
+          projects: projectDataService.list()
         },
         template: '<div class="modal-header"><h1 class="text-info">' + title + '</h1></div>' +
           '<div class="modal-body">' +
@@ -206,8 +205,8 @@
         animation: true,
         size: "sm",
         controllerAs: '$ctrl',
-        controller: function(objItem, items) {
-           var $ctrl = this;
+        controller: function (objItem, items) {
+          var $ctrl = this;
           $ctrl.objItem = objItem;
           $ctrl.items = items;
           $ctrl.cancel = function () {
@@ -218,8 +217,12 @@
           }
         },
         resolve: {
-            objItem: function() { return { item: inItem }; },
-            items: itemsPromisse
+          objItem: function () {
+            return {
+              item: inItem
+            };
+          },
+          items: itemsPromisse
         },
         template: '<div class="modal-header"><h1 class="text-info">' + title + '</h1></div>' +
           '<div class="modal-body">' +
@@ -344,6 +347,87 @@
         $rootScope.$emit(evName, null);
       });
     }
+
+
+    /**
+     * Mostra componente de operações com popup na tela, enviando evento quando a operação é concluída.
+     * @param {object} $rootScope.
+     * @param {string} formName, nome do formulário.
+     * @param {string} title título.
+     * @param {string} html texto html do componente a ser exibido.
+     * @param {string} confirmText texto a ser exibido no botão de confirmação da operação.
+     * @param {string} cancelText texto a ser exibido no botão de cancelamento da operação.
+     */
+    function openForm($rootScope, formName, title, html, errors, confirmText, cancelText, size) {
+      cancelText = cancelText || "Cancelar";
+      confirmText = confirmText || "Confirmar";
+      title = title || "";
+      size = size || "lg";
+      var data = {};
+
+      var errorHtml = '<div ng-if="'+ formName+ '.$invalid" class="panel-footer">';
+      angular.forEach(errors, function(err) {
+         var fld = err.field;
+         var alr = err.alert || "info";
+         var dir = err.directive;
+         var msg = err.message;
+         if (fld && dir && msg) {
+           var formField = formName + '.' + fld;
+           errorHtml += '<div ng-if="'+ formField + '.$error.'+ dir + ' && ' + formField + '.$touched"' + ' class="alert alert-' + alr + '">' + msg + '</div>';
+         }
+      });
+      errorHtml += '</div>';
+
+      var modalInstance = $uibModal.open({
+        size: size,
+        animation: true,
+        controller: function () {
+          var $ctrl = this;
+
+          $ctrl.cancel = function () {
+            modalInstance.dismiss();
+          }
+          $ctrl.confirm = function () {
+            var form = angular.element.find("form")[0];
+            $log.log("ctrlform", form);
+            for (var i = 0; i < form.length; i++) {
+              var widget = form[i];
+              var name = widget.name;
+              var value = widget.value;
+              if (name !== "") data[name] = value;
+            }
+            modalInstance.close();
+          }
+        },
+        controllerAs: '$ctrl',
+        template: 
+        '<form class="form-horizontal" name="' + formName + '" novalidate>' +
+          '<div class="panel-primary">' +
+          '<div class="panel-heading">' +          '<h1>' + title + '</h1>' +          '</div>' +
+          '<div class="panel-body">' +
+          '<div class="container-fluid">' +
+          $sce.trustAsHtml(html) +
+          '</div>' +
+          '</div>' +
+          '<div class="panel-footer">' +
+          '<button type="button" class="btn btn-default" ng-click="$ctrl.cancel()">' + cancelText + '</button>&nbsp;' +
+          '<button ng-disabled="' + formName + '.$invalid" type="button" class="btn btn-primary" ng-click="$ctrl.confirm()">' + confirmText + '</button>' +
+          '</div>' +
+          '</div>' +
+          errorHtml + 
+          '</form>' 
+      });
+
+      var promisse = modalInstance.result;
+      promisse.then(function () {
+        var evName = mountFormOperationEventName(formName);
+        $rootScope.$emit(evName, data);
+      }, function () {
+        var evName = mountFormOperationEventName(formName);
+        $rootScope.$emit(evName, null);
+      });
+    }
+
 
     /**
      * Mostra um mensagem informativa rápida para o usuário.
