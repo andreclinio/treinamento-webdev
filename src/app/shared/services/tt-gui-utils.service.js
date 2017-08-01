@@ -376,8 +376,8 @@
          var msg = err.message;
          if (fld && dir && msg) {
            var formField = formName + '.' + fld;
-          //  errorHtml += '<div ng-if="'+ formField + '.$error.'+ dir + ' && ' + formField + '.$touched"' + ' class="alert alert-' + alr + '">' + msg + '</div>';
-           errorHtml += '<div ng-if="'+ formField + '.$error.'+ dir + '" class="alert alert-' + alr + '">' + msg + '</div>';
+           errorHtml += '<div ng-if="'+ formField + '.$error.'+ dir + ' && ' + formField + '.$touched"' + ' class="alert alert-' + alr + '">' + msg + '</div>';
+          //  errorHtml += '<div ng-if="'+ formField + '.$error.'+ dir + '" class="alert alert-' + alr + '">' + msg + '</div>';
          }
       });
       errorHtml += '</div>';

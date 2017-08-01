@@ -83,7 +83,8 @@
       prm.then(function (users) {
         $log.log("u:", users);
         $ctrl.gridData = $ctrl.mountGridData(users);
-        angular.element("#people-grid").load();
+        // var elem = angular.element("#people-grid")[0];
+        // elem.load();
       }, function (obj) {
         $ctrl.gridData = $ctrl.mountGridData([]);
         ttGuiUtilService.showErrorMessage(null, "Falha na busca de pessoas: " + obj);
