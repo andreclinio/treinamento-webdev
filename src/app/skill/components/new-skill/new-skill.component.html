@@ -1,0 +1,34 @@
+<form class="form-horizontal" name="newSkillForm" novalidate>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h1> Adição de Competência</h1>
+    </div>
+    <div class="panel panel-body">
+      <div class="container-fluid">
+
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+          <input ng-model="$ctrl.title" type="text" class="form-control" name="title" placeholder="Título" required>
+        </div>
+
+
+        <div class="form-group input-group">
+          <span class="input-group-addon"><i class="fa fa-bars"></i></span>
+          <textarea ng-model="$ctrl.description" class="form-control col-xs-12" id="description" placeholder="Descrição resumida da competência"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button type="button" class="btn btn-default" ui-sref="private.skill.view">Cancelar</button>
+      <button ng-disabled="newSkillForm.$invalid" type="button" class="btn btn-primary" ng-click="$ctrl.addSkill()">Adicionar</button>
+    </div>
+
+    <!-- TODO: Tirar essa margem -->
+    <div style="margin-top: 20px;">
+      <div ng-if="newSkillForm.title.$error.required && newSkillForm.title.$touched" class="alert alert-warning">Título é obrigatório</div>
+    </div>
+
+
+  </div>
+</form>

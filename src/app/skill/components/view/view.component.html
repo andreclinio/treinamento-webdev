@@ -1,0 +1,20 @@
+<form name="skillForm" novalidate>
+  <label for="search">Digite a lista de competências:</label>
+  <div class="form-group input-group">
+    <span class="input-group-addon"><span class="fa fa-search"></span></span>
+    <tags-input class="tt-bootstrap" ng-model="$ctrl.skills" add-on-paste="true" display-property="_name" add-from-autocomplete-only="true"
+      replace-spaces-with-dashes="false" placeholder="Adicione competências..." on-tag-removed="$ctrl.update()" on-tag-added="$ctrl.update()">
+      <auto-complete source="$ctrl.loadSkills($query)" min-length="0" debounce-delay="0"></auto-complete>
+    </tags-input>
+  </div>
+
+  <!-- <div class=""> -->
+    <div class="col-md-12 col-lg-4">
+  <tt-skill-edit skills="$ctrl.skills"></tt-skill-edit>
+    </div>
+    <div class="col-md-12 col-lg-8">
+  <tt-skill-table skills="$ctrl.skills"></tt-skill-table>
+</div>
+<!-- </div> -->
+
+</form>
