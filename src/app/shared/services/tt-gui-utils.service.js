@@ -100,7 +100,7 @@
             modalInstance.close(dtTxt);
           }
         },
-        template: '<div class="panel-heading"><h1 class="text-info">' + title + '</h1></div>' +
+        template: '<div class="panel-primary"><div class="panel-heading"><div class="panel-title"><h1>' + title + '</h1></div></div></div>' +
           '<div class="panel-body">' +
           '<p>' + text + '</p>' +
           '<div uib-datepicker ng-model="$ctrl.date" class="" formats="[MM/yyyy]" datepicker-options="{minMode: \'month\'}" datepicker-mode="\'month\'" id="date"></div>' +
@@ -141,7 +141,7 @@
             modalInstance.close($ctrl.string);
           }
         },
-        template: '<div class="panel-heading"><h1 class="text-info">' + title + '</h1></div>' +
+        template: '<div class="panel-primary"><div class="panel-heading"><div class="panel-title"><h1>' + title + '</h1></div></div></div>' +
           '<div class="panel-body">' +
           '<div class="container-fluid">' +
           '<p>' + text + '</p>' +
@@ -184,12 +184,12 @@
           },
           projects: projectDataService.list()
         },
-        template: '<div class="panel-heading"><h1 class="text-info">' + title + '</h1></div>' +
+        template: '<div class="panel-primary"><div class="panel-heading"><div class="panel-title"><h1>' + title + '</h1></div></div></div>' +
           '<div class="panel-body">' +
           '<tt-project-chooser projects="$ctrl.projects" obj-project="$ctrl.objProject"></tt-project-chooser>' +
           '</div>' +
           '<div class="panel-footer">' +
-          '<button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">' + cancelText + '</button>' +
+          '<button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">' + cancelText + '</button>&nbsp;' +
           '<button class="btn btn-primary" type="button" ng-click="$ctrl.confirm()">' + confirmText + '</button>' +
           '</div>'
       });
@@ -225,7 +225,7 @@
           },
           items: itemsPromisse
         },
-        template: '<div class="panel-heading"><h1 class="text-info">' + title + '</h1></div>' +
+        template: '<div class="panel-primary"><div class="panel-heading"><div class="panel-title"><h1>' + title + '</h1></div></div></div>' +
           '<div class="panel-body">' +
           '<tt-item-chooser items="$ctrl.items" obj-item="$ctrl.objItem" label="' + title + '"></tt-item-chooser>' +
           '</div>' +
@@ -254,7 +254,7 @@
           }
         },
         controllerAs: '$ctrl',
-        template: '<div class="panel-heading"><h1 class="text-info">' + title + '</h1></div>' +
+        template: '<div class="panel-primary"><div class="panel-heading"><div class="panel-title"><h1>' + title + '</h1></div></div></div>' +
           '<div class="panel-body">' +
           text +
           '</div>' +
@@ -290,7 +290,8 @@
           }
         },
         controllerAs: '$ctrl',
-        template: '<div class="panel-heading"><h1><span class="fa fa-warning text-danger"></span> - ' + title + '</h1></div>' +
+        template: 
+        '<div class="panel-danger"><div class="panel-heading"><div class="panel-title"><h1><span class="fa fa-warning"></span> - ' + title + '</h1></div></div></div>' +
           '<div class="panel-body">' +
           text +
           '</div>' +
@@ -330,7 +331,7 @@
           }
         },
         controllerAs: '$ctrl',
-        template: '<div class="panel-heading"><h1>' + title + '</h1></div>' +
+        template: '<div class="panel-primary"><div class="panel-heading"><div class="panel-title"><h1>' + title + '</h1></div></div></div>' +
           '<div class="panel-body">' +
           html +
           '</div>' +
