@@ -1,10 +1,11 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">  <h1> Adição de Experiência</h1> </div>
+<form class="form-horizontal" name="newExperienceForm" novalidate>
 
-  <div class="panel panel-body">
-    <form class="form-horizontal" name="newExperienceForm" novalidate>
-
-      <div class="col-sm-12 col-md-10 col-md-offset-1">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h1> Adição de Experiência</h1>
+    </div>
+    <div class="panel panel-body">
+      <div class="container-fluid">
 
         <div class="form-group input-group">
           <span class="input-group-addon"><i class="fa fa-tag"></i></span>
@@ -51,21 +52,18 @@
           <span class="input-group-addon"><i class="fa fa-bars"></i></span>
           <textarea ng-model="$ctrl.description" class="form-control col-xs-12" id="description" placeholder="Descrição resumida da experiência"></textarea>
         </div>
-        
-        <hr>
-
-        <div>
-          <button type="button" class="btn btn-default" ui-sref="private.profile.view">Cancelar</button>
-          <button ng-disabled="newExperienceForm.$invalid" type="button" class="btn btn-primary" ng-click="$ctrl.addExperience()">Adicionar</button>
-        </div>
-        
-        <!-- TODO: Tirar essa margem -->
-        <div style="margin-top: 20px;">
-            <div ng-if="newExperienceForm.title.$error.required && newExperienceForm.title.$touched" class="alert alert-warning">Título é obrigatório</div>
-        </div>
       </div>
+    </div>
+    <div class="panel-footer">
+      <button type="button" class="btn btn-default" ui-sref="private.profile.view">Cancelar</button>
+      <button ng-disabled="newExperienceForm.$invalid" type="button" class="btn btn-primary" ng-click="$ctrl.addExperience()">Adicionar</button>
+    </div>
+
+    <!-- TODO: Tirar essa margem -->
+    <div style="margin-top: 20px;">
+      <div ng-if="newExperienceForm.title.$error.required && newExperienceForm.title.$touched" class="alert alert-warning">Título é obrigatório</div>
+    </div>
 
 
-    </form>
   </div>
-</div>
+</form>
