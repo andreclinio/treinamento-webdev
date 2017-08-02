@@ -52,7 +52,10 @@
     function _buildHeader(titleText, titleClass) {
       titleClass = titleClass || "primary";
       titleText = titleText || "";
-      return '<div class="panel-' + titleClass + '"><div class="panel-heading"><div class="panel-title"><h1>' + $sce.trustAsHtml(titleText) + '</h1></div></div></div>';
+      return '<span class="fa fa-times pull-right tt-header-close-button" ng-click="$ctrl.cancel()"></span>' +
+      '<div class="panel-' + titleClass + '"><div class="panel-heading"><div class="panel-title"><h1>' + 
+      $sce.trustAsHtml(titleText) +  
+      '</h1></div></div></div>';
     }
 
     function _buildFooter(confirmText, cancelText, confirmClass, cancelClass) {
@@ -208,6 +211,9 @@
           var $ctrl = this;
           $ctrl.ok = function () {
             modalInstance.close();
+          }
+          $ctrl.cancel = function () {
+            modalInstance.dismiss();
           }
         },
         controllerAs: '$ctrl',
