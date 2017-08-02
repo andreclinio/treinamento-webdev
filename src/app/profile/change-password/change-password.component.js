@@ -37,7 +37,7 @@
     }
 
     $ctrl.changePassword = function () {
-      var name = $ctrl.user.name;
+      var name = $ctrl.user.getName();
 
       try {
         userDataService.update($ctrl.user);
