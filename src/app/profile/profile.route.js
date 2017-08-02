@@ -32,6 +32,16 @@
           }]
       });
 
+      $stateProvider.state('private.profile.change-password', {
+        url: '/change-password',
+        template: '<tt-profile-change-password user="$ctrl.user"></tt-profile-change-password>',
+        controllerAs: '$ctrl',
+        controller: ['resolveUser', function (resolveUser) {
+          this.user = resolveUser;
+        }]
+    });
+
+
       $stateProvider.state('private.profile.new-experience', {
           url: '/new-experience',
           template: '<tt-profile-new-experience user="$ctrl.user"></tt-profile-new-experience>',

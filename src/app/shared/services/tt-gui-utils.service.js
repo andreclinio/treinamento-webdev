@@ -30,7 +30,6 @@
       showErrorMessage: showErrorMessage,
       confirmWarningMessage: confirmWarningMessage,
       runFormOperation: runFormOperation,
-      openForm: openForm,
       isFormOperationEventName: isFormOperationEventName,
       mountFormOperationEventName: mountFormOperationEventName,
       chooseProject: chooseProject,
@@ -41,34 +40,29 @@
       getHtmlForSkillLevel: getHtmlForSkillLevel
     }
 
-    function _buildTemplate(header, body, footer) {
-      return header + body + footer;
+   
+    function _buildStdOptions(confirmText, cancelText, confirmCallback, cancelCallback) {
+      cancelText = cancelText || "Cancelar";
+      confirmText = confirmText || "Confirmar";
+      return [
+        { text: cancelText, class: "default", callback: cancelCallback },
+        { text: confirmText, class: "primary", callback: confirmCallback}
+      ]
     }
 
-    function _buildBody(html) {
-      return '<div class="panel-body">' + $sce.trustAsHtml(html) + '</div>';
+    function _buildOkOptions(okText, okCallback) {
+      okText = okText || "Fechar";
+      return [
+        { text: okText, class: "primary", callback: okCallback }
+      ]
     }
 
-    function _buildHeader(titleText, titleClass) {
+    function _buildTemplate(titleText, titleClass, content) {
+      content = $sce.trustAsHtml(content);
       titleClass = titleClass || "primary";
       titleText = titleText || "";
-      return '<span class="fa fa-times pull-right tt-header-close-button" ng-click="$ctrl.cancel()"></span>' +
-      '<div class="panel-' + titleClass + '"><div class="panel-heading"><div class="panel-title"><h1>' + 
-      $sce.trustAsHtml(titleText) +  
-      '</h1></div></div></div>';
+      return '<tt-popup-content title-text="' + titleText + '" title-class="' + titleClass + '" options="$ctrl.options" close-function="$ctrl.cancel">' + content + '</tt-popup-content>';
     }
-
-    function _buildFooter(confirmText, cancelText, confirmClass, cancelClass) {
-      confirmText = confirmText || "Confirmar";
-      cancelText = cancelText || "Cancelar";
-      confirmClass = confirmClass || "primary";
-      cancelClass = cancelClass || "default";
-      return '<div class="panel-footer text-right">' +
-        '<button class="btn btn-' + cancelClass + '" type="button" ng-click="$ctrl.cancel()">' + cancelText + '</button>&nbsp;' +
-        '<button class="btn btn-' + confirmClass + '" type="button" ng-click="$ctrl.confirm()">' + confirmText + '</button>' +
-        '</div>';
-    }
-
 
     function getTextClassForSkillLevel(level) {
       if (level == 1) {
@@ -111,7 +105,7 @@
       title = title || "Data";
       text = text || "Escolha uma data";
       date = ttModelUtilService.stringToDate(date);
-      var htmlDate = '<div uib-datepicker ng-model="$ctrl.date" class="" formats="[MM/yyyy]" datepicker-options="{minMode: \'month\'}" datepicker-mode="\'month\'" id="date"></div>'
+      var content = '<div uib-datepicker ng-model="$ctrl.date" class="" formats="[MM/yyyy]" datepicker-options="{minMode: \'month\'}" datepicker-mode="\'month\'" id="date"></div>'
 
       var modalInstance = $uibModal.open({
         animation: true,
@@ -127,8 +121,9 @@
             var dtTxt = ttModelUtilService.dateToString($ctrl.date);
             modalInstance.close(dtTxt);
           }
+          $ctrl.options = _buildStdOptions(null, null, $ctrl.confirm, $ctrl.cancel);
         },
-        template: _buildTemplate(_buildHeader(title), _buildBody('<p>' + text + '</p>' + htmlDate), _buildFooter())
+        template: _buildTemplate(title, null, '<p>' + text + '</p>' + content)
       });
       return modalInstance.result;
     }
@@ -144,6 +139,7 @@
         widget = '<textarea ng-model="$ctrl.string" class="form-control" id="string"></textarea>';
         sz = "md";
       }
+      var content = '<p>'+text+'</p>' + widget;
 
       var modalInstance = $uibModal.open({
         animation: true,
@@ -158,15 +154,17 @@
           $ctrl.confirm = function () {
             modalInstance.close($ctrl.string);
           }
+          $ctrl.options = _buildStdOptions(null, null, $ctrl.confirm, $ctrl.cancel);
         },
-        template: _buildTemplate(_buildHeader(title), _buildBody('<p>' + text + '</p>' + widget), _buildFooter())
+        template: _buildTemplate(title, null, content)
       });
       return modalInstance.result;
     }
 
     function chooseProject(inProject) {
+      var content = '<tt-project-chooser projects="$ctrl.projects" obj-project="$ctrl.objProject"></tt-project-chooser>';
       var title = "Projetos";
-      $log.log("Entrada: ", inProject);
+
       var modalInstance = $uibModal.open({
         animation: true,
         size: "sm",
@@ -175,12 +173,14 @@
           var $ctrl = this;
           $ctrl.objProject = objProject;
           $ctrl.projects = projects;
+          
           $ctrl.cancel = function () {
             modalInstance.dismiss();
           }
           $ctrl.confirm = function () {
             modalInstance.close($ctrl.objProject.project);
           }
+          $ctrl.options = _buildStdOptions(null, null, $ctrl.confirm, $ctrl.cancel);
         },
         resolve: {
           objProject: function () {
@@ -190,9 +190,7 @@
           },
           projects: projectDataService.list()
         },
-        template: _buildTemplate(_buildHeader(title),
-          _buildBody('<tt-project-chooser projects="$ctrl.projects" obj-project="$ctrl.objProject"></tt-project-chooser>'),
-          _buildFooter())
+        template: _buildTemplate(title, null, content)
       });
       return modalInstance.result;
     }
@@ -215,13 +213,10 @@
           $ctrl.cancel = function () {
             modalInstance.dismiss();
           }
+          $ctrl.options = _buildOkOptions(null, $ctrl.ok);
         },
         controllerAs: '$ctrl',
-        template: _buildHeader(title) +
-          _buildBody(html) +
-          '<div class="panel-footer text-right">' +
-          '<button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">Fechar</button>' +
-          '</div>'
+        template: _buildTemplate(title, null, html)
       });
       modalInstance.result.then(function () {}, function () {});
     }
@@ -235,11 +230,15 @@
      * @param {string} cancelText texto a ser exibido no botão de cancelamento da operação.
      * @returns uma promessa sobre a confirmação (aceita se o usuário confirmar e rejeitada se desistir)
      */
-    function confirmWarningMessage(title, html, confirmText, cancelText) {
+    function confirmWarningMessage(title, content, confirmText, cancelText) {
       cancelText = cancelText || "Cancelar";
       confirmText = confirmText || "Confirmar";
       title = title || "Atenção";
-      title = '<span class="fa fa-warning"></span> - ' + title;
+      // title = '<span class="fa fa-warning"></span> - ' + title;
+      var options = [
+        { text: cancelText, class: "default", callback: function() { modalInstance.dismiss() } },
+        { text: confirmText, class: "danger", callback: function() { modalInstance.close() } }
+      ]
       var modalInstance = $uibModal.open({
         animation: true,
         controller: function () {
@@ -247,12 +246,10 @@
           $ctrl.cancel = function () {
             modalInstance.dismiss();
           }
-          $ctrl.confirm = function () {
-            modalInstance.close();
-          }
+          $ctrl.options = options;
         },
         controllerAs: '$ctrl',
-        template: _buildTemplate(_buildHeader(title, "danger"), _buildBody(html), _buildFooter(null, null, "danger"))
+        template: _buildTemplate(title, 'danger', content)
       });
       return modalInstance.result;
     }
@@ -268,8 +265,6 @@
      * @param {string} cancelText texto a ser exibido no botão de cancelamento da operação.
      */
     function runFormOperation($rootScope, formName, data, title, html, confirmText, cancelText, size) {
-      confirmText = confirmText || "Confirmar";
-      cancelText = cancelText || "Cancelar";
       title = title || "";
       size = size || "lg";
       var modalInstance = $uibModal.open({
@@ -283,9 +278,10 @@
           $ctrl.confirm = function () {
             modalInstance.close();
           }
+          $ctrl.options = _buildStdOptions(confirmText, cancelText, $ctrl.confirm, $ctrl.cancel);
         },
         controllerAs: '$ctrl',
-        template: _buildTemplate(_buildHeader(title), _buildBody(html), _buildFooter(confirmText, cancelText))
+        template: _buildTemplate(title, null, html)
       });
       var promisse = modalInstance.result;
       promisse.then(function () {
@@ -297,114 +293,6 @@
       });
     }
 
-
-    /**
-     * Mostra componente de operações com popup na tela, enviando evento quando a operação é concluída.
-     * @param {object} $rootScope.
-     * @param {string} formName, nome do formulário.
-     * @param {string} title título.
-     * @param {string} html texto html do componente a ser exibido.
-     * @param {string} confirmText texto a ser exibido no botão de confirmação da operação.
-     * @param {string} cancelText texto a ser exibido no botão de cancelamento da operação.
-     */
-    function openForm($rootScope, formName, title, html, descriptor, confirmText, cancelText, size) {
-      cancelText = cancelText || "Cancelar";
-      confirmText = confirmText || "Confirmar";
-      title = title || "";
-      size = size || "lg";
-      var data = {};
-      var errors = descriptor.errors || [];
-      var inputs = descriptor.inputs || [];
-
-      var errorHtml = '<div ng-if="' + formName + '.$invalid" class="panel-footer">';
-      angular.forEach(errors, function (err) {
-        var fld = err.field;
-        var alr = err.alert || "info";
-        var dir = err.directive;
-        var msg = err.message;
-        if (fld && dir && msg) {
-          var formField = formName + '.' + fld;
-          errorHtml += '<div ng-if="' + formField + '.$error.' + dir + ' && ' + formField + '.$touched"' + ' class="alert alert-' + alr + '">' + msg + '</div>';
-          //  errorHtml += '<div ng-if="'+ formField + '.$error.'+ dir + '" class="alert alert-' + alr + '">' + msg + '</div>';
-        }
-      });
-      errorHtml += '</div>';
-
-      var modalInstance = $uibModal.open({
-        size: size,
-        animation: true,
-        controller: function (inputs) {
-          var $ctrl = this;
-
-          $ctrl.inputs = inputs;
-
-          $ctrl.cancel = function () {
-            modalInstance.dismiss();
-          }
-          $ctrl.confirm = function () {
-            var form = angular.element("#" + formName)[0];
-            $log.log("ctrlform", form);
-            for (var i = 0; i < form.length; i++) {
-              var widget = form[i];
-              var name = widget.name;
-              var value = widget.value;
-              if (name !== "") data[name] = value;
-            }
-            modalInstance.close();
-          }
-        },
-        controllerAs: '$ctrl',
-        resolve: {
-          inputs: function () {
-            return inputs;
-          }
-        },
-        template: '<form class="form-horizontal" id="' + formName + '" name="' + formName + '" novalidate">' +
-          _buildHeader(title) +
-          '<div class="panel-body">' +
-          '<div class="container-fluid">' +
-          $sce.trustAsHtml(html) +
-          '</div>' +
-          '</div>' +
-          '<div class="panel-footer">' +
-          '<button type="button" class="btn btn-default" ng-click="$ctrl.cancel()">' + cancelText + '</button>&nbsp;' +
-          '<button ng-disabled="' + formName + '.$invalid" type="button" class="btn btn-primary" ng-click="$ctrl.confirm()">' + confirmText + '</button>' +
-          '</div>' +
-          '</div>' +
-          $sce.trustAsHtml(errorHtml) +
-          '</form>'
-      });
-
-      modalInstance.rendered.then(function () {
-        var form = angular.element("#" + formName)[0];
-        var inps = inputs;
-        for (var i = 0; i < inps.length; i++) {
-          var inp = inps[i];
-          var field = inp.field;
-          var value = inp.value;
-          var elem1 = form.querySelectorAll("[name='" + field + "']")[0];
-          var elem = angular.element("#" + field);
-          if (field && value && field !== "") {
-            // elem['ng-change'] = '$ctrl.xupdate()';
-            elem1.value = value;
-            elem.triggerHandler("change");
-            elem.triggerHandler("input");
-            elem.trigger('change');
-            elem.trigger('input');
-
-          }
-        }
-      });
-
-      var promisse = modalInstance.result;
-      promisse.then(function () {
-        var evName = mountFormOperationEventName(formName);
-        $rootScope.$emit(evName, data);
-      }, function () {
-        var evName = mountFormOperationEventName(formName);
-        $rootScope.$emit(evName, null);
-      });
-    }
 
 
     /**

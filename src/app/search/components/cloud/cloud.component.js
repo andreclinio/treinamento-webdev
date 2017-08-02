@@ -18,7 +18,7 @@
         updateWords();
       }
   
-      $ctrl.onDestroy = function() {
+      $ctrl.$onDestroy = function() {
         angular.element('#wordsCloud').jQCloud('destroy');
       }
   

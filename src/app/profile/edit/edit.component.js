@@ -20,6 +20,21 @@
       $ctrl.email = $ctrl.user.getEmail();
       $ctrl.lattes = $ctrl.user.getLattes();
       $ctrl.linkedin = $ctrl.user.getLinkedIn();
+
+      $ctrl.options = [{
+          text: "Cancelar",
+          callback: $ctrl.cancel
+        },
+        {
+          text: "Alterar",
+          class: "primary",
+          callback: $ctrl.updateUser
+        }
+      ]
+    }
+
+    $ctrl.cancel = function () {
+      $state.go("private.profile.view");
     }
 
     $ctrl.updateUser = function () {
@@ -30,8 +45,8 @@
       try {
         userDataService.update($ctrl.user);
         var infoMsg = "Atualização do usuário feita com sucesso."
-		ttGuiUtilService.showInfoMessage(null, infoMsg);
-		$state.go("private.profile.view");
+        ttGuiUtilService.showInfoMessage(null, infoMsg);
+        $state.go("private.profile.view");
       } catch (exception) {
         ttGuiUtilService.showErrorMessage(null, exception);
       }

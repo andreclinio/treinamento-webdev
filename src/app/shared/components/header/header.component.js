@@ -13,11 +13,10 @@
 	});
 
 	/** @ngInject */
-	function controller($log) {
+	function controller() {
     var $ctrl = this;
 		$ctrl.$onInit = function() {
       $ctrl.isNavCollapsed = true;
-      $log.log('user: ', $ctrl.user);
 		}
   }
 

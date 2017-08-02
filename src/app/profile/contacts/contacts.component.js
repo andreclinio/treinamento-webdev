@@ -16,7 +16,6 @@
 	function controller() {
 		var $ctrl = this;
 		$ctrl.$onInit = function() {
-
 		}
 	}
 

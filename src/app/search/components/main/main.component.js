@@ -20,7 +20,7 @@
         $ctrl.skills = [];
       }
   
-      $ctrl.onDestroy = function() {
+      $ctrl.$onDestroy = function() {
       }
 
       $ctrl.loadSkills = function(query) {

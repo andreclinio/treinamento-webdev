@@ -18,7 +18,7 @@
       $ctrl.$onInit = function() {
       }
   
-      $ctrl.onDestroy = function() {
+      $ctrl.$onDestroy = function() {
       }
     }
   
