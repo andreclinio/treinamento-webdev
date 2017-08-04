@@ -17,19 +17,7 @@
     var $ctrl = this;
 
     $scope.getSkillBadgeClass = function(s) {
-      var level = s.getLevel();
-      if (level == 1) {
-        return "tt-badge-skill-basic";
-      }
-      else if (level == 2) {
-        return "tt-badge-skill-medium";
-      }
-      else if (level == 3) {
-        return "tt-badge-skill-advanced";
-      }
-      else {
-        return "";
-      }
+      return ttGuiUtilService.getBadgeClassForSkillLevel(s.getLevel());
     }
 
     $ctrl.mountGridData = function (experiences) {
@@ -49,16 +37,16 @@
       '<span class="fa fa-pencil tt-fa-widget" ng-click="grid.appScope.editProject(grid.getCellValue(row, col))"></span>' +
       '</span>';
 
-      var titleCellTemplate = 
+      var titleCellTemplate =
       '<span> {{grid.getCellValue(row, col).getTitle()}}</span>' +
       '<span class="fa fa-pencil tt-fa-widget" ng-click="grid.appScope.editTitle(grid.getCellValue(row, col))" title="Editar título"></span>';
 
-      var startCellTemplate = 
+      var startCellTemplate =
       '<span> {{grid.getCellValue(row, col).getStartDate()}}</span>' +
       '<span class="fa fa-pencil tt-fa-widget" ng-click="grid.appScope.editStartDate(grid.getCellValue(row, col))" title="Editar data"></span>' +
       '<span class="fa fa-times tt-fa-widget" ng-click="grid.appScope.delStartDate(grid.getCellValue(row, col))" title="Apagar data></span>';
 
-      var endCellTemplate = 
+      var endCellTemplate =
       '<span> {{grid.getCellValue(row, col).getEndDate()}}</span>' +
       '<span class="fa fa-pencil tt-fa-widget" ng-click="grid.appScope.editEndDate(grid.getCellValue(row, col))" title="Editar data"></span>' +
       '<span class="fa fa-times tt-fa-widget" ng-click="grid.appScope.delEndDate(grid.getCellValue(row, col))" title="Apagar data"></span>';
@@ -161,7 +149,7 @@
     }
 
     $scope.delStartDate = function (experience) {
-      try{ 
+      try{
       experience.setStartDate(null);
       userDataService.update($ctrl.user);
       ttGuiUtilService.showInfoMessage(null, "Data apagada");
@@ -172,7 +160,7 @@
     }
 
     $scope.delEndDate = function (experience) {
-      try{ 
+      try{
       experience.setEndDate(null);
       userDataService.update($ctrl.user);
       ttGuiUtilService.showInfoMessage(null, "Data apagada");

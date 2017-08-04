@@ -13,8 +13,16 @@
     });
 
   /** @ngInject */
-  function controller($rootScope, $scope, $log, toastr, userDataService, ttGuiUtilService) {
+  function controller($rootScope, $scope, $log, toastr, userDataService, ttGuiUtilService, ttModelUtilService) {
     var $ctrl = this;
+
+    $scope.getSkillBadgeClass = function(level) {
+      return ttGuiUtilService.getBadgeClassForSkillLevel(level);
+    }
+
+    $scope.getSkillLevelText = function(level) {
+      return ttModelUtilService.getSkillLevelName(level);
+    }
 
     $ctrl.$onInit = function() {
       $ctrl.gridData = $ctrl.mountGridData($ctrl.user.getSkills());
@@ -23,6 +31,7 @@
     }
 
     $ctrl.mountGridData = function(skills) {
+      var levelCellTemplate = '<span class="badge {{grid.appScope.getSkillBadgeClass(grid.getCellValue(row,col))}}">{{ grid.appScope.getSkillLevelText( grid.getCellValue(row,col) ) }}</span>';
       var expCellTemplate = '<span class="badge" ng-click="grid.appScope.showExperiencesDetails(grid.getCellValue(row, col).experiences)">{{grid.getCellValue(row, col).experiences.length}}</span><span>Experiências</span>'
       var projCellTemplate = '<span class="badge" ng-click="grid.appScope.showProjectsDetails(grid.getCellValue(row, col).projects)">{{grid.getCellValue(row, col).projects.length}}</span><span>Projetos</span>'
       var expProjectsCellTemplate = expCellTemplate + " " + projCellTemplate;
@@ -32,14 +41,13 @@
       var actionsCellTemplate = delCellTemplate + viewCellTemplate;
 
       var gridData = {
-        // headerTemplate: 'app/profile/skills/header-template.html',
         enableColumnsResizing: true,
         enableColumnMenus: false,
         columnDefs: [
-          {name: 'Competência', field: 'skillName', width: '15%'},
-          {name: 'Nível', field: 'skillLevel', width: '10%'},
-          {name: 'Experiências / Projetos', field: 'expProjects', cellTemplate: expProjectsCellTemplate, width: '70%', enableSorting: false},
-          {name: 'Ações', field: 'actions', cellTemplate: actionsCellTemplate, enableSorting: false, enableColumnResizing: false, width: '5%', enableHiding: false }
+          {name: 'Competência',             field: 'skillName',   width: '15%'},
+          {name: 'Nível',                   field: 'skillLevel',  width: '20%', cellTemplate: levelCellTemplate, },
+          {name: 'Experiências / Projetos', field: 'expProjects', width: '70%', cellTemplate: expProjectsCellTemplate, enableSorting: false},
+          {name: 'Ações',                   field: 'actions',     width: '5%',  cellTemplate: actionsCellTemplate, enableSorting: false, enableColumnResizing: false, enableHiding: false }
         ],
         data: []
       };
