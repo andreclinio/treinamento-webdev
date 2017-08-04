@@ -1,11 +1,14 @@
 <!-- <form class="form" name="projectChooserForm" novalidate> -->
 
   <div class="form-group">
-    <label for="outProjectId">Projeto:</label>
+    <label for="project">Projeto:</label>
     <div>
-      <select ng-model="$ctrl.outProjectId" name="outProjectId" ng-selected="$ctrl.update()">
-          <option ng-repeat="p in $ctrl.projects" value="{{p.getId()}}">{{p.getName()}}</option>
-      </select>
+      <ui-select ng-model="$ctrl.project" name="project" ng-selected="$ctrl.update();">
+          <ui-select-match placeholder="Escolha um projeto...">{{$select.selected.getName()}}</ui-select-match>
+          <ui-select-choices repeat="p in $ctrl.projects | filter: { '_name' : $select.search }">
+            <span ng-bind-html="p.getName() | highlight: $select.search"></span>
+          </ui-select-choices>
+      </ui-selectselect>
     </div>
   </div>
 
