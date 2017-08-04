@@ -36,7 +36,7 @@
       var projCellTemplate = '<span class="badge" ng-click="grid.appScope.showProjectsDetails(grid.getCellValue(row, col).projects)">{{grid.getCellValue(row, col).projects.length}}</span><span>Projetos</span>'
       var expProjectsCellTemplate = expCellTemplate + " " + projCellTemplate;
 
-      var delCellTemplate = '<span class="fa fa-trash tt-fa-widget" ng-click="grid.appScope.delSkill(grid.getCellValue(row, col))" title="Apagar Competência"></span>';
+      var delCellTemplate = '<span class="fa fa-trash tt-fa-widget" ng-click="grid.appScope.delSkill(grid.getCellValue(row, col).skill)" title="Apagar Competência"></span>';
       var viewCellTemplate = '<span class="fa fa-eye tt-fa-widget" ng-click="grid.appScope.showSkillDetails(grid.getCellValue(row, col))" title="Ver detalhes da Competência"></span>';
       var actionsCellTemplate = delCellTemplate + viewCellTemplate;
 
@@ -116,17 +116,17 @@
     }
 
     $scope.delSkill = function (skill) {
-      // var title = experience.getTitle();
-      // var warnMsg = "Deseja realmente apagar a experiência '" + title + "'?";
-      // var promisse = ttGuiUtilService.confirmWarningMessage(null, warnMsg, "Apagar");
-      // promisse.then(function () {
-      //   $ctrl.user.removeExperience(experience);
-      //   userDataService.update($ctrl.user);
-      //   var infoMsg = "Experiência '" + title + "'apagada com sucesso."
-      //   ttGuiUtilService.showInfoMessage(null, infoMsg);
-      // }, function () {
-      //   $log.log('operação cancelada');
-      // });
+      var title = skill.getName();
+      var warnMsg = "Deseja realmente apagar a competência '" + title + "'?";
+      var promisse = ttGuiUtilService.confirmWarningMessage(null, warnMsg, "Apagar");
+      promisse.then(function () {
+        $ctrl.user.removeSkill(skill);
+        userDataService.update($ctrl.user);
+        var infoMsg = "Competência '" + title + "'apagada com sucesso."
+        ttGuiUtilService.showInfoMessage(null, infoMsg);
+      }, function () {
+        $log.log('operação cancelada!');
+      });
     }
 
     $scope.showSkillDetails = function (skillLine) {
