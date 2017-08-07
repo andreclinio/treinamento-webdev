@@ -21,9 +21,12 @@ $tt-margin: 40px;
 }
 
 body {
-	background: url(../assets/images/background.jpg) repeat;
-  background-position: top left;
-  margin: $tt-margin;
+	 background: #00b7ea;
+   background: -moz-linear-gradient(left, #00b7ea 0%, #009ec3 100%);
+   background: -webkit-linear-gradient(left, #00b7ea 0%,#009ec3 100%);
+   background: linear-gradient(to right, #266399 0%,#266399 100%);
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7ea', endColorstr='#009ec3',GradientType=1 );
+   margin: $tt-margin;
 }
 
 header {
@@ -191,6 +194,13 @@ span.tt-fa-widget {
   // max-width: 1000px;
   padding: 30px;
 }
+.fa-login-icon{
+  color:#fff;
+}
+
+.addon-color-login{
+  background:#266399;
+}
 
 .login-absolute-center-small {
   @extend .login-absolute-center-large;
@@ -210,6 +220,17 @@ span.tt-fa-widget {
   color: $tt-primary-text-color;
 }
 
+.btn-login{
+  background: #4b4b49 !important;
+  border-color: #4b4b49 !important;
+}
+
+.btn-register{
+  background: #266399 !important;
+  border-color: #266399 !important;
+  color:#fff;
+}
+
 textarea {
   resize: vertical;
 }
@@ -224,4 +245,8 @@ textarea {
 
 .tt-popup-content-button {
   margin-left: 10px;
+}
+
+.title-forms{
+  color:#8a8a88;
 }
