@@ -142,6 +142,7 @@
         ttGuiUtilService.showInfoMessage(null, "Projeto ajustado");
       },
       function() {
+        $log.log("[DEBUG] ERRO: ");
       })
       .catch(function (exception) {
         ttGuiUtilService.showErrorMessage(null, exception);
