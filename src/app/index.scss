@@ -176,12 +176,11 @@ span.tt-fa-widget {
    color: $tt-widget-color;
 }
 
-#logo-container{
-  margin: auto;
-  margin-bottom: 10px;
-  width:227px;
-  height:222px;
-   background: url('../assets/images/tecgraf-intro-logo.jpg') no-repeat;
+.logo-container{
+  margin-top:30px;
+}
+.body-fields{
+  padding:30px 10px 10px 10px;
 }
 
 .login-absolute-center-large {
@@ -194,11 +193,11 @@ span.tt-fa-widget {
   // max-width: 1000px;
   padding: 30px;
 }
-.fa-login-icon{
+.fa-icon{
   color:#fff;
 }
 
-.addon-color-login{
+.addon-color{
   background:#266399;
 }
 
@@ -220,12 +219,23 @@ span.tt-fa-widget {
   color: $tt-primary-text-color;
 }
 
-.btn-login{
-  background: #4b4b49 !important;
-  border-color: #4b4b49 !important;
+
+
+
+.btn-cancel{
+  background: #e24939 !important;
+  border-color: #e24939 !important;
+  color:#fff;
 }
 
-.btn-register{
+
+.btn-grey{
+  background: #4b4b49 !important;
+  border-color: #4b4b49 !important;
+  color:#fff;
+}
+
+.btn-blue{
   background: #266399 !important;
   border-color: #266399 !important;
   color:#fff;

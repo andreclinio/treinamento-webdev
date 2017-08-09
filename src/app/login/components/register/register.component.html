@@ -2,34 +2,40 @@
   <div class="row">
 
     <div class="login-absolute-center-large panel panel-body">
-      <div id="logo-container"></div>
-      <div class="col-sm-12 col-md-10 col-md-offset-1">
+        <div class="row">
+          <div class="logo-container col-md-offset-1">
+            <img src="../assets/images/tecgraf-intro-logo.png"  class="img-responsive "></img>
+          </div>
+        </div>
+
+
+      <div class=" body-fields col-sm-12 col-md-10 col-md-offset-1">
 
         <form name="registerForm" novalidate>
-          <h1>Registro do Sistema</h1>
+          <h4 class="title-forms">Registro do Sistema</h4>
 
           <div class="form-group input-group">
-            <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
+            <span class="input-group-addon addon-color"><i class="fa fa-id-card fa-icon"></i></span>
             <input class="form-control" ng-model="$ctrl.name" type="text" name='name' placeholder="Nome do usuário" required/>
           </div>
           
           <div class="form-group input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            <span class="input-group-addon addon-color"><i class="fa fa-envelope fa-icon"></i></span>
             <input class="form-control" ng-model="$ctrl.email" type="email" name='email' tt-email-tecgraf placeholder="Email do usuário" required/>
           </div>
 
           <div class="form-group input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            <span class="input-group-addon addon-color"><i class="fa fa-envelope fa-icon"></i></span>
             <input class="form-control" ng-model="$ctrl.email2" type="email" name='email2' tt-field-check-equal="email" placeholder="Confirmação de email do usuário" required/>
           </div>
 
           <div class="form-group input-group">
-              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <span class="input-group-addon addon-color"><i class="fa fa-lock fa-icon"></i></span>
               <input class="form-control" id="password" ng-model="$ctrl.password" type="password" name='password' tt-password-check-good placeholder="Senha do usuário" required/>
             </div>
 
             <div class="form-group input-group">
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <span class="input-group-addon addon-color"><i class="fa fa-lock fa-icon"></i></span>
                 <input class="form-control" id="password2" ng-model="$ctrl.password2" type="password" name='password2' tt-field-check-equal="password" placeholder="Confirmação de senha do usuário" required/>
               </div>
 
@@ -40,9 +46,10 @@
             </div>
     
   
-          <div class="form-group text-center">
-            <button ng-disabled="registerForm.$invalid" type="button" class="btn btn-primary" ng-click="$ctrl.register()">Cadastrar</button>
-            <button type="button" class="btn btn-default" ui-sref="public.login">Cancelar</button>
+          <div class="form-group pull-right">
+           <button type="button" class="btn btn-default btn-cancel" ui-sref="public.login">Cancelar</button>
+            <button ng-disabled="registerForm.$invalid" type="button" class="btn btn-primary btn-blue" ng-click="$ctrl.register()">Cadastrar</button>
+           
           </div>
 
           <div>

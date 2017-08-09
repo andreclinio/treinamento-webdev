@@ -2,19 +2,24 @@
         <div class="row">
       
           <div class="login-absolute-center-small panel panel-body">
-            <div id="logo-container"></div>
-            <div class="col-sm-12 col-md-10 col-md-offset-1">
+              <div class="row">
+                <div class="logo-container col-md-offset-1">
+                  <img src="../assets/images/tecgraf-intro-logo.png"  class="img-responsive "></img>
+                </div>
+              </div>
+              <div class=" body-fields  col-sm-12 col-md-10 col-md-offset-1">
       
               <form name="recoverForm" novalidate>
-                <h1>Recuperação de Senha</h1>
+                <h4 class="title-forms">Recuparação de senha</h4>
                 <div class="form-group input-group">
-                  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                  <span class="input-group-addon addon-color"><i class="fa fa-envelope fa-icon"></i></span>
                   <input class="form-control" ng-model="$ctrl.email" tt-email-tecgraf type="email" name='email' placeholder="Email do usuário" required/>
                 </div>
 
-                <div class="form-group text-center">
-                  <button ng-disabled="recoverForm.$invalid" type="button" class="btn btn-primary" ng-click="$ctrl.recover()">Recuperar</button>
-                  <button type="button" class="btn btn-default" ui-sref="public.login">Cancelar</button>
+                <div class="form-group pull-right">
+                 <button type="button" class="btn btn-default btn-cancel" ui-sref="public.login">Cancelar</button>
+                  <button ng-disabled="recoverForm.$invalid" type="button" class="btn btn-primary btn-blue" ng-click="$ctrl.recover()">Recuperar</button>
+                 
                 </div>
       
                 <div>
