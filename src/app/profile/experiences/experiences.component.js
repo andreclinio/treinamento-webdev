@@ -34,8 +34,8 @@
       '<span class=" fa fa-times" ng-click="grid.appScope.delProject(grid.getCellValue(row, col))"></span>' +
       '<span class=" fa fa-eye" ng-click="grid.appScope.showProjectDetails(grid.getCellValue(row, col))"></span>' +
       '{{grid.getCellValue(row, col).getProject().getName()}}</span>' +
-      '<span class="fa fa-pencil tt-fa-widget" ng-click="grid.appScope.editProject(grid.getCellValue(row, col))"></span>' +
-      '</span>';
+      '</span>' + 
+      '<span class="fa fa-pencil tt-fa-widget" ng-click="grid.appScope.editProject(grid.getCellValue(row, col))"></span>';
 
       var titleCellTemplate =
       '<span> {{grid.getCellValue(row, col).getTitle()}}</span>' +
@@ -44,7 +44,7 @@
       var startCellTemplate =
       '<span> {{grid.getCellValue(row, col).getStartDate()}}</span>' +
       '<span class="fa fa-pencil tt-fa-widget" ng-click="grid.appScope.editStartDate(grid.getCellValue(row, col))" title="Editar data"></span>' +
-      '<span class="fa fa-times tt-fa-widget" ng-click="grid.appScope.delStartDate(grid.getCellValue(row, col))" title="Apagar data></span>';
+      '<span class="fa fa-times tt-fa-widget" ng-click="grid.appScope.delStartDate(grid.getCellValue(row, col))" title="Apagar data"></span>';
 
       var endCellTemplate =
       '<span> {{grid.getCellValue(row, col).getEndDate()}}</span>' +
