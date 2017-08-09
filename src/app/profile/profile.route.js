@@ -41,6 +41,15 @@
         }]
     });
 
+    $stateProvider.state('private.profile.cloud', {
+      url: '/cloud',
+      template: '<tt-profile-cloud user="$ctrl.user"></tt-profile-cloud>',
+      controllerAs: '$ctrl',
+      controller: ['resolveUser', function (resolveUser) {
+        this.user = resolveUser;
+      }]
+  });
+
 
       $stateProvider.state('private.profile.new-experience', {
           url: '/new-experience',

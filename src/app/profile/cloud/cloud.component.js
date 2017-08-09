@@ -13,10 +13,14 @@
     });
 
   /** @ngInject */
-  function controller(ttGuiUtilService) {
+  function controller($state, ttGuiUtilService) {
     var $ctrl = this;
     $ctrl.$onInit = function () {
       updateWords();
+    }
+
+    $ctrl.cancel = function() {
+      $state.go("private.profile.view");
     }
 
     $ctrl.$onDestroy = function () {

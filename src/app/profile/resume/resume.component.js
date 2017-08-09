@@ -43,9 +43,19 @@
       $ctrl.listenerEdt();
     }
 
+    /**
+     * Abertura de diálogo para editar perfil.
+     */
     $ctrl.openEditProfile = function() {
        $state.go("private.profile.edit");
     }
+
+    /**
+     * Abertura de diálogo para ver nuvem de competências
+     */
+    $ctrl.openCloud = function() {
+      $state.go("private.profile.cloud");
+   }
 
     /**
      * Abertura de diálogo de troca de senha.

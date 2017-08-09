@@ -14,7 +14,8 @@
                 elem.on('keyup', function () {
                     scope.$apply(function () {
                         var email = elem.val();
-                        ctrl.$setValidity('ttemailtecgraf', email.endsWith("@tecgraf.puc-rio.br") );
+                        var ok = email.endsWith("@tecgraf.puc-rio.br");
+                        ctrl.$setValidity('ttemailtecgraf', ok );
                     });
                 });
             }

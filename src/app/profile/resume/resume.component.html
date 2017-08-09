@@ -1,21 +1,23 @@
 <div class="container-fluid">
   <div class="row panel panel-primary">
-      <div class="col-xs-12 col-md-6 panel-body">
-        <div tt-avatar name='{{$ctrl.user.getName()}}'></div>
-        <h1>{{$ctrl.user.getName()}}</h1>
-        <div>
-            <a>
-                <span ng-click="$ctrl.openEditProfile()">Editar perfil</span><br>
-             </a>
-          </div>
+
+    <div class="col-xs-12 col-md-6 panel-body">
+      <div tt-avatar name='{{$ctrl.user.getName()}}'></div>
+      <h1>{{$ctrl.user.getName()}}</h1>
       <div>
-          <a>
-              <span ng-click="$ctrl.openChangePassword()">Trocar senha</span><br>
-           </a>
+        <a> <span ng-click="$ctrl.openEditProfile()">Editar perfil</span><br> </a>
       </div>
+      <div>
+        <a> <span ng-click="$ctrl.openChangePassword()">Trocar senha</span><br> </a>
       </div>
-      <div class="col-xs-12 col-md-6">
-        <tt-profile-contacts user='$ctrl.user'></tt-profile-contacts>
+      <div>
+        <a> <span ng-click="$ctrl.openCloud()">Ver nuvem</span><br> </a>
       </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6">
+      <tt-profile-contacts user='$ctrl.user'></tt-profile-contacts>
+    </div>
+
   </div>
 </div>
