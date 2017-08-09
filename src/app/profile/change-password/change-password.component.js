@@ -48,11 +48,16 @@
       $ctrl.listener();
     }
 
+    /**
+     * Cancelamento da operação.
+     */
     $ctrl.cancel = function () {
       $state.go("private.profile.view");
     }
 
-
+    /**
+     * Operação de atualização da senha.
+     */
     $ctrl.changePassword = function () {
       var name = $ctrl.user.getName();
 
@@ -60,6 +65,7 @@
         userDataService.update($ctrl.user);
         var infoMsg = "Atualização de senha do usuário " + name + " feita com sucesso."
         ttGuiUtilService.showInfoMessage(null, infoMsg);
+        $ctrl.listener();
         $state.go("private.profile.view");
       } catch (exception) {
         ttGuiUtilService.showErrorMessage(null, exception);

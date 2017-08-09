@@ -71,6 +71,7 @@
         userDataService.update($ctrl.user);
         var infoMsg = "Atualização do usuário feita com sucesso."
         ttGuiUtilService.showInfoMessage(null, infoMsg);
+        $ctrl.listener();
         $state.go("private.profile.view");
       } catch (exception) {
         ttGuiUtilService.showErrorMessage(null, exception);
