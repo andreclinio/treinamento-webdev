@@ -2,25 +2,29 @@
   <div class="row">
 
     <div class="login-absolute-center-small panel panel-body">
-      <div id="logo-container"></div>
-      <div class="col-sm-12 col-md-10 col-md-offset-1">
-        <h3 class="title-forms">Login</h3>
+      <div class="row">
+      <div class="logo-container col-md-offset-1">
+        <img src="../assets/images/tecgraf-intro-logo.png"></img>
+      </div>
+    </div>
+      <div class="body-fields col-sm-12 col-md-10 col-md-offset-1">
+        <h4 class="title-forms">Login</h4>
         <form name="loginForm" novalidate>
           <div class="form-group input-group">
-            <span class="input-group-addon addon-color-login"><i class="fa fa-user fa-login-icon"></i></span>
-            <input class="form-control" ng-model="$ctrl.email" type="email" name='email' tt-email-tecgraf placeholder="Email do usuÃ¡rio"
+            <span class="input-group-addon addon-color"><i class="fa fa-user fa-icon"></i></span>
+            <input class="form-control" ng-model="$ctrl.email" type="email" name='email' tt-email-tecgraf placeholder="Email do usuário"
               required/>
           </div>
           <div ng-if="loginForm.email.$error.email && loginForm.email.$touched" class="alert alert-danger">Email de entrada invalido!</div>
           <div ng-if="loginForm.email.$error.ttemailtecgraf && loginForm.email.$touched" class="alert alert-danger">Somente e-mails com o dominio Tecgraf (@tecgraf.puc-rio.br) podem acessar o sistema!</div>
-          <div ng-if="loginForm.email.$error.required && loginForm.email.$touched" class="alert alert-danger">Email de entrada Ã© obrigatório!</div>
+          <div ng-if="loginForm.email.$error.required && loginForm.email.$touched" class="alert alert-danger">Email de entrada não obrigatório!</div>
 
 
           <div class="form-group input-group">
-            <span class="input-group-addon addon-color-login"><i class="fa fa-lock fa-login-icon"></i></span>
+            <span class="input-group-addon addon-color"><i class="fa fa-lock fa-icon"></i></span>
             <input class="form-control" id="password" ng-model="$ctrl.password" type="password" name='password' placeholder="Senha" required/>
           </div>
-          <div ng-if="loginForm.password.$error.required && loginForm.password.$touched" class="alert alert-danger">Ã‰ necessÃ¡rio o preenchimento da senha!</div>
+          <div ng-if="loginForm.password.$error.required && loginForm.password.$touched" class="alert alert-danger">É necessário o preenchimento da senha!</div>
 
           <div class="form-group pull-right ">
             <a ui-sref="public.recover">Esqueci a senha!</a>

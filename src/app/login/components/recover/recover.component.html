@@ -2,19 +2,23 @@
   <div class="row">
 
     <div class="login-absolute-center-small panel panel-body">
-      <div id="logo-container"></div>
-      <div class="col-sm-12 col-md-10 col-md-offset-1">
+      <div class="row">
+      <div class="logo-container col-md-offset-1">
+        <img src="../assets/images/tecgraf-intro-logo.png"> </img>
+      </div>
+    </div>
+      <div class="body-fields col-sm-12 col-md-10 col-md-offset-1">
 
         <form name="recoverForm" novalidate>
-          <h1>RecuperaÃ§Ã£o de Senha</h1>
+           <h4 class="title-forms">Recuperação de senha</h4>
           <div class="form-group input-group">
-            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-            <input class="form-control" ng-model="$ctrl.email" tt-email-tecgraf type="email" name='email' placeholder="Email do usuÃ¡rio"
+            <span class="input-group-addon addon-color"><i class="fa fa-envelope fa-icon"></i></span>
+            <input class="form-control" ng-model="$ctrl.email" tt-email-tecgraf type="email" name='email' placeholder="Email do usuário"
               required/>
           </div>
-          <div ng-if="recoverForm.email.$error.ttemailtecgraf && recoverForm.email.$touched" class="alert alert-danger">Somente e-mails com o domÃ­nio Tecgraf (@tecgraf.puc-rio.br) podem acessar o sistema!</div>
-          <div ng-if="recoverForm.email.$error.email && recoverForm.email.$touched" class="alert alert-danger">Email de entrada invÃ¡lido!</div>
-          <div ng-if="recoverForm.email.$error.required && recoverForm.email.$touched" class="alert alert-danger">Email de entrada Ã© obrigatÃ³rio!</div>
+          <div ng-if="recoverForm.email.$error.ttemailtecgraf && recoverForm.email.$touched" class="alert alert-danger">Somente e-mails com o domínio Tecgraf (@tecgraf.puc-rio.br) podem acessar o sistema!</div>
+          <div ng-if="recoverForm.email.$error.email && recoverForm.email.$touched" class="alert alert-danger">Email de entrada inválido!</div>
+          <div ng-if="recoverForm.email.$error.required && recoverForm.email.$touched" class="alert alert-danger">Email de entrada não obrigatório!</div>
 
           <div class="form-group text-center">
             <button ng-disabled="recoverForm.$invalid" type="button" class="btn btn-primary" ng-click="$ctrl.recover()">Recuperar</button>
