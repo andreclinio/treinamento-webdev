@@ -13,28 +13,45 @@
     });
 
   /** @ngInject */
-  function controller($state, userDataService, ttGuiUtilService) {
+  function controller($log, $rootScope, $state, $scope, userDataService, ttGuiUtilService) {
     var $ctrl = this;
+
+    /**
+     * Inicializador
+     */
     $ctrl.$onInit = function () {
-      $ctrl.options = [{
-          text: "Cancelar",
-          callback: $ctrl.cancel
-        },
-        {
-          text: "Alterar",
-          class: "primary",
-          callback: $ctrl.changePassword
+      $ctrl.options = [
+        { text: "Cancelar", callback: $ctrl.cancel        },
+        { text: "Alterar", class: "primary", callback: $ctrl.changePassword }
+      ];
+
+      $ctrl.listener = $rootScope.$on('$stateChangeStart', function (event) {
+        if($scope.changePasswordForm.$dirty) {
+          event.preventDefault();
+          var content = "Deseja realmente sair sem salvar suas alterações?";
+          var prm = ttGuiUtilService.confirmWarningMessage(null, content);
+          prm.then(function() {
+            $ctrl.listener();
+            $scope.changePasswordForm.$setPristine();
+            $ctrl.cancel();
+          }, function() {
+          });
         }
-      ]
+      });
+
     }
 
+    /**
+     * Destrutor
+     */
+    $ctrl.$onDestroy = function () {
+      $ctrl.listener();
+    }
 
     $ctrl.cancel = function () {
       $state.go("private.profile.view");
     }
 
-    $ctrl.$onDestroy = function () {
-    }
 
     $ctrl.changePassword = function () {
       var name = $ctrl.user.getName();
