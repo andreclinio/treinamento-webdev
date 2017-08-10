@@ -37,6 +37,7 @@
       chooseString: chooseString,
       getTextClassForSkillLevel: getTextClassForSkillLevel,
       getBadgeClassForSkillLevel: getBadgeClassForSkillLevel,
+      getBadgeClassForSkillValidity: getBadgeClassForSkillValidity,
       getHtmlForSkillLevel: getHtmlForSkillLevel
     }
 
@@ -86,6 +87,13 @@
       } else {
         return "";
       }
+    }
+
+    function getBadgeClassForSkillValidity(val) {
+      if (val) {
+        return "tt-badge-skill-validated";
+      } 
+      return "tt-badge-skill-new";
     }
 
     function getHtmlForSkillLevel(level, text) {

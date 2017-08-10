@@ -12,7 +12,8 @@
       checkPassword: checkPassword,
       stringToDate: stringToDate,
       dateToString: dateToString,
-      getSkillLevelName: getSkillLevelName
+      getSkillLevelName: getSkillLevelName,
+      getSkillValidityName: getSkillValidityName
     };
 
 
@@ -34,6 +35,18 @@
       else {
         return "";
       }
+    }
+
+    /**
+     * Retorna o nome de uma validação de competência.
+     * @param {boolean} validity flag de valido.
+     * @return (string} texto.
+     */
+    function getSkillValidityName(validity) {
+      if (validity) {
+        return "Validado";
+      }
+      return "Novo";
     }
 
     function checkPassword(email, password) {

@@ -7,6 +7,9 @@ $tt-skill-advanced-color: #af3311;
 $tt-skill-medium-color: #cc7d14;
 $tt-skill-basic-color: #147020;
 
+$tt-skill-validated-color: #009900;
+$tt-skill-new-color: #990000;
+
 $tt-widget-color: #000088;
 
 $tt-margin: 40px;
@@ -128,6 +131,17 @@ tags-input .tags .tag-item .remove-button {
 .tt-text {
   font-size: 1em;
   font-weight: normal;
+}
+
+.tt-badge-skill-validated {
+  @extend .tt-badge;
+  background-color: $tt-skill-validated-color;
+}
+
+
+.tt-badge-skill-new {
+  @extend .tt-badge;
+  background-color: $tt-skill-new-color;
 }
 
 .tt-badge-primary {

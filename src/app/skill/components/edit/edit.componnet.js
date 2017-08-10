@@ -13,7 +13,7 @@
       });
   
     /** @ngInject */
-    function controller($rootScope, $log) {
+    function controller($rootScope) {
       var $ctrl = this;
 
       $ctrl.$onInit = function() {
