@@ -27,6 +27,10 @@
       $ctrl.$onDestroy = function () {
       }
   
+      $ctrl.cancel = function() {
+        $state.go("private.skill.view");
+      }
+
       $ctrl.addSkill = function () {
         var title = $ctrl.title;
         var description = $ctrl.description;

@@ -1,19 +1,19 @@
 <form class="form-horizontal" name="newExperienceForm" novalidate>
-
+  
   <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h1> Adição de Experiência</h1>
-    </div>
-    <div class="panel panel-body">
-      <div class="container-fluid">
-
-        <div class="form-group input-group">
-          <span class="input-group-addon"><i class="fa fa-tag"></i></span>
-          <input ng-model="$ctrl.title" type="text" class="form-control" name="title" placeholder="Título" required>
-        </div>
-
-        <div class="form-group input-group">
-          <span class="input-group-addon"><i class="fa fa-gear"></i></span>
+  <tt-header-content title-text="Adição de Experiência" close-function="$ctrl.cancel"></tt-header-content>
+  
+  <div class="panel panel-body">
+    <div class="container-fluid">
+      
+      <div class="form-group input-group">
+        <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+        <input ng-model="$ctrl.title" type="text" class="form-control" name="title" placeholder="Título" required>
+      </div>
+      <div ng-if="newExperienceForm.title.$error.required && newExperienceForm.title.$touched" class="alert alert-warning">Título é obrigatório.</div>
+      
+      <div class="form-group input-group">
+        <span class="input-group-addon"><i class="fa fa-gear"></i></span>
           <ui-select class="" ng-model="$ctrl.project" name="project">
             <ui-select-match placeholder="Projeto">{{$select.selected.getName()}}</ui-select-match>
             <ui-select-choices repeat="p in $ctrl.projects | filter: { '_name' : $select.search }">
@@ -54,16 +54,11 @@
         </div>
       </div>
     </div>
+
     <div class="panel-footer text-right">
-      <button type="button" class="btn btn-default" ui-sref="private.profile.view">Cancelar</button>
+      <button type="button" class="btn btn-default" ng-click="$ctrl.cancel()">Cancelar</button>
       <button ng-disabled="newExperienceForm.$invalid" type="button" class="btn btn-primary" ng-click="$ctrl.addExperience()">Adicionar</button>
     </div>
-
-    <!-- TODO: Tirar essa margem -->
-    <div style="margin-top: 20px;">
-      <div ng-if="newExperienceForm.title.$error.required && newExperienceForm.title.$touched" class="alert alert-warning">Título é obrigatório</div>
-    </div>
-
 
   </div>
 </form>

@@ -47,11 +47,24 @@
       $ctrl.listener();
     }
 
+    /**
+     * Função de cancelamento
+     */
+    $ctrl.cancel = function() {
+      $state.go("private.profile.view");
+    }
+
+    /**
+     * Callback
+     */
     $ctrl.addSkillCallback = function (data, skillUser) {
       $ctrl.skills.push(skillUser);
       $ctrl.updateSkillsGrid();
     }
 
+    /**
+     * Criação do skill com bas no form.
+     */
     $ctrl.addNewSkill = function () {
       var title = "Adição de Competência";
       var html = '<tt-profile-new-skill-user></tt-profile-new-skill-user>';
