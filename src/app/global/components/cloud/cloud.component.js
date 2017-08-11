@@ -3,8 +3,8 @@
   
     angular
       .module('search')
-      .component('ttSearchCloud', {
-        templateUrl: 'app/search/components/cloud/cloud.component.html',
+      .component('ttGlobalCloud', {
+        templateUrl: 'app/global/components/cloud/cloud.component.html',
         controller: controller,
         controllerAs: '$ctrl',
         bindings: {

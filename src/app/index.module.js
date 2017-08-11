@@ -18,7 +18,8 @@
         'skill',
         'profile',
         'shared',
-        'login'
+        'login',
+        'global'
     ]);
 
 })();
