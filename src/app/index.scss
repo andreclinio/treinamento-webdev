@@ -24,13 +24,34 @@ $tt-margin: 40px;
 }
 
 body {
-	 background: #00b7ea;
-   background: -moz-linear-gradient(left, #00b7ea 0%, #009ec3 100%);
-   background: -webkit-linear-gradient(left, #00b7ea 0%,#009ec3 100%);
-   background: linear-gradient(to right, #266399 0%,#266399 100%);
-   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b7ea', endColorstr='#009ec3',GradientType=1 );
-   margin: $tt-margin;
+	 
+
+   
 }
+
+.nav-bar-style{
+  background: #d5eaf4;
+  border-radius:0px;
+  border-color:#d5eaf4;
+}
+
+.navbar-default .navbar-nav>.active>a{
+  background: #168dc5!important;
+  color:#fff;
+}
+/*Panel*/
+
+.panel-style-header{
+  background:#168dc5 !important;
+  border-color:#168dc5 !important;
+}
+
+.panel-style-body{
+  border-radius:0px;
+  border-color: #e6e6e6;
+}
+
+/*fim*/
 
 header {
   margin-top: 20px;
