@@ -5,7 +5,14 @@
       <span> <a ng-click="$ctrl.openNewSkill()"> <span class="fa fa-plus-circle tt-primary-text"></span></a></span>
     </h2>
   </div>
+  
   <div class="panel-body">
     <div id="skills-grid" ui-grid="$ctrl.gridData" ui-grid-resize-columns class="grid"></div>
   </div>
+
+  <div class="panel-footer text-right">
+    <button ng-disabled="$ctrl.getSelectionCount() <= 1" type="button" class="btn btn-primary " ng-click="$ctrl.mergeSelected()">Combinar</button>
+    <button ng-disabled="$ctrl.getSelectionCount() < 1" type="button" class="btn btn-primary " ng-click="$ctrl.deleteSelected()">Apagar</button>
+  </div>
+
 </div>

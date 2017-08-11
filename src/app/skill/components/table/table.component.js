@@ -6,10 +6,7 @@
       .component('ttSkillTable', {
         templateUrl: 'app/skill/components/table/table.component.html',
         controller: controller,
-        controllerAs: '$ctrl',
-        bindings: {
-          skills: '<'
-        }
+        controllerAs: '$ctrl'
       });
 
     /** @ngInject */
@@ -20,6 +17,7 @@
        * Inicializador
        */
       $ctrl.$onInit = function () {
+        $ctrl.skills = [];
         $ctrl.gridData = {
           data: []
         };
@@ -49,6 +47,50 @@
       $ctrl.update = function (skills) {
         skills = skills || [];
         $ctrl.gridData = $ctrl.mountGridData(skills);
+        $ctrl.skills = skills;
+      }
+
+      $ctrl.getSelectionCount= function() {
+        var sel = _getSelection();
+        return sel.length;
+      }
+
+      $ctrl.mergeSelected = function() {
+        var html = "<p> Competências combinadas:";
+        html += _getSelectionText();
+        // TODO
+        ttGuiUtilService.showInfoMessage(null, html);
+      }
+
+      $ctrl.deleteSelected = function() {
+        var html = "<p> Deseja realmente apagar as competências?";
+        html += _getSelectionText();
+        var promisse = ttGuiUtilService.confirmWarningMessage(null, html, "Apagar");
+        promisse.then(function () {
+          // TODO
+          var infoMsg = "Competência(s) apagada(s) com sucesso."
+          ttGuiUtilService.showInfoMessage(null, infoMsg);
+        }, function () {
+          $log.log('operação cancelada');
+        });
+      }
+
+      function _getSelectionText() {
+        var sel = _getSelection();
+        var html = "<ul>";
+        angular.forEach(sel, function (v) {
+          html += "<li>" + v.getName();
+        });
+        html += "</ul>";
+        return html;
+      }
+
+      function _getSelection() {
+        var selection = [];
+        angular.forEach($ctrl.skills, function (v) {
+          if (v.selected) selection.push(v);
+          });
+        return selection;
       }
 
       $scope.getSkillBadgeClass = function(s) {
@@ -126,6 +168,7 @@
         var experiencesCellTemplate = '<span> -- </span>';
         var projectsCellTemplate = '<span> -- </span>';
 
+        var selCellTemplate = '<input type="checkbox" ng-model="grid.getCellValue(row, col).selected">';
         var delCellTemplate = '<span class="fa fa-trash tt-fa-widget" ng-click="grid.appScope.delSkill(grid.getCellValue(row, col))" title="Apagar competência"></span>';
         var valCellTemplate = '<span class="fa fa-check-circle tt-fa-widget" ng-click="grid.appScope.validateSkill(grid.getCellValue(row, col))"title="Validar competência"></span>';
         var edDescCellTemplate = '<span class="fa fa-tag tt-fa-widget" ng-click="grid.appScope.editDescription(grid.getCellValue(row, col))" title="Editar descrição da competência"></span>';
@@ -135,12 +178,20 @@
         var gridData = {
           enableColumnResizing: true,
           enableColumnMenus: false,
-          columnDefs: [{
+          columnDefs: [
+            {
+              name: '',
+              field: 'skill',
+              enableColumnMenus: false,
+              cellTemplate: selCellTemplate,
+              width: '5%'
+            },
+            {
               name: 'Nome',
               field: 'skill',
               enableColumnMenus: false,
               cellTemplate: nameCellTemplate,
-              width: '20%'
+              width: '15%'
             },
             {
               name: 'Status',
