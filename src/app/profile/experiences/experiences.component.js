@@ -200,7 +200,7 @@
     }
 
     $scope.editDescription = function (experience) {
-      var prm = ttGuiUtilService.chooseString("Descrição", "Entre com a nova descrição.", experience.getDescription(), true);
+      var prm = ttGuiUtilService.chooseString("Descrição", "Entre com a nova descrição.", experience.getDescription(), true, false);
       prm.then(function(string) {
         experience.setDescription(string);
         userDataService.update($ctrl.user);
@@ -214,7 +214,7 @@
     }
 
     $scope.editTitle = function (experience) {
-      var prm = ttGuiUtilService.chooseString("Título", "Entre com o novo título.", experience.getTitle(), false);
+      var prm = ttGuiUtilService.chooseString("Título", "Entre com o novo título.", experience.getTitle(), false, true);
       prm.then(function(string) {
         experience.setTitle(string);
         userDataService.update($ctrl.user);

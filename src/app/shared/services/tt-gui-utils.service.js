@@ -47,7 +47,7 @@
       confirmText = confirmText || "Confirmar";
       return [
         { text: cancelText, class: "default", callback: cancelCallback },
-        { text: confirmText, class: "primary", callback: confirmCallback}
+        { text: confirmText, class: "primary", callback: confirmCallback, disabledByForm: true}
       ]
     }
 
@@ -58,11 +58,18 @@
       ]
     }
 
-    function _buildTemplate(titleText, titleClass, content) {
+    function __buildTemplate(formName, titleText, titleClass, content) {
       content = $sce.trustAsHtml(content);
       titleClass = titleClass || "primary";
       titleText = titleText || "";
-      return '<tt-popup-content title-text="' + titleText + '" title-class="' + titleClass + '" options="$ctrl.options" close-function="$ctrl.cancel">' + content + '</tt-popup-content>';
+      formName = formName || "_nullForm";
+      return '<form name="' + formName + '" novalidate>' + 
+      '<tt-header-content title-text="' + titleText + '" title-class="' + titleClass + '"close-function="$ctrl.cancel"></tt-header-content>' + 
+       '<div class="panel-body">' + content + '</div>' + 
+      '<div class="panel-footer text-right">' + 
+      '<button ng-repeat="op in $ctrl.options" class="btn btn-{{op.class}} tt-footer-content-button"' + 
+       ' type="button" ng-click="op.callback()" ng-disabled="' + formName + '.$invalid && op.disabledByForm">{{op.text}}</button> </div>' +
+      '</form>';
     }
 
     function getTextClassForSkillLevel(level) {
@@ -72,9 +79,8 @@
         return "tt-text-skill-medium";
       } else if (level == 3) {
         return "tt-text-skill-advanced";
-      } else {
-        return "";
-      }
+      } 
+      return "";
     }
 
     function getBadgeClassForSkillLevel(level) {
@@ -84,9 +90,8 @@
         return "tt-badge-skill-medium";
       } else if (level == 3) {
         return "tt-badge-skill-advanced";
-      } else {
-        return "";
       }
+      return "";
     }
 
     function getBadgeClassForSkillValidity(val) {
@@ -131,24 +136,30 @@
           }
           $ctrl.options = _buildStdOptions(null, null, $ctrl.confirm, $ctrl.cancel);
         },
-        template: _buildTemplate(title, null, '<p>' + text + '</p>' + content)
+        template: __buildTemplate(null, title, null, '<p>' + text + '</p>' + content)
       });
       return modalInstance.result;
     }
 
-    function chooseString(title, text, string, multi) {
+    function chooseString(title, text, string, multi, required) {
       title = title || "Texto";
       text = text || "Escolha o texto associado";
       multi = multi || false;
+      var requiredAttr = required ? "required" : "";
+      
+      var formName = "stringForm";
 
-      var widget = '<input type="text" ng-model="$ctrl.string" class="form-control" id="string"></input>';
+      var widget = '<input type="text" ng-model="$ctrl.string" name="string" class="form-control" id="string" ' + requiredAttr + '></input>';
       var sz = "sm";
       if (multi) {
-        widget = '<textarea ng-model="$ctrl.string" class="form-control" id="string"></textarea>';
+        widget = '<textarea ng-model="$ctrl.string" name="string" class="form-control" id="string" ' + requiredAttr + '></textarea>';
         sz = "md";
       }
-      var content = '<p>'+text+'</p>' + widget;
+      if (required) {
+        widget += '<div ng-if="' + formName + '.string.$error.required && ' + formName+ '.string.$touched" class="alert alert-danger">Texto é obrigatório!</div>';
+      }
 
+      var content = '<p>'+text+'</p>' + widget;
       var modalInstance = $uibModal.open({
         animation: true,
         size: sz,
@@ -164,7 +175,7 @@
           }
           $ctrl.options = _buildStdOptions(null, null, $ctrl.confirm, $ctrl.cancel);
         },
-        template: _buildTemplate(title, null, content)
+        template: __buildTemplate(formName, title, null, content)
       });
       return modalInstance.result;
     }
@@ -198,7 +209,7 @@
           },
           projects: projectDataService.list()
         },
-        template: _buildTemplate(title, null, content)
+        template: __buildTemplate(null, title, null, content)
       });
       return modalInstance.result;
     }
@@ -224,7 +235,7 @@
           $ctrl.options = _buildOkOptions(null, $ctrl.ok);
         },
         controllerAs: '$ctrl',
-        template: _buildTemplate(title, null, html)
+        template: __buildTemplate(null, title, null, html)
       });
       modalInstance.result.then(function () {}, function () {});
     }
@@ -257,7 +268,7 @@
           $ctrl.options = options;
         },
         controllerAs: '$ctrl',
-        template: _buildTemplate(title, 'danger', content)
+        template: __buildTemplate(null, title, 'danger', content)
       });
       return modalInstance.result;
     }
@@ -289,7 +300,7 @@
           $ctrl.options = _buildStdOptions(confirmText, cancelText, $ctrl.confirm, $ctrl.cancel);
         },
         controllerAs: '$ctrl',
-        template: _buildTemplate(title, null, html)
+        template: __buildTemplate(null, title, null, html)
       });
       var promisse = modalInstance.result;
       promisse.then(function () {
