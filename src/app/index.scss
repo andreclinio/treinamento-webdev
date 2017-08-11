@@ -1,26 +1,43 @@
 
-$tt-primary-color: #337ab7;
+$tt-primary-color: #8dabb9;
 $tt-primary-text-color: #ffffff;
 $tt-secondary-color: #385687;
 
-$tt-skill-advanced-color: #af3311;
-$tt-skill-medium-color: #cc7d14;
-$tt-skill-basic-color: #147020;
+$tt-skill-advanced-color: #f76459;
+$tt-skill-medium-color: #FF9800;
+$tt-skill-basic-color: #4CAF50;
+
 
 $tt-skill-validated-color: #009900;
 $tt-skill-new-color: #990000;
 
-$tt-widget-color: #000088;
+$tt-widget-color: #989c9e;
 
 $tt-margin: 40px;
+
+$tt-ui-grid-canvas-color:#9E9E9E;
+$tt-ui-grid-header-canvas:#02a8f3;
 
 *:focus {
     outline: none !important;
 }
 
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:  'Open Sans', sans-serif;
   box-sizing: border-box
+}
+
+.ui-grid-canvas{
+  color: $tt-ui-grid-canvas-color;
+}
+
+.ui-grid-header-canvas{
+  color: $tt-ui-grid-header-canvas;
+}
+
+.badge{
+  background-color:$tt-primary-color;
+  margin: 7px;
 }
 
 body {
@@ -36,14 +53,14 @@ body {
 }
 
 .navbar-default .navbar-nav>.active>a{
-  background: #168dc5!important;
+  background: #02a8f3!important;
   color:#fff;
 }
 /*Panel*/
 
 .panel-style-header{
-  background:#168dc5 !important;
-  border-color:#168dc5 !important;
+  background:#02a8f3 !important;
+  border-color:#02a8f3 !important;
 }
 
 .panel-style-body{
@@ -52,6 +69,12 @@ body {
 }
 
 /*fim*/
+
+.subtitle-levels-style{
+  float:right;
+  padding:10px;
+  color:#fff;
+}
 
 header {
   margin-top: 20px;
@@ -166,21 +189,29 @@ tags-input .tags .tag-item .remove-button {
 .tt-badge-primary {
   @extend .tt-badge;
   background-color: $tt-primary-color;
+  border-radius:0px;
+  margin: 4px;
 }
 
 .tt-badge-skill-advanced {
   @extend .tt-badge;
   background-color: $tt-skill-advanced-color;
+  border-radius: 0px ;
+  margin-top: 4px ;
 }
 
 .tt-badge-skill-medium {
   @extend .tt-badge;
   background-color: $tt-skill-medium-color;
+  border-radius: 0px ;
+  margin-top: 4px ;
 }
 
 .tt-badge-skill-basic {
   @extend .tt-badge;
   background-color: $tt-skill-basic-color;
+  border-radius: 0px ;
+  margin-top: 4px ;
 }
 
 .tt-text-primary {
@@ -191,16 +222,19 @@ tags-input .tags .tag-item .remove-button {
 .tt-text-skill-advanced {
   @extend .tt-text;
   color: $tt-skill-advanced-color;
+ 
 }
 
 .tt-text-skill-medium {
   @extend .tt-text;
   color: $tt-skill-medium-color;
+  
 }
 
 .tt-text-skill-basic {
   @extend .tt-text;
   color: $tt-skill-basic-color;
+  
 }
 
 
