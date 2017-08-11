@@ -80,7 +80,7 @@
       }
 
       $scope.editTitle = function (skill) {
-        var prm = ttGuiUtilService.chooseString("Título", "Entre com o novo título.", skill.getName(), false);
+        var prm = ttGuiUtilService.chooseString("Título", "Entre com o novo título.", skill.getName(), false, true);
         prm.then(function(string) {
           skill.setName(string);
           skillDataService.update(skill);
@@ -102,7 +102,7 @@
       }
 
       $scope.editDescription = function (skill) {
-        var prm = ttGuiUtilService.chooseString("Descrição", "Entre com a nova descrição.", skill.getDescription(), true);
+        var prm = ttGuiUtilService.chooseString("Descrição", "Entre com a nova descrição.", skill.getDescription(), true, false);
         prm.then(function(string) {
           skill.setDescription(string);
           skillDataService.update(skill);

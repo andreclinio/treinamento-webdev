@@ -16,12 +16,11 @@
     });
 
   /** @ngInject */
-  function controller($log) {
+  function controller() {
     var $ctrl = this;
     $ctrl.$onInit = function () {
       $ctrl.titleText = $ctrl.titleText || "";
       $ctrl.titleClass = $ctrl.titleClass || "primary";
-      $log.log($ctrl.closeFunction());
     }
 
     $ctrl.callCloseFunction = function () {
