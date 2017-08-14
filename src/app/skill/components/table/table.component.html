@@ -3,8 +3,6 @@
   <span ng-click="$ctrl.openNewSkill()" class="fa fa-plus-circle"></span>
 </h2>
 
-
-
 <div id="skills-grid" ui-grid="$ctrl.gridData" ui-grid-resize-columns class="grid"></div>
 <div class="text-right">
   <button ng-disabled="$ctrl.getSelectionCount() <= 1" type="button" class="btn btn-primary " ng-click="$ctrl.mergeSelected()">Combinar</button>
