@@ -1,79 +1,74 @@
-
 $tt-primary-color: #8dabb9;
 $tt-primary-text-color: #ffffff;
 $tt-secondary-color: #385687;
-
 $tt-skill-advanced-color: #f76459;
 $tt-skill-medium-color: #FF9800;
 $tt-skill-basic-color: #4CAF50;
-
-
 $tt-skill-validated-color: #009900;
 $tt-skill-new-color: #990000;
-
 $tt-widget-color: #989c9e;
-
 $tt-margin: 40px;
-
 $tt-ui-grid-canvas-color:#9E9E9E;
 $tt-ui-grid-header-canvas:#02a8f3;
-
 *:focus {
-    outline: none !important;
+  outline: none !important;
 }
 
 * {
-  font-family:  'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   box-sizing: border-box
 }
 
-.ui-grid-canvas{
+.ui-grid-canvas {
   color: $tt-ui-grid-canvas-color;
 }
 
-.ui-grid-header-canvas{
+.ui-grid-header-canvas {
   color: $tt-ui-grid-header-canvas;
 }
 
-.badge{
-  background-color:$tt-primary-color;
+.badge {
+  background-color: $tt-primary-color;
   margin: 7px;
 }
 
 body {
-	 
-
-   
+  // background: url(../assets/images/background.jpg) repeat;
+  // background-position: top left;
+  // margin: $tt-margin; 
 }
 
-.nav-bar-style{
+.nav-bar-style {
   background: #d5eaf4;
-  border-radius:0px;
-  border-color:#d5eaf4;
+  border-radius: 0px;
+  border-color: #d5eaf4;
 }
 
-.navbar-default .navbar-nav>.active>a{
+.navbar-default .navbar-nav>.active>a {
   background: #02a8f3!important;
-  color:#fff;
+  color: #fff;
 }
+
+
 /*Panel*/
 
-.panel-style-header{
-  background:#02a8f3 !important;
-  border-color:#02a8f3 !important;
+.panel-style-header {
+  background: #02a8f3 !important;
+  border-color: #02a8f3 !important;
 }
 
-.panel-style-body{
-  border-radius:0px;
+.panel-style-body {
+  border-radius: 0px;
   border-color: #e6e6e6;
 }
 
+
 /*fim*/
 
-.subtitle-levels-style{
-  float:right;
-  padding:10px;
-  color:#fff;
+.subtitle-levels-style {
+  float: right;
+  padding: 10px;
+  font-size: 0.5em;
 }
 
 header {
@@ -92,15 +87,13 @@ footer {
   height: 70px;
   margin: 0px 0px 0px 0px;
 }
+
 .tecgraf-logo-img-mini {
   @extend .tecgraf-logo-img;
   background: url('../assets/images/tecgraf-50-50.png') no-repeat;
-  background-size: 30px 30px;
-  // width: 30px;
+  background-size: 30px 30px; // width: 30px;
   // height: 30px;
 }
-
-
 
 tt-profile-resume {
   h1 {
@@ -125,8 +118,7 @@ tt-profile-resume {
   min-width: 10px;
   padding: 3px 10px;
   font-weight: normal;
-  margin: 0px 3px 0px 1px;
-  // line-height: 1;
+  margin: 0px 3px 0px 1px; // line-height: 1;
   color: $tt-primary-text-color;
   text-align: center;
   white-space: nowrap;
@@ -143,13 +135,13 @@ tt-profile-resume {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
 .tt-bootstrap .tags.focused {
   border-color: #66afe9;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 
 .tt-badge {
@@ -160,11 +152,9 @@ tags-input .tags .tag-item {
   @extend .tt-tags-and-badges;
 }
 
-tags-input .tags .tag-item .input{
+tags-input .tags .tag-item .input {
   margin: 0px 0px;
-
 }
-
 
 tags-input .tags .tag-item .remove-button {
   color: $tt-primary-text-color;
@@ -180,7 +170,6 @@ tags-input .tags .tag-item .remove-button {
   background-color: $tt-skill-validated-color;
 }
 
-
 .tt-badge-skill-new {
   @extend .tt-badge;
   background-color: $tt-skill-new-color;
@@ -189,29 +178,29 @@ tags-input .tags .tag-item .remove-button {
 .tt-badge-primary {
   @extend .tt-badge;
   background-color: $tt-primary-color;
-  border-radius:0px;
+  border-radius: 0px;
   margin: 4px;
 }
 
 .tt-badge-skill-advanced {
   @extend .tt-badge;
   background-color: $tt-skill-advanced-color;
-  border-radius: 0px ;
-  margin-top: 4px ;
+  border-radius: 0px;
+  margin-top: 4px;
 }
 
 .tt-badge-skill-medium {
   @extend .tt-badge;
   background-color: $tt-skill-medium-color;
-  border-radius: 0px ;
-  margin-top: 4px ;
+  border-radius: 0px;
+  margin-top: 4px;
 }
 
 .tt-badge-skill-basic {
   @extend .tt-badge;
   background-color: $tt-skill-basic-color;
-  border-radius: 0px ;
-  margin-top: 4px ;
+  border-radius: 0px;
+  margin-top: 4px;
 }
 
 .tt-text-primary {
@@ -222,58 +211,54 @@ tags-input .tags .tag-item .remove-button {
 .tt-text-skill-advanced {
   @extend .tt-text;
   color: $tt-skill-advanced-color;
- 
 }
 
 .tt-text-skill-medium {
   @extend .tt-text;
   color: $tt-skill-medium-color;
-  
 }
 
 .tt-text-skill-basic {
   @extend .tt-text;
   color: $tt-skill-basic-color;
-  
 }
-
 
 span.tt-fa-widget {
-   margin-left: 10px;
-   color: $tt-widget-color;
+  margin-left: 10px;
+  color: $tt-widget-color;
 }
 
-.logo-container{
-  margin-top:30px;
+.logo-container {
+  margin-top: 30px;
 }
 
-.body-fields{
-  padding:30px 10px 10px 10px;
+.body-fields {
+  padding: 30px 10px 10px 10px;
 }
 
 .login-absolute-center-large {
   margin: auto;
   position: absolute;
-  top: 5%; left: 5%;
-  width: 90%;
-  // height: 90%;
-  min-width: 320px;
-  // max-width: 1000px;
+  top: 5%;
+  left: 5%;
+  width: 90%; // height: 90%;
+  min-width: 320px; // max-width: 1000px;
   padding: 30px;
 }
-.fa-icon{
-  color:#fff;
+
+.fa-icon {
+  color: #fff;
 }
 
-.addon-color{
-  background:#266399;
+.addon-color {
+  background: #266399;
 }
 
 .login-absolute-center-small {
   @extend .login-absolute-center-large;
-  top: 15%; left: 15%;
-  width: 70%;
-  // height: 70%;
+  top: 15%;
+  left: 15%;
+  width: 70%; // height: 70%;
   padding: 40px;
 }
 
@@ -281,13 +266,14 @@ span.tt-fa-widget {
   max-height: 200px;
 }
 
-.btn-info.active, .btn-info:active {
+.btn-info.active,
+.btn-info:active {
   background-color: $tt-primary-color;
   border-color: $tt-primary-color;
   color: $tt-primary-text-color;
 }
 
-.panel-style{
+.panel-style {
   margin-top: 30px;
   border-color: #e6e6e6;
   border-radius: 0px;
@@ -309,11 +295,11 @@ textarea {
   margin-left: 10px;
 }
 
-.alert{ 
+.alert {
   padding-top: 2px;
   padding-bottom: 2px;
 }
 
-.title-forms{
-  color:#8a8a88;
+.title-forms {
+  color: #8a8a88;
 }

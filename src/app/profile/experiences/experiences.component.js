@@ -13,7 +13,7 @@
     });
 
   /** @ngInject */
-  function controller($rootScope, $scope, $log, userDataService, skillDataService, ttGuiUtilService) {
+  function controller($rootScope, $scope, $log, $state, userDataService, skillDataService, ttGuiUtilService) {
     var $ctrl = this;
 
     $scope.getSkillBadgeClass = function(s) {
@@ -247,13 +247,7 @@
 
 
     $ctrl.addExperience = function () {
-      var title = "Adição de Experiência";
-      var html = '<tt-profile-new-experience></tt-profile-new-experience>';
-      var formName = "newExperienceForm";
-      var data = {
-        user: $ctrl.user
-      };
-      ttGuiUtilService.runFormOperation($rootScope, formName, data, title, html, "Criar");
+      $state.go("private.profile.new-experience");
     }
 
     $ctrl.$onInit = function () {

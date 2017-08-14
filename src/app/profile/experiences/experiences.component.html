@@ -1,17 +1,8 @@
-<tt-skill-subtitle></tt-skill-subtitle>
-<div class="panel panel-primary panel-style-body">
-  <div class="panel-heading panel-style-header">
-    <h2 class="panel-title">
-      Experiências
-      <span ui-sref-active="active">
-          <a ui-sref="private.profile.new-experience">
-             <span class="fa fa-plus-circle tt-primary-text"></span><br>
-      </a>
-      </span>
-    </h2>
-  </div>
-  <div class="panel-body">
-    <div id="experiences-grid" ui-grid="$ctrl.gridData" ui-grid-resize-columns class="grid"></div>
-  </div>
+<h2>Experiências
+  <span class="fa fa-plus-circle" ng-click="$ctrl.addExperience()"></span>
+  <tt-skill-subtitle></tt-skill-subtitle>
+</h2>
 
-</div>
+ <div id="experiences-grid" ui-grid="$ctrl.gridData" ui-grid-resize-columns class="grid"></div>
+  
+
