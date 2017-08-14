@@ -10,6 +10,8 @@ $tt-widget-color: #989c9e;
 $tt-margin: 40px;
 $tt-ui-grid-canvas-color:#9E9E9E;
 $tt-ui-grid-header-canvas:#02a8f3;
+$tt-footer:#0da8f3;
+$tt-subtitle-color:#8dabb9;
 *:focus {
   outline: none !important;
 }
@@ -25,6 +27,7 @@ $tt-ui-grid-header-canvas:#02a8f3;
 
 .ui-grid-header-canvas {
   color: $tt-ui-grid-header-canvas;
+  font-weight: 400;
 }
 
 .badge {
@@ -49,6 +52,15 @@ body {
   color: #fff;
 }
 
+.subtitle-table-style{
+  color:$tt-subtitle-color;
+  font-weight:400;
+}
+
+.form-skill-style{
+  padding: 0px 0px 40px 0px;
+}
+
 
 /*Panel*/
 
@@ -62,13 +74,24 @@ body {
   border-color: #e6e6e6;
 }
 
+.perfil-view{
+  border: 1px solid #d4d4d4;
+}
+
+.image-thumb-style{
+  margin-top:30px;
+}
+
+.panel-bar-style{
+  border-radius:0px;
+}
 
 /*fim*/
 
 .subtitle-levels-style {
   float: right;
-  padding: 10px;
-  font-size: 0.5em;
+  font-size: 0.7em;
+  margin: 10px 2px 5px 3px;
 }
 
 header {
@@ -293,6 +316,11 @@ textarea {
 
 .tt-footer-content-button {
   margin-left: 10px;
+}
+
+.tt-footer{
+  background:$tt-footer;
+  color:#fff;
 }
 
 .alert {
