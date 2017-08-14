@@ -19,6 +19,11 @@ $tt-navbar-active-fgcolor: #ffffff;
 
 $tt-footer-bgcolor: #d5eaf4;
 
+$tt-addon-bgcolor: #337ab7;
+$tt-addon-fgcolor: #ffffff;
+
+$tt-title-forms-fgcolor: #068BC8;
+
 $tt-margin: 40px;
 
 *:focus {
@@ -44,9 +49,15 @@ $tt-margin: 40px;
 }
 
 body {
-  // background: url(../assets/images/background.jpg) repeat;
-  // background-position: top left;
+  background: url(../assets/images/background.jpg) repeat;
+  background-position: top left;
   // margin: $tt-margin; 
+  // background: #eeeeee;
+}
+
+.tt-main-page {
+  background: #ffffff;
+  min-height: 1000px;
 }
 
 .tt-navbar {
@@ -55,32 +66,26 @@ body {
   border-color: $tt-navbar-bgcolor;
 }
 
+footer {
+  position: fixed;
+  bottom: 0px;
+  min-width: 100%;
+}
+
 .tt-footer {
   background: $tt-footer-bgcolor;
   border-radius: 0px;
   border-color: $tt-footer-bgcolor;
-  margin: $tt-margin 0px 0px 0px;
-  padding: 0px;
+  padding: 5px 0px;
+  margin: 0px;
 }
 
-
-.navbar-default .navbar-nav > .active > a {
+.navbar-nav > .active > a {
   background: $tt-navbar-active-bgcolor;
   color: $tt-navbar-active-fgcolor;
 }
 
-
-.panel-style-header {
-  background: #02a8f3 !important;
-  border-color: #02a8f3 !important;
-}
-
-.panel-style-body {
-  border-radius: 0px;
-  border-color: #e6e6e6;
-}
-
-.subtitle-levels-style {
+.tt-levels-subtitle {
   float: right;
   padding: 7px;
   font-size: 0.8em;
@@ -144,6 +149,8 @@ body {
 
 .tt-badge {
   @extend .tt-tags-and-badges;
+  border-radius: 0px;
+  margin: 4px;
 }
 
 tags-input .tags .tag-item {
@@ -176,29 +183,21 @@ tags-input .tags .tag-item .remove-button {
 .tt-badge-primary {
   @extend .tt-badge;
   background-color: $tt-primary-color;
-  border-radius: 0px;
-  margin: 4px;
 }
 
 .tt-badge-skill-advanced {
   @extend .tt-badge;
   background-color: $tt-skill-advanced-color;
-  border-radius: 0px;
-  margin-top: 4px;
 }
 
 .tt-badge-skill-medium {
   @extend .tt-badge;
   background-color: $tt-skill-medium-color;
-  border-radius: 0px;
-  margin-top: 4px;
 }
 
 .tt-badge-skill-basic {
   @extend .tt-badge;
   background-color: $tt-skill-basic-color;
-  border-radius: 0px;
-  margin-top: 4px;
 }
 
 .tt-text-primary {
@@ -230,10 +229,6 @@ span.tt-fa-widget {
   margin-top: 30px;
 }
 
-.body-fields {
-  padding: 30px 10px 10px 10px;
-}
-
 .login-absolute-center-large {
   margin: auto;
   position: absolute;
@@ -244,12 +239,9 @@ span.tt-fa-widget {
   padding: 30px;
 }
 
-.fa-icon {
-  color: #fff;
-}
-
-.addon-color {
-  background: #266399;
+.input-group-addon {
+  background: $tt-addon-bgcolor;
+  color: $tt-addon-fgcolor;
 }
 
 .login-absolute-center-small {
@@ -262,19 +254,6 @@ span.tt-fa-widget {
 
 .grid {
   min-height: 250px;
-}
-
-.btn-info.active,
-.btn-info:active {
-  background-color: $tt-primary-color;
-  border-color: $tt-primary-color;
-  color: $tt-primary-text-color;
-}
-
-.panel-style {
-  margin-top: 30px;
-  border-color: #e6e6e6;
-  border-radius: 0px;
 }
 
 textarea {
@@ -298,6 +277,6 @@ textarea {
   padding-bottom: 2px;
 }
 
-.title-forms {
-  color: #8a8a88;
+.tt-title-forms {
+  color: $tt-title-forms-fgcolor
 }
