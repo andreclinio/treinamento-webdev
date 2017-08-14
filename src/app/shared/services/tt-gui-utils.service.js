@@ -46,7 +46,7 @@
       cancelText = cancelText || "Cancelar";
       confirmText = confirmText || "Confirmar";
       return [
-        { text: cancelText, class: "default", callback: cancelCallback },
+        { text: cancelText, class: "danger", callback: cancelCallback },
         { text: confirmText, class: "primary", callback: confirmCallback, disabledByForm: true}
       ]
     }

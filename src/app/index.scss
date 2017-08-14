@@ -1,12 +1,14 @@
 $tt-primary-color: #8dabb9;
 $tt-primary-text-color: #ffffff;
 $tt-secondary-color: #385687;
-$tt-skill-advanced-color: #f76459;
-$tt-skill-medium-color: #FF9800;
-$tt-skill-basic-color: #4CAF50;
+$tt-skill-advanced-color: #f1646c;
+$tt-skill-medium-color: #fac174;
+$tt-skill-basic-color: #9dd5c0;
 $tt-skill-validated-color: #009900;
 $tt-skill-new-color: #990000;
 $tt-widget-color: #989c9e;
+$tt-subtitle-table-color:#607D8B; ;
+
 $tt-margin: 40px;
 $tt-ui-grid-canvas-color:#9E9E9E;
 $tt-ui-grid-header-canvas:#02a8f3;
@@ -21,10 +23,12 @@ $tt-ui-grid-header-canvas:#02a8f3;
 
 .ui-grid-canvas {
   color: $tt-ui-grid-canvas-color;
+
 }
 
 .ui-grid-header-canvas {
   color: $tt-ui-grid-header-canvas;
+  font-weight:400;
 }
 
 .badge {
@@ -48,7 +52,10 @@ body {
   background: #02a8f3!important;
   color: #fff;
 }
-
+.subtitle-table-style{
+  color:$tt-subtitle-table-color;
+  font-weight: 400;
+}
 
 /*Panel*/
 
@@ -61,13 +68,23 @@ body {
   border-radius: 0px;
   border-color: #e6e6e6;
 }
+.form-skill-style{
+  padding: 6px 3px 40px 0px;
+}
 
+.panel-bar-style{
+  border-radius:0px;
+}
+
+.panel-modal-header{
+  border-radius: 0px;
+}
 
 /*fim*/
 
 .subtitle-levels-style {
   float: right;
-  padding: 7px;
+  margin: 1px 1px 13px 6px;
   font-size: 0.8em;
 }
 
