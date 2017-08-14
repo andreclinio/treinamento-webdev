@@ -94,7 +94,7 @@
 
     $ctrl.$onInit = function () {
       $ctrl.gridData = { data:[] };
-      $ctrl.update();
+      $ctrl.update([]);
       $ctrl.listener = $rootScope.$on("search.updated", function(event, skills) {
           $ctrl.update(skills);
       });
