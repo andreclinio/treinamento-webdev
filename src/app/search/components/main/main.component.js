@@ -6,10 +6,7 @@
       .component('ttSearchMain', {
         templateUrl: 'app/search/components/main/main.component.html',
         controller: controller,
-        controllerAs: '$ctrl',
-        bindings: {
-          skills: '<'
-        }
+        controllerAs: '$ctrl'
       });
   
     /** @ngInject */
@@ -28,7 +25,7 @@
       }
 
       $ctrl.update = function() {
-        $rootScope.$emit("search.updated", null);
+        $rootScope.$emit("search.updated", $ctrl.skills);
       }
     }
   
