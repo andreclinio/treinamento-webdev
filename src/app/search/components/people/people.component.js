@@ -6,10 +6,7 @@
     .component('ttSearchPeople', {
       templateUrl: 'app/search/components/people/people.component.html',
       controller: controller,
-      controllerAs: '$ctrl',
-      bindings: {
-        skills: '<'
-      }
+      controllerAs: '$ctrl'
     });
 
   /** @ngInject */
@@ -70,8 +67,8 @@
       return gridOptions;
     }
 
-    $ctrl.update = function () {
-      $log.log("update");
+    $ctrl.update = function (skills) {
+      $ctrl.skills = skills;
       var names = [];
       angular.forEach($ctrl.skills, function (sk) {
         names.push(sk.getName());
@@ -91,7 +88,6 @@
       }).catch(function (ex) {
         $ctrl.gridData = $ctrl.mountGridData([]);
         ttGuiUtilService.showErrorMessage(ex);
-        $log.log("PILHA", ex.stack);
       })
 
     }
@@ -99,8 +95,8 @@
     $ctrl.$onInit = function () {
       $ctrl.gridData = { data:[] };
       $ctrl.update();
-      $ctrl.listener = $rootScope.$on("search.updated", function() {
-          $ctrl.update();
+      $ctrl.listener = $rootScope.$on("search.updated", function(event, skills) {
+          $ctrl.update(skills);
       });
     }
 

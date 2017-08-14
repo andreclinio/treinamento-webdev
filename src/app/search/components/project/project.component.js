@@ -6,10 +6,7 @@
       .component('ttSearchProject', {
         templateUrl: 'app/search/components/project/project.component.html',
         controller: controller,
-        controllerAs: '$ctrl',
-        bindings: {
-          skills: '<'
-        }
+        controllerAs: '$ctrl'
       });
   
     /** @ngInject */
@@ -41,16 +38,18 @@
         return gridData;
       }
   
-      $ctrl.update = function() {
+      $ctrl.update = function(skills) {
+        $ctrl.skills = skills;
         var projects = [];
+        // TODO
         $ctrl.gridData = $ctrl.mountGridData(projects);
       }
 
       $ctrl.$onInit = function () {
         $ctrl.gridData = { data:[] };
         $ctrl.update();
-        $ctrl.listener = $rootScope.$on("search.updated", function() {
-            $ctrl.update();
+        $ctrl.listener = $rootScope.$on("search.updated", function(event, skills) {
+            $ctrl.update(skills);
         });
       }
   
