@@ -1,5 +1,9 @@
+// ----------------------------------------------------------------------------
+// Atributos e cores predefinidas para o sistema
+// ----------------------------------------------------------------------------
 $tt-primary-color: #8dabb9;
 $tt-primary-text-color: #ffffff;
+$tt-secondary-color: #385687;
 
 $tt-skill-advanced-color: #f76459;
 $tt-skill-medium-color: #FF9800;
@@ -26,6 +30,9 @@ $tt-title-forms-fgcolor: #068BC8;
 
 $tt-margin: 40px;
 
+// ----------------------------------------------------------------------------
+// Alterações globais de HTML
+// ----------------------------------------------------------------------------
 *:focus {
   outline: none !important;
 }
@@ -35,41 +42,95 @@ $tt-margin: 40px;
   box-sizing: border-box
 }
 
-.ui-grid-canvas {
-  color: $tt-ui-grid-canvas-color;
-}
-
-.ui-grid-header-canvas {
-  color: $tt-ui-grid-header-canvas;
-}
-
-.badge {
-  background-color: $tt-primary-color;
-  margin: 7px;
-}
-
 body {
   background: url(../assets/images/background.jpg) repeat;
-  background-position: top left;
-  // margin: $tt-margin; 
+  background-position: top left; // margin: $tt-margin; 
   // background: #eeeeee;
-}
-
-.tt-main-page {
-  background: #ffffff;
-  min-height: 1000px;
-}
-
-.tt-navbar {
-  background: $tt-navbar-bgcolor;
-  border-radius: 0px;
-  border-color: $tt-navbar-bgcolor;
 }
 
 footer {
   position: fixed;
   bottom: 0px;
   min-width: 100%;
+}
+
+textarea {
+  resize: vertical;
+}
+
+// ----------------------------------------------------------------------------
+// Alterações do UI-Grid
+// ----------------------------------------------------------------------------
+.ui-grid-canvas {
+  color: $tt-ui-grid-canvas-color;
+}
+
+.ui-grid-header-canvas {
+  color: $tt-ui-grid-header-canvas;
+  font-weight: 400;
+}
+
+.grid {
+  min-height: 250px;
+}
+
+// ----------------------------------------------------------------------------
+// Alterações no Bootstrap
+// ----------------------------------------------------------------------------
+.badge {
+  background-color: $tt-primary-color;
+  margin: 7px;
+}
+
+nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:focus, 
+.navbar-default .navbar-nav >.active > a:hover {
+  background: $tt-navbar-active-bgcolor;
+  background-color: $tt-navbar-active-bgcolor;
+  color: $tt-navbar-active-fgcolor;
+}
+
+.alert {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.input-group-addon {
+  background: $tt-addon-bgcolor;
+  color: $tt-addon-fgcolor;
+}
+
+// ----------------------------------------------------------------------------
+// Alterações no Toastr
+// ----------------------------------------------------------------------------
+.toast-top-center {
+  top: 12px;
+  margin: 0 auto;
+  left: 50%;
+}
+
+// ----------------------------------------------------------------------------
+// ngTagsInput
+// ----------------------------------------------------------------------------
+tags-input .tags .tag-item {
+  @extend .tt-tags-and-badges;
+}
+
+tags-input .tags .tag-item .input {
+  margin: 0px 0px;
+}
+
+tags-input .tags .tag-item .remove-button {
+  color: $tt-primary-text-color;
+}
+
+// ----------------------------------------------------------------------------
+// Classes do próprio sistema
+// ----------------------------------------------------------------------------
+
+.tt-main-page {
+  background: #ffffff;
+  min-height: 1000px;
 }
 
 .tt-footer {
@@ -80,18 +141,18 @@ footer {
   margin: 0px;
 }
 
-.navbar-nav > .active > a {
-  background: $tt-navbar-active-bgcolor;
-  color: $tt-navbar-active-fgcolor;
+.tt-navbar {
+  background: $tt-navbar-bgcolor;
+  border-color: $tt-navbar-bgcolor;
 }
 
 .tt-levels-subtitle {
   float: right;
-  padding: 7px;
-  font-size: 0.8em;
+  font-size: 0.7em;
+  margin: 10px 2px 5px 3px;
 }
 
-.tecgraf-logo-img {
+.tt-tecgraf-logo-img {
   background: url('../assets/images/tecgraf.png') no-repeat;
   background-size: 50px 50px;
   width: 50px;
@@ -99,18 +160,21 @@ footer {
   margin: 0px 0px 0px 0px;
 }
 
-.tecgraf-logo-img-mini {
-  @extend .tecgraf-logo-img;
+.tt-tecgraf-logo-img-mini {
+  @extend .tt-tecgraf-logo-img;
   background: url('../assets/images/tecgraf-50-50.png') no-repeat;
   background-size: 30px 30px; // width: 30px;
   // height: 30px;
 }
 
-.toast-top-center {
-  top: 12px;
-  margin: 0 auto;
-  left: 50%;
+tt-profile-resume {
+  h1 {
+    font-size: 2.0rem;
+    color: $tt-primary-color;
+    display: inline;
+  }
 }
+
 
 .tt-primary-text {
   color: $tt-primary-text-color;
@@ -151,18 +215,6 @@ footer {
   @extend .tt-tags-and-badges;
   border-radius: 0px;
   margin: 4px;
-}
-
-tags-input .tags .tag-item {
-  @extend .tt-tags-and-badges;
-}
-
-tags-input .tags .tag-item .input {
-  margin: 0px 0px;
-}
-
-tags-input .tags .tag-item .remove-button {
-  color: $tt-primary-text-color;
 }
 
 .tt-text {
@@ -225,11 +277,11 @@ span.tt-fa-widget {
   color: $tt-widget-color;
 }
 
-.logo-container {
+.tt-logo-container {
   margin-top: 30px;
 }
 
-.login-absolute-center-large {
+.tt-login-absolute-center-large {
   margin: auto;
   position: absolute;
   top: 5%;
@@ -239,25 +291,12 @@ span.tt-fa-widget {
   padding: 30px;
 }
 
-.input-group-addon {
-  background: $tt-addon-bgcolor;
-  color: $tt-addon-fgcolor;
-}
-
-.login-absolute-center-small {
-  @extend .login-absolute-center-large;
+.tt-login-absolute-center-small {
+  @extend .tt-login-absolute-center-large;
   top: 15%;
   left: 15%;
   width: 70%; // height: 70%;
   padding: 40px;
-}
-
-.grid {
-  min-height: 250px;
-}
-
-textarea {
-  resize: vertical;
 }
 
 .tt-header-close-button {
@@ -270,11 +309,6 @@ textarea {
 
 .tt-footer-content-button {
   margin-left: 10px;
-}
-
-.alert {
-  padding-top: 2px;
-  padding-bottom: 2px;
 }
 
 .tt-title-forms {
