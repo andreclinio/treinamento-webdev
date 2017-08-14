@@ -1,15 +1,26 @@
 $tt-primary-color: #8dabb9;
 $tt-primary-text-color: #ffffff;
-$tt-secondary-color: #385687;
+
 $tt-skill-advanced-color: #f76459;
 $tt-skill-medium-color: #FF9800;
 $tt-skill-basic-color: #4CAF50;
+
 $tt-skill-validated-color: #009900;
 $tt-skill-new-color: #990000;
+
 $tt-widget-color: #989c9e;
-$tt-margin: 40px;
+
 $tt-ui-grid-canvas-color:#9E9E9E;
 $tt-ui-grid-header-canvas:#02a8f3;
+
+$tt-navbar-bgcolor: #d5eaf4;
+$tt-navbar-active-bgcolor: #02a8f3;
+$tt-navbar-active-fgcolor: #ffffff;
+
+$tt-footer-bgcolor: #d5eaf4;
+
+$tt-margin: 40px;
+
 *:focus {
   outline: none !important;
 }
@@ -38,19 +49,26 @@ body {
   // margin: $tt-margin; 
 }
 
-.nav-bar-style {
-  background: #d5eaf4;
+.tt-navbar {
+  background: $tt-navbar-bgcolor;
   border-radius: 0px;
-  border-color: #d5eaf4;
+  border-color: $tt-navbar-bgcolor;
 }
 
-.navbar-default .navbar-nav>.active>a {
-  background: #02a8f3!important;
-  color: #fff;
+.tt-footer {
+  background: $tt-footer-bgcolor;
+  border-radius: 0px;
+  border-color: $tt-footer-bgcolor;
+  margin: $tt-margin 0px 0px 0px;
+  padding: 0px;
 }
 
 
-/*Panel*/
+.navbar-default .navbar-nav > .active > a {
+  background: $tt-navbar-active-bgcolor;
+  color: $tt-navbar-active-fgcolor;
+}
+
 
 .panel-style-header {
   background: #02a8f3 !important;
@@ -62,22 +80,10 @@ body {
   border-color: #e6e6e6;
 }
 
-
-/*fim*/
-
 .subtitle-levels-style {
   float: right;
   padding: 7px;
   font-size: 0.8em;
-}
-
-header {
-  margin-top: 20px;
-  min-height: 90px;
-}
-
-footer {
-  margin-bottom: $tt-margin;
 }
 
 .tecgraf-logo-img {
@@ -93,14 +99,6 @@ footer {
   background: url('../assets/images/tecgraf-50-50.png') no-repeat;
   background-size: 30px 30px; // width: 30px;
   // height: 30px;
-}
-
-tt-profile-resume {
-  h1 {
-    font-size: 2.0rem;
-    color: $tt-primary-color;
-    display: inline;
-  }
 }
 
 .toast-top-center {
@@ -263,7 +261,7 @@ span.tt-fa-widget {
 }
 
 .grid {
-  max-height: 200px;
+  min-height: 250px;
 }
 
 .btn-info.active,
