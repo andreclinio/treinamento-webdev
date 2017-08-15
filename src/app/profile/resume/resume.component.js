@@ -13,7 +13,7 @@
     });
 
   /** @ngInject */
-  function controller($log, $rootScope, $state, ttGuiUtilService) {
+  function controller($log, $rootScope, $state, $uibModal, userDataService, ttGuiUtilService, ttDialogService) {
     var $ctrl = this;
     var changePasswordFormName = "changePasswordForm";
     var editProfileFormName = "editProfileForm";
@@ -47,21 +47,27 @@
      * Abertura de diálogo para editar perfil.
      */
     $ctrl.openEditProfile = function() {
-       $state.go("private.profile.edit");
+      var user = $ctrl.user;
+      ttDialogService.editProfile(user);
+      //  $state.go("private.profile.edit");
     }
 
     /**
      * Abertura de diálogo para ver nuvem de competências
      */
     $ctrl.openCloud = function() {
-      $state.go("private.profile.cloud");
+      var user = $ctrl.user;
+      ttDialogService.showCloud(user);
+      // $state.go("private.profile.cloud");
    }
 
     /**
      * Abertura de diálogo de troca de senha.
      */
     $ctrl.openChangePassword = function () {
-      $state.go("private.profile.change-password");   
+      var user = $ctrl.user;
+      ttDialogService.changePassword(user);
+      // $state.go("private.profile.change-password");  
      }
   }
 
