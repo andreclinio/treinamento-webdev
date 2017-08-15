@@ -31,9 +31,10 @@
       var skills = $ctrl.user.getSkills();
       $ctrl.words = [];
       angular.forEach(skills, function (s) {
+        var weight = s.getLevel() * (s.getProjectCount()+1) * (s.getExperienceCount()+1)
         $ctrl.words.push({
           text: s.getName(),
-          weight: s.getLevel(),
+          weight: weight,
           handlers: {
             click: function() {
               showWord(s)
@@ -45,7 +46,7 @@
         delay: 10,
         shape: 'rectangular',
         height: 300,
-        center: { x: 0.45, y: 0.5 },
+        center: { x: 0.5, y: 0.5 },
         autoResize: true
       };
       angular.element('#wordsCloud').jQCloud($ctrl.words, props);
