@@ -9,7 +9,8 @@
   function service($log, $uibModal, ttGuiUtilService, userDataService) {
     return {
       changePassword: changePassword,
-      showCloud: showCloud
+      showCloud: showCloud,
+      editProfile: editProfile
     };
 
     /**
@@ -56,25 +57,12 @@
       modalInstance.result.then(function (passwords) {
         var oldPwd = passwords.old;
         var newPwd = passwords.new;
-
-        var name = user.getName();
-        // TODO
-        $log.log(oldPwd, newPwd);
-        try {
-          userDataService.update(user);
-          var infoMsg = "Atualização de senha do usuário " + name + " feita com sucesso."
-          ttGuiUtilService.showInfoMessage(null, infoMsg);
-          modalInstance.dismiss();
-        } catch (exception) {
-          ttGuiUtilService.showErrorMessage(null, exception);
-        }
-      }, function () {}).catch(function (error) {
-        ttGuiUtilService.showErrorMessage(null, error);
+        _changeUserPassword(user, oldPwd, newPwd);
       });
     }
 
     /**
-     * Abertura de diálogo de troca de senha.
+     * Abertura de diálogo de exibição de cloud
      */
     function showCloud(user) {
       var modalInstance = $uibModal.open({
@@ -93,6 +81,66 @@
       modalInstance.result.then(function () {}, function () {});
     }
 
+    /**
+     * Abertura de diálogo de edição de perfil
+     */
+    function editProfile(user) {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        size: 'md',
+        controllerAs: '$ctrl',
+        controller: function () {
+          var $ctrl = this;
+          $ctrl.name = user.getName();
+          $ctrl.email = user.getEmail();
+          $ctrl.lattes = user.getLattes();
+          $ctrl.linkedin = user.getLinkedIn();
+          $ctrl.cancel = function () {
+            modalInstance.dismiss();
+          }
+          $ctrl.updateUser = function () {
+            var obj = { name: $ctrl.name, lattes: $ctrl.lattes, linkedin: $ctrl.linkedin };
+            var data = {user: user, obj: obj};
+            modalInstance.close(data);
+          }
+        },
+        templateUrl: "app/shared/services/dialog/edit-profile.html"
+      });
+      modalInstance.result.then(function (data) {
+        var user = data.user;
+        var obj = data.obj;
+        _changeUserData(user, obj);
+        modalInstance.dismiss();
+      });
+    }
+
+    function _changeUserData(user, obj) {
+      user.setName(obj.name);
+      user.setLattes(obj.lattes);
+      user.setLinkedIn(obj.linkedin);
+      try {
+        userDataService.update(user);
+        var infoMsg = "Atualização de dados do usuário " + obj.name + " feita com sucesso.";
+        ttGuiUtilService.showInfoMessage(null, infoMsg);
+      } 
+      catch (exception) {
+        ttGuiUtilService.showErrorMessage(null, exception);
+      }
+    }
+
+    function _changeUserPassword(user, oldPwd, newPwd) {
+      var name = user.getName();
+      // TODO
+      $log.log(oldPwd, newPwd);
+      try {
+        userDataService.update(user);
+        var infoMsg = "Atualização de senha do usuário " + name + " feita com sucesso.";
+        ttGuiUtilService.showInfoMessage(null, infoMsg);
+      } 
+      catch (exception) {
+        ttGuiUtilService.showErrorMessage(null, exception);
+      }
+    }
 
   }
 
