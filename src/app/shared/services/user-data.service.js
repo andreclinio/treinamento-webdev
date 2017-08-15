@@ -31,10 +31,7 @@
             firebaseService.database().ref('/users/' + userId).once('value')
                 .then(function (snapshot) {
                     var data = snapshot.val();
-                    if (!data) {
-                        errorHandler();
-                        return;
-                    }
+                    if( data == null ) deferred.reject();
                     data.email = email;
                     var user = User.buildFromServer(data);
 
