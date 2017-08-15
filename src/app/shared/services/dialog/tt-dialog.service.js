@@ -58,7 +58,7 @@
         var oldPwd = passwords.old;
         var newPwd = passwords.new;
         _changeUserPassword(user, oldPwd, newPwd);
-      });
+      }, function() {});
     }
 
     /**
@@ -111,7 +111,7 @@
         var obj = data.obj;
         _changeUserData(user, obj);
         modalInstance.dismiss();
-      });
+      }, function() {});
     }
 
     function _changeUserData(user, obj) {
