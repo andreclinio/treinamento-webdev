@@ -30,6 +30,8 @@ $tt-title-forms-fgcolor: #068BC8;
 
 $tt-margin: 40px;
 
+$tt-font: 'Open Sans', sans-serif;
+
 // ----------------------------------------------------------------------------
 // Alterações globais de HTML
 // ----------------------------------------------------------------------------
@@ -38,7 +40,7 @@ $tt-margin: 40px;
 }
 
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: $tt-font;
   box-sizing: border-box
 }
 
@@ -127,6 +129,10 @@ tags-input .tags .tag-item .remove-button {
 // ----------------------------------------------------------------------------
 // Classes do próprio sistema
 // ----------------------------------------------------------------------------
+
+.tt-cloud {
+  width: 80%
+}
 
 .tt-main-page {
   background: #ffffff;
