@@ -27,6 +27,8 @@ $tt-addon-bgcolor: #337ab7;
 $tt-addon-fgcolor: #ffffff;
 
 $tt-subtitle-color:#607D8B;
+$tt-border-color:#d4d4d4;
+$tt-white-color:#fff;
 
 $tt-title-forms-fgcolor: #068BC8;
 
@@ -149,6 +151,7 @@ tags-input .tags .tag-item .remove-button {
   background: $tt-footer-bgcolor;
   height: 34px;
   padding-top: 7px;
+  color:$tt-white-color;
 }
 
 .tt-navbar {
@@ -183,6 +186,20 @@ tt-profile-resume {
     color: $tt-primary-color;
     display: inline;
   }
+}
+
+.tt-profile-view{
+    border: 1px solid $tt-border-color;
+    margin-top: 36px;
+
+}
+
+.tt-text-info{
+    margin-left: 20px;
+}
+
+.tt-image-thumb-style{
+    margin-top:20px;
 }
 
 
