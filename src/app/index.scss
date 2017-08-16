@@ -29,6 +29,7 @@ $tt-addon-fgcolor: #ffffff;
 $tt-subtitle-color:#607D8B;
 $tt-border-color:#d4d4d4;
 $tt-white-color:#fff;
+$tt-color-fa-icon:#03A9F4;
 
 $tt-title-forms-fgcolor: #068BC8;
 
@@ -202,6 +203,10 @@ tt-profile-resume {
     margin-top:20px;
 }
 
+
+.tt-color-icon{
+  color:$tt-color-fa-icon;
+}
 
 .tt-primary-text {
   color: $tt-primary-text-color;
