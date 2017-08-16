@@ -18,7 +18,7 @@ $tt-ui-grid-canvas-color:#9E9E9E;
 $tt-ui-grid-header-canvas:#02a8f3;
 
 $tt-navbar-bgcolor: #d5eaf4;
-$tt-navbar-active-bgcolor: #02a8f3;
+$tt-navbar-active-bgcolor: #03A9F4;
 $tt-navbar-active-fgcolor: #ffffff;
 
 $tt-footer-bgcolor: #03A9F4;
@@ -69,6 +69,21 @@ textarea {
   color:$tt-subtitle-color;
 }
 
+.panel-modal-header{
+  border-radius:0px;
+  background: $tt-footer-bgcolor !important;
+  border-color: $tt-footer-bgcolor !important;
+}
+
+.panel-bar-style{
+  border-radius:0px;
+}
+
+.tt-active-color{
+  background:red;
+  color:$tt-white-color;
+}
+
 // ----------------------------------------------------------------------------
 // Alterações do UI-Grid
 // ----------------------------------------------------------------------------
@@ -93,12 +108,13 @@ textarea {
   margin: 7px;
 }
 
-nav > .active > a, 
-.navbar-default .navbar-nav > .active > a:focus, 
-.navbar-default .navbar-nav >.active > a:hover {
-  background: $tt-navbar-active-bgcolor;
-  background-color: $tt-navbar-active-bgcolor;
-  color: $tt-navbar-active-fgcolor;
+.navbar-default .navbar-nav>li>a{
+  color:$tt-color-fa-icon;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    background-color: #03a9f4 !important;
+    color: #fff;
 }
 
 .alert {
@@ -158,6 +174,7 @@ tags-input .tags .tag-item .remove-button {
 .tt-navbar {
   background: $tt-navbar-bgcolor;
   border-color: $tt-navbar-bgcolor;
+  border-radius: 0px;
 }
 
 .tt-levels-subtitle {
