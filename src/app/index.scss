@@ -15,18 +15,18 @@ $tt-skill-new-color: #990000;
 $tt-widget-color: #989c9e;
 
 $tt-ui-grid-canvas-color:#9E9E9E;
-$tt-ui-grid-header-canvas:#02a8f3;
+$tt-ui-grid-header-canvas:#19688c;
 
 $tt-navbar-bgcolor: #d5eaf4;
 $tt-navbar-active-bgcolor: #03A9F4;
 $tt-navbar-active-fgcolor: #ffffff;
 
-$tt-footer-bgcolor: #03A9F4;
+$tt-footer-bgcolor: #19688c;
 
 $tt-addon-bgcolor: #337ab7;
 $tt-addon-fgcolor: #ffffff;
 
-$tt-subtitle-color:#607D8B;
+$tt-subtitle-color:#19688c;
 $tt-border-color:#d4d4d4;
 $tt-white-color:#fff;
 $tt-color-fa-icon:#03A9F4;
@@ -79,10 +79,7 @@ textarea {
   border-radius:0px;
 }
 
-.tt-active-color{
-  background:red;
-  color:$tt-white-color;
-}
+
 
 // ----------------------------------------------------------------------------
 // Alterações do UI-Grid
@@ -109,7 +106,7 @@ textarea {
 }
 
 .navbar-default .navbar-nav>li>a{
-  color:$tt-color-fa-icon;
+  color:$tt-footer-bgcolor;
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
@@ -206,7 +203,10 @@ tt-profile-resume {
   }
 }
 
-
+.tt-active-color{
+  background:red;
+  color:$tt-white-color;
+}
 
 .tt-text-info{
     margin-left: 20px;
