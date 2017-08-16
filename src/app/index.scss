@@ -21,10 +21,12 @@ $tt-navbar-bgcolor: #d5eaf4;
 $tt-navbar-active-bgcolor: #02a8f3;
 $tt-navbar-active-fgcolor: #ffffff;
 
-$tt-footer-bgcolor: #d5eaf4;
+$tt-footer-bgcolor: #03A9F4;
 
 $tt-addon-bgcolor: #337ab7;
 $tt-addon-fgcolor: #ffffff;
+
+$tt-subtitle-color:#607D8B;
 
 $tt-title-forms-fgcolor: #068BC8;
 
@@ -58,6 +60,10 @@ footer {
 
 textarea {
   resize: vertical;
+}
+
+.subtitle-table-style{
+  color:$tt-subtitle-color;
 }
 
 // ----------------------------------------------------------------------------
@@ -141,10 +147,8 @@ tags-input .tags .tag-item .remove-button {
 
 .tt-footer {
   background: $tt-footer-bgcolor;
-  border-radius: 0px;
-  border-color: $tt-footer-bgcolor;
-  padding: 5px 0px;
-  margin: 0px;
+  height: 34px;
+  padding-top: 7px;
 }
 
 .tt-navbar {
