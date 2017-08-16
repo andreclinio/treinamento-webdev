@@ -18,13 +18,18 @@ $tt-ui-grid-canvas-color:#9E9E9E;
 $tt-ui-grid-header-canvas:#02a8f3;
 
 $tt-navbar-bgcolor: #d5eaf4;
-$tt-navbar-active-bgcolor: #02a8f3;
+$tt-navbar-active-bgcolor: #03A9F4;
 $tt-navbar-active-fgcolor: #ffffff;
 
-$tt-footer-bgcolor: #d5eaf4;
+$tt-footer-bgcolor: #03A9F4;
 
 $tt-addon-bgcolor: #337ab7;
 $tt-addon-fgcolor: #ffffff;
+
+$tt-subtitle-color:#607D8B;
+$tt-border-color:#d4d4d4;
+$tt-white-color:#fff;
+$tt-color-fa-icon:#03A9F4;
 
 $tt-title-forms-fgcolor: #068BC8;
 
@@ -60,6 +65,25 @@ textarea {
   resize: vertical;
 }
 
+.subtitle-table-style{
+  color:$tt-subtitle-color;
+}
+
+.panel-modal-header{
+  border-radius:0px;
+  background: $tt-footer-bgcolor !important;
+  border-color: $tt-footer-bgcolor !important;
+}
+
+.panel-bar-style{
+  border-radius:0px;
+}
+
+.tt-active-color{
+  background:red;
+  color:$tt-white-color;
+}
+
 // ----------------------------------------------------------------------------
 // Alterações do UI-Grid
 // ----------------------------------------------------------------------------
@@ -84,12 +108,13 @@ textarea {
   margin: 7px;
 }
 
-nav > .active > a, 
-.navbar-default .navbar-nav > .active > a:focus, 
-.navbar-default .navbar-nav >.active > a:hover {
-  background: $tt-navbar-active-bgcolor;
-  background-color: $tt-navbar-active-bgcolor;
-  color: $tt-navbar-active-fgcolor;
+.navbar-default .navbar-nav>li>a{
+  color:$tt-color-fa-icon;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    background-color: #03a9f4 !important;
+    color: #fff;
 }
 
 .alert {
@@ -141,15 +166,15 @@ tags-input .tags .tag-item .remove-button {
 
 .tt-footer {
   background: $tt-footer-bgcolor;
-  border-radius: 0px;
-  border-color: $tt-footer-bgcolor;
-  padding: 5px 0px;
-  margin: 0px;
+  height: 34px;
+  padding-top: 7px;
+  color:$tt-white-color;
 }
 
 .tt-navbar {
   background: $tt-navbar-bgcolor;
   border-color: $tt-navbar-bgcolor;
+  border-radius: 0px;
 }
 
 .tt-levels-subtitle {
@@ -181,6 +206,24 @@ tt-profile-resume {
   }
 }
 
+
+
+.tt-text-info{
+    margin-left: 20px;
+}
+
+.tt-image-thumb-style{
+    margin-top:20px;
+}
+
+
+.tt-color-icon{
+  color:$tt-color-fa-icon;
+}
+
+a{
+  color:$tt-color-fa-icon;
+}
 
 .tt-primary-text {
   color: $tt-primary-text-color;
