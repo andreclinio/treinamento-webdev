@@ -10,7 +10,7 @@
     });
 
   /** @ngInject */
-  function controller($log, $state, $window, $scope, userDataService, ttModelUtilService, ttGuiUtilService) {
+  function controller($log, $state, $window, $scope, userDataService, ttModelUtilService, ttGuiUtilService, ttI18N) {
     var $ctrl = this;
     var cookieEmail = "__TT_EMAIL_COOKIE";
     var cookiePassword = "__TT_PASSWORD_COOKIE";
@@ -34,7 +34,25 @@
       $ctrl.showPassword = false;
     }
 
-    $ctrl.onDestroy = function () {}
+    $ctrl.setLng = function(lng) {
+       ttI18N.setLanguage(lng);
+    }
+
+    $ctrl.getLng = function() {
+      return ttI18N.getLanguage();
+    }
+
+    $ctrl.getLngIcon = function(lng) {
+      var name = ttI18N.getIconNameFor(lng);
+      return name;
+    }
+
+    $ctrl.getAllLngs = function() {
+      return ttI18N.getAllSupportedLanguages();
+    }
+
+    $ctrl.onDestroy = function () {
+    }
 
     $ctrl.showHidePassword = function () {
       var widget = angular.element("#password")[0];

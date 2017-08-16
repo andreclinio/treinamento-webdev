@@ -10,54 +10,54 @@
       <div class="col-sm-12 col-md-10 col-md-offset-1">
 
         <form name="registerForm" novalidate>
-          <h4 class="tt-title-forms">Registro do sistema</h4>
+          <h4 class="tt-title-forms" translate='register.title'></h4>
 
           <div class="form-group input-group">
             <span class="input-group-addon addon-color"><i class="fa fa-id-card fa-icon"></i></span>
-            <input class="form-control" ng-model="$ctrl.name" type="text" name='name' placeholder="Nome do usuário" required/>
+            <input class="form-control" ng-model="$ctrl.name" type="text" name='name' placeholder="{{ 'tt.name.placeholder' |  translate }}" required/>
           </div>
-          <div ng-if="registerForm.name.$error.required && registerForm.name.$touched" class="alert alert-warning">Nome não obrigatório!</div>
+          <div ng-if="registerForm.name.$error.required && registerForm.name.$touched" class="alert alert-danger" translate="tt.no.data.error"></div>
 
           <div class="form-group input-group">
             <span class="input-group-addon addon-color"><i class="fa fa-envelope fa-icon"></i></span>
-            <input class="form-control" ng-model="$ctrl.email" type="email" name='email' tt-email-tecgraf placeholder="Email do usuário"
+            <input class="form-control" ng-model="$ctrl.email" type="email" name='email' tt-email-tecgraf placeholder="{{ 'tt.email.placeholder' |  translate }}"
               required/>
           </div>
-          <div ng-if="registerForm.email.$error.ttemailtecgraf && registerForm.email.$touched" class="alert alert-danger">Somente e-mails com o domínio Tecgraf (@tecgraf.puc-rio.br) podem acessar o sistema!</div>
-          <div ng-if="registerForm.email.$error.email && registerForm.email.$touched" class="alert alert-warning">Email de entrada  inválido</div>
-          <div ng-if="registerForm.email.$error.required && registerForm.email.$touched" class="alert alert-warning">Email de entrada não obrigatório!</div>
+          <div ng-if="registerForm.email.$error.ttemailtecgraf && registerForm.email.$touched" class="alert alert-danger" translate="tt.no.tecgraf.email.error"></div>
+          <div ng-if="registerForm.email.$error.email && registerForm.email.$touched" class="alert alert-danger" translate="tt.invalid.email.error"></div>
+          <div ng-if="registerForm.email.$error.required && registerForm.email.$touched" class="alert alert-danger" translate="tt.no.data.error"></div>
 
           <div class="form-group input-group">
             <span class="input-group-addon addon-color"><i class="fa fa-envelope fa-icon"></i></span>
-            <input class="form-control" ng-model="$ctrl.email2" type="email" name='email2' tt-field-check-equal="email" placeholder="Confirmação de email do usuário"
+            <input class="form-control" ng-model="$ctrl.email2" type="email" name='email2' tt-field-check-equal="email" placeholder="{{ 'tt.email.placeholder' |  translate }}"
               required/>
           </div>
-          <div ng-if="registerForm.email2.$error.ttfieldcheckequal && registerForm.email2.$touched" class="alert alert-warning">Email e confirmação  diferem!</div>
+          <div ng-if="registerForm.email2.$error.ttfieldcheckequal && registerForm.email2.$touched" class="alert alert-danger" translate="register.email.mismatch.error"></div>
 
           <div class="form-group input-group">
             <span class="input-group-addon addon-color"><i class="fa fa-lock fa-icon"></i></span>
             <input class="form-control" id="password" ng-model="$ctrl.password" type="password" name='password' tt-password-check-good
-              placeholder="Senha do usuário" required/>
+              placeholder="{{ 'tt.password.placeholder'| translate }}" required/>
           </div>
-          <div ng-if="registerForm.password.$error.ttpasswordcheckgood && registerForm.password.$touched" class="alert alert-warning">Senha deve ter oito caracteres com números e maiusculas</div>
+          <div ng-if="registerForm.password.$error.ttpasswordcheckgood && registerForm.password.$touched" class="alert alert-danger" translate="tt.weak.password.error"></div>
 
           <div class="form-group input-group">
             <span class="input-group-addon addon-color"><i class="fa fa-lock fa-icon"></i></span>
             <input class="form-control" id="password2" ng-model="$ctrl.password2" type="password" name='password2' tt-field-check-equal="password"
-              placeholder="Confirmação de senha do usuário" required/>
+              placeholder="{{ 'tt.password.placeholder'| translate }}" required/>
           </div>
-          <div ng-if="registerForm.password2.$error.ttfieldcheckequal && registerForm.password2.$touched" class="alert alert-warning">Senha e confirmação diferem!</div>
+          <div ng-if="registerForm.password2.$error.ttfieldcheckequal && registerForm.password2.$touched" class="alert alert-danger" translate="tt.password.mismatch.error"></div>
 
           <div class="checkbox">
             <label>
-                  <input ng-model="$ctrl.showPassword" type="checkbox" ng-click="$ctrl.showHidePassword()">Mostrar senhas</input>
+                  <input ng-model="$ctrl.showPassword" type="checkbox" ng-click="$ctrl.showHidePassword()">{{ 'register.show.password.check' |  translate }}</input>
                 </label>
           </div>
 
 
           <div class="form-group pull-right">
-            <button type="button" class="btn btn-default btn-danger" ui-sref="public.login">Cancelar</button>
-            <button ng-disabled="registerForm.$invalid" type="button" class="btn btn-primary btn-blue" ng-click="$ctrl.register()">Cadastrar</button>
+            <button type="button" class="btn btn-default btn-danger" ui-sref="public.login" translate="tt.cancel.button"></button>
+            <button ng-disabled="registerForm.$invalid" type="button" class="btn btn-primary btn-blue" ng-click="$ctrl.register()" translate="register.register.button"></button>
            
           </div>
 

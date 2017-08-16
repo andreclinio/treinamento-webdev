@@ -14,6 +14,7 @@
         'ui.grid.resizeColumns',
         'ui.grid.autoResize',
         'ngTagsInput',
+        'pascalprecht.translate',
         'core',
         'search',
         'skill',
