@@ -51,7 +51,7 @@ $tt-font: 'Open Sans', sans-serif;
 
 body {
   background: url(../assets/images/background.jpg) repeat;
-  background-position: top left; // margin: $tt-margin; 
+  background-position: top left; // margin: $tt-margin;
   // background: #eeeeee;
 }
 
@@ -78,8 +78,6 @@ textarea {
 .panel-bar-style{
   border-radius:0px;
 }
-
-
 
 // ----------------------------------------------------------------------------
 // Alterações do UI-Grid
@@ -151,6 +149,22 @@ tags-input .tags .tag-item .remove-button {
 // ----------------------------------------------------------------------------
 // Classes do próprio sistema
 // ----------------------------------------------------------------------------
+.tt-loading-indicator {
+    display: block;
+    width: 70px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 40%;
+    z-index: 100;
+    background-color: #FFF;
+}
+
+.tt-loading-indicator img {
+    width: 70px;
+    background-color: #FFF;
+}
 
 .tt-cloud {
   width: 80%
