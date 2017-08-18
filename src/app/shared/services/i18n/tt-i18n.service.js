@@ -13,7 +13,7 @@
     $translateProvider.translations('fr', _getFR()); 
     
     //temos que dizer qual é a default.
-    $translateProvider.preferredLanguage('en'); 
+    $translateProvider.preferredLanguage('pt'); 
     $translateProvider.useSanitizeValueStrategy('escape');
   } 
 
@@ -50,7 +50,7 @@
     }
 
     function getAllSupportedLanguages() {
-        return [ 'en', 'pt', 'fr'];
+        return [ 'pt', 'en', 'fr'];
     }
 
     function getIconNameFor(lng) {
