@@ -3,7 +3,7 @@
 
   angular
     .module('shared')
-    .factory('ttI18N', service)
+    .factory('ttLng', service)
     .config(Config);
 
   /** @ngInject */
@@ -74,6 +74,9 @@
         'tt.password.mismatch.error': "Senha e confimação estão diferentes!",
 
         'login.title': 'Entrada no Sistema',
+        'login.error.title': 'Falha de login',
+        'login.bad.error': 'Senha errada.',
+        'login.no.user.error': 'Usuário inexistente no sistema!',
         'login.forget.link': 'Esqueci minha senha!',
         'login.login.button': 'Entrar',
         'login.register.button': 'Cadastrar',
@@ -105,6 +108,9 @@
         'tt.password.mismatch.error': "Password and confirmation are different!",
 
         'login.title': 'System Login',
+        'login.error.title': 'Login Failure',
+        'login.bad.error': 'Bad password.',
+        'login.no.user.error': 'This user is not registered.',
         'login.forget.link': 'Forgot my password!',
         'login.login.button': 'Login',
         'login.register.button': 'Register',
@@ -137,6 +143,9 @@
         'tt.password.mismatch.error': "Le mot de passe et la confirmation sont différents!",
 
         'login.title': 'Connexion Système',
+        'login.error.title': 'Erreur d\'authentification',
+        'login.bad.error': 'Mauvais mot de passe.',
+        'login.no.user.error': 'Cet utilisateur n\'est pas enregistré.',
         'login.forget.link': 'J\'ai oublié mon mot de passe!',
         'login.login.button': 'Entrer',
         'login.register.button': 'Registre',

@@ -10,7 +10,7 @@
     });
 
   /** @ngInject */
-  function controller($log, $state, $window, $scope, userDataService, ttModelUtilService, ttGuiUtilService, ttI18N) {
+  function controller($log, $state, $window, $scope, userDataService, ttModelUtilService, ttGuiUtilService, ttLng) {
     var $ctrl = this;
     var cookieEmail = "__TT_EMAIL_COOKIE";
     var cookiePassword = "__TT_PASSWORD_COOKIE";
@@ -32,23 +32,6 @@
       }
 
       $ctrl.showPassword = false;
-    }
-
-    $ctrl.setLng = function(lng) {
-       ttI18N.setLanguage(lng);
-    }
-
-    $ctrl.getLng = function() {
-      return ttI18N.getLanguage();
-    }
-
-    $ctrl.getLngIcon = function(lng) {
-      var name = ttI18N.getIconNameFor(lng);
-      return name;
-    }
-
-    $ctrl.getAllLngs = function() {
-      return ttI18N.getAllSupportedLanguages();
     }
 
     $ctrl.onDestroy = function () {
@@ -74,7 +57,9 @@
       var prm = userDataService.get(email);
       prm.then(function () {
           if (!ttModelUtilService.checkPassword(email, password)) {
-            ttGuiUtilService.showErrorMessage("Falha de Login", "Senha errada para o usuário!");
+            var title = ttLng.get('login.error.title');
+            var msg = ttLng.get('login.bad.error');
+            ttGuiUtilService.showErrorMessage(title, msg);
             return;
           }
           $state.go("private.profile.view");
@@ -86,7 +71,9 @@
             delete $localStorage[cookiePassword];
           }
         }, function () {
-          ttGuiUtilService.showErrorMessage("Falha de Login", "Usuário '" + email + "' não cadastrado no sistema!");
+          var title = ttLng.get('login.error.title');
+          var msg = ttLng.get('login.no.user.error');
+          ttGuiUtilService.showErrorMessage(title, msg);
         })
         .catch(function (ex) {
           ttGuiUtilService.showErrorMessage(null, ex);
