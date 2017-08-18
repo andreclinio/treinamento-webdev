@@ -13,7 +13,9 @@
     });
 
   /** @ngInject */
-  function controller($rootScope, $scope, $log, toastr, userDataService, ttGuiUtilService, ttModelUtilService) {
+  function controller($rootScope, $scope, $log, toastr,
+      userDataService, ttGuiUtilService, ttModelUtilService, ttDialogService) {
+
     var $ctrl = this;
 
     $scope.getSkillBadgeClass = function (level) {
@@ -26,8 +28,8 @@
 
     $ctrl.$onInit = function () {
       $ctrl.gridData = $ctrl.mountGridData($ctrl.user.getSkills());
-      $log.log("[DEBUG] after call mountGridData");
-      $log.log($ctrl.user.getSkills());
+      // $log.log("[DEBUG] after call mountGridData");
+      // $log.log($ctrl.user.getSkills());
     }
 
     $ctrl.mountGridData = function (skills) {
@@ -106,13 +108,11 @@
     }
 
     $scope.showExperiencesDetails = function (experiences) {
-      var html = getExperiencesHtml(experiences);
-      ttGuiUtilService.showMessage("Experiência de " + $ctrl.user.getName(), html);
+      ttDialogService.showExperiences($ctrl.user.getName(), experiences);
     }
 
     $scope.showProjectsDetails = function (projects) {
-      var html = getProjectsHtml(projects);
-      ttGuiUtilService.showMessage("Projeto de " + $ctrl.user.getName(), html);
+      ttDialogService.showProjects($ctrl.user.getName(), projects);
     }
 
     $scope.delSkill = function (skill) {

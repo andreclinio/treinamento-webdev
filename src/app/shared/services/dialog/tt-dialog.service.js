@@ -10,7 +10,9 @@
     return {
       changePassword: changePassword,
       showCloud: showCloud,
-      editProfile: editProfile
+      editProfile: editProfile,
+      showExperiences: showExperiences,
+      showProjects: showProjects
     };
 
     /**
@@ -59,6 +61,48 @@
         var newPwd = passwords.new;
         _changeUserPassword(user, oldPwd, newPwd);
       }, function() {});
+    }
+
+    /**
+     * Abertura de diálogo com experiences
+     */
+    function showExperiences(userName, experiences) {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        size: 'lg',
+        controllerAs: '$ctrl',
+        controller: function () {
+          var $ctrl = this;
+          $ctrl.userName = userName;
+          $ctrl.experiences = experiences;
+          $ctrl.close = function () {
+            modalInstance.dismiss();
+          }
+        },
+        templateUrl: "app/shared/services/dialog/show-experiences.html"
+      });
+      modalInstance.result.then(function () {}, function () {});
+    }
+
+    /**
+     * Abertura de diálogo com projetos
+     */
+    function showProjects(userName, projects) {
+      var modalInstance = $uibModal.open({
+        animation: true,
+        size: 'lg',
+        controllerAs: '$ctrl',
+        controller: function () {
+          var $ctrl = this;
+          $ctrl.userName = userName;
+          $ctrl.projects = projects;
+          $ctrl.close = function () {
+            modalInstance.dismiss();
+          }
+        },
+        templateUrl: "app/shared/services/dialog/show-projects.html"
+      });
+      modalInstance.result.then(function () {}, function () {});
     }
 
     /**
@@ -122,7 +166,7 @@
         userDataService.update(user);
         var infoMsg = "Atualização de dados do usuário " + obj.name + " feita com sucesso.";
         ttGuiUtilService.showInfoMessage(null, infoMsg);
-      } 
+      }
       catch (exception) {
         ttGuiUtilService.showErrorMessage(null, exception);
       }
@@ -136,7 +180,7 @@
         userDataService.update(user);
         var infoMsg = "Atualização de senha do usuário " + name + " feita com sucesso.";
         ttGuiUtilService.showInfoMessage(null, infoMsg);
-      } 
+      }
       catch (exception) {
         ttGuiUtilService.showErrorMessage(null, exception);
       }

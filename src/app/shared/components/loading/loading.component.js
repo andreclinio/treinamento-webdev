@@ -25,7 +25,7 @@ function LoadingController ($rootScope, $log) {
   };
 
   function onSpinnerActivate(event, data) {
-    $log.log("[DEBUG] data.on: ", data.on);
+    // $log.log("[DEBUG] data.on: ", data.on);
     $ctrl.show = data.on;
   }
 }

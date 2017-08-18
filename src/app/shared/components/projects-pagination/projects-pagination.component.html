@@ -1,0 +1,13 @@
+<div ng-if="$ctrl.projects.length == 0 "><h3 class="text-center">Não existem projetos associados</h3></div>
+<div class="container-fluid">
+  <div class="row" ng-repeat="p in $ctrl.projects | start: ($ctrl.pagCurrentPage - 1) * $ctrl.pagItemsPerPage | limitTo: $ctrl.pagItemsPerPage">
+    <div class="col-xs-12">
+      <h3>Nome: {{p.getName() }} </h3>
+      <h4>Descrição: {{ p.getDescription() || "Não informada" }} </h4>
+    </div>
+    <div class="text-center">
+      <ul uib-pagination boundary-links="true" total-items="$ctrl.pagTotalItems" ng-model="$ctrl.pagCurrentPage" items-per-page="$ctrl.pagItemsPerPage"
+        max-size="$ctrl.pgMaxSize" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" class="pagination-sm"></ul>
+    </div>
+  </div>
+</div>
