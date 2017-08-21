@@ -149,6 +149,16 @@ tags-input .tags .tag-item .remove-button {
 // ----------------------------------------------------------------------------
 // Classes do próprio sistema
 // ----------------------------------------------------------------------------
+.tt-mouse-pointer {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.tt-table {
+  height: 296px;
+  overflow-y: scroll;
+}
+
 .tt-loading-indicator {
     display: block;
     width: 70px;

@@ -18,6 +18,24 @@
 
     var $ctrl = this;
 
+    $ctrl.$onInit = function () {
+      // $ctrl.skills = $ctrl.user.getSkills();
+
+      $ctrl.skillsData = mountSkillsTableData();
+      // $log.log("skillsData: ", $ctrl.skillsData);
+    }
+
+    // $ctrl.$onChanges = function(changeObj) {
+    // }
+
+    $ctrl.getSkillBadgeClass = function (level) {
+      return ttGuiUtilService.getBadgeClassForSkillLevel(level);
+    }
+
+    $ctrl.getSkillLevelText = function (level) {
+      return ttModelUtilService.getSkillLevelName(level);
+    }
+
     $scope.getSkillBadgeClass = function (level) {
       return ttGuiUtilService.getBadgeClassForSkillLevel(level);
     }
@@ -26,96 +44,15 @@
       return ttModelUtilService.getSkillLevelName(level);
     }
 
-    $ctrl.$onInit = function () {
-      $ctrl.gridData = $ctrl.mountGridData($ctrl.user.getSkills());
-      // $log.log("[DEBUG] after call mountGridData");
-      // $log.log($ctrl.user.getSkills());
-    }
-
-    $ctrl.mountGridData = function (skills) {
-      var levelCellTemplate = '<span class="badge {{grid.appScope.getSkillBadgeClass(grid.getCellValue(row,col))}}">{{ grid.appScope.getSkillLevelText( grid.getCellValue(row,col) ) }}</span>';
-      var expCellTemplate = '<span class="badge" ng-click="grid.appScope.showExperiencesDetails(grid.getCellValue(row, col).experiences)">{{grid.getCellValue(row, col).experiences.length}}</span><span>Experiências</span>'
-      var projCellTemplate = '<span class="badge" ng-click="grid.appScope.showProjectsDetails(grid.getCellValue(row, col).projects)">{{grid.getCellValue(row, col).projects.length}}</span><span>Projetos</span>'
-      var expProjectsCellTemplate = expCellTemplate + " " + projCellTemplate;
-
-      var delCellTemplate = '<span class="fa fa-trash tt-fa-widget" ng-click="grid.appScope.delSkill(grid.getCellValue(row, col).skill)" title="Apagar Competência"></span>';
-      var viewCellTemplate = '<span class="fa fa-eye tt-fa-widget" ng-click="grid.appScope.showSkillDetails(grid.getCellValue(row, col))" title="Ver detalhes da Competência"></span>';
-      var actionsCellTemplate = delCellTemplate + viewCellTemplate;
-
-      var expProjHeader = 'Experiências / Projetos';
-
-      var gridData = {
-        enableColumnsResizing: true,
-        enableColumnMenus: false,
-        columnDefs: [
-          { name: 'Competência', field: 'skillName', width: '15%' },
-          { name: 'Nível',       field: 'skillLevel', width: '10%', cellTemplate: levelCellTemplate, },
-          { name: expProjHeader, field: 'skillLine', width: '65%', cellTemplate: expProjectsCellTemplate, enableSorting: false },
-          { name: 'Ações',       field: 'skillLine', width: '10%', cellTemplate: actionsCellTemplate, enableSorting: false, enableColumnResizing: false, enableHiding: false }
-        ],
-        data: []
-      };
-
-      // fill data structure
-      for (var i = 0; i < skills.length; i++) {
-        var skill = skills[i];
-        var userExperiences = getExperiencesBySkillId(skill.getId());
-        var userExpProjects = getProjectsByExperiences(userExperiences);
-        gridData.data[i] = {
-          skillName: skill.getName(),
-          skillLevel: skill.getLevel(),
-          expCount: skill.getExperienceCount(),
-          projCount: skill.getProjectCount(),
-          projectSkills: "(" + skill.getExperienceCount() + ") Experiências " + " (" + skill.getProjectCount() + ") Projetos",
-          skillLine: {
-            skill: skill,
-            experiences: userExperiences,
-            projects: userExpProjects
-          }
-        };
-      }
-      return gridData;
-    }
-
-    /**
-     * Obtém as experiências do usuário com uma determinado skillId.
-     */
-    var getExperiencesBySkillId = function (skillId) {
-      var experiences = [];
-      var userExperiences = $ctrl.user.getExperiences();
-      for (var i = 0; i < userExperiences.length; i++) {
-        var exp = userExperiences[i];
-        var skills = exp.getSkills();
-        for (var j = 0; j < skills.length; j++) {
-          var skill = skills[j];
-          if (skill.getId() == skillId) {
-            experiences.push(exp);
-            break;
-          }
-        }
-      }
-      return experiences;
-    }
-
-    var getProjectsByExperiences = function (experiences) {
-      var projects = [];
-      for (var i = 0; i < experiences.length; i++) {
-        var exp = experiences[i];
-        var project = exp.getProject();
-        projects.push(project);
-      }
-      return projects;
-    }
-
-    $scope.showExperiencesDetails = function (experiences) {
+    $ctrl.showExperiencesDetails = function (experiences) {
       ttDialogService.showExperiences($ctrl.user.getName(), experiences);
     }
 
-    $scope.showProjectsDetails = function (projects) {
+    $ctrl.showProjectsDetails = function (projects) {
       ttDialogService.showProjects($ctrl.user.getName(), projects);
     }
 
-    $scope.delSkill = function (skill) {
+    $ctrl.delSkill = function (skill) {
       var title = skill.getName();
       var warnMsg = "Deseja realmente apagar a competência '" + title + "'?";
       var promisse = ttGuiUtilService.confirmWarningMessage(null, warnMsg, "Apagar");
@@ -124,12 +61,13 @@
         userDataService.update($ctrl.user);
         var infoMsg = "Competência '" + title + "'apagada com sucesso."
         ttGuiUtilService.showInfoMessage(null, infoMsg);
+        updateSkillsList();
       }, function () {
         $log.log('operação cancelada!');
       });
     }
 
-    $scope.showSkillDetails = function (skillLine) {
+    $ctrl.showSkillDetails = function (skillLine) {
       var skill = skillLine.skill;
       var desc = skill.getDescription() || "(sem texto disponível)";
       var html = '<h2>' + skill.getName()  + '</h2>' +
@@ -148,7 +86,8 @@
       user.addSkill(skillUser);
       userDataService.update(user);
       ttGuiUtilService.showInfoMessage(null, "Competência " + skillUser.getName() + " inserida");
-    }
+      updateSkillsList();
+     }
 
     $ctrl.addSkillUser = function () {
       var title = "Adição de Competência";
@@ -159,6 +98,64 @@
         callback: $ctrl.addSkillUserCallback
       };
       ttGuiUtilService.runFormOperation($rootScope, formName, data, title, html, "Criar", null, "md");
+    }
+
+    function updateSkillsList() {
+      $ctrl.skillsData = mountSkillsTableData();
+    }
+
+    function mountSkillsTableData() {
+      var skillsData = [];
+      // fill data structure
+      var skills = $ctrl.user.getSkills();
+      for (var i = 0; i < $ctrl.user.getSkills().length; i++) {
+        var skill = skills[i];
+        var userExperiences = getExperiencesBySkillId(skill.getId());
+        var userExpProjects = getProjectsByExperiences(userExperiences);
+        skillsData[i] = {
+          skillName: skill.getName(),
+          skillLevel: skill.getLevel(),
+          expCount: skill.getExperienceCount(),
+          projCount: skill.getProjectCount(),
+          // projectSkills: "(" + skill.getExperienceCount() + ") Experiências " + " (" + skill.getProjectCount() + ") Projetos",
+          skillLine: {
+            skill: skill,
+            experiences: userExperiences,
+            projects: userExpProjects
+          }
+        };
+      }
+      return skillsData;
+    }
+
+    /**
+     * Obtém as experiências do usuário com uma determinado skillId.
+     */
+    function getExperiencesBySkillId (skillId) {
+      var experiences = [];
+      var userExperiences = $ctrl.user.getExperiences();
+      for (var i = 0; i < userExperiences.length; i++) {
+        var exp = userExperiences[i];
+        var skills = exp.getSkills();
+        for (var j = 0; j < skills.length; j++) {
+          var skill = skills[j];
+          if (skill.getId() == skillId) {
+            experiences.push(exp);
+            break;
+          }
+        }
+      }
+      return experiences;
+    }
+
+    function getProjectsByExperiences (experiences) {
+      var projects = [];
+      for (var i = 0; i < experiences.length; i++) {
+        var exp = experiences[i];
+        var project = exp.getProject();
+        projects.push(project);
+      }
+      return projects;
     }
 
     function getExperiencesHtml (experiences) {
