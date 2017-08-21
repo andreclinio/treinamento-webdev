@@ -10,7 +10,7 @@
     });
 
   /** @ngInject */
-  function controller($q, $log, $rootScope, skillDataService) {
+  function controller($q, $rootScope, skillDataService) {
     var $ctrl = this;
     $ctrl.showNew = true;
 

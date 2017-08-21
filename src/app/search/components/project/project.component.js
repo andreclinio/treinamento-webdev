@@ -10,43 +10,19 @@
       });
   
     /** @ngInject */
-    function controller($rootScope, $scope, $log, userDataService, skillDataService, ttGuiUtilService) {
+    function controller($rootScope) {
       var $ctrl = this;
-  
-      $ctrl.mountGridData = function (projects) {
-  
-        var experiencesCellTemplate =         '<span> {{grid.getCellValue(row, col).getName()}}</span>';
-        var usersCellTemplate =         '<span> {{grid.getCellValue(row, col).getName()}}</span>';
-
-        var nameCellTemplate = 
-        '<span> {{grid.getCellValue(row, col).getName()}}</span>';
-  
-        var gridData = {
-          enableColumnResizing: true,
-          enableColumnMenus: false,
-          columnDefs: [
-            { name: 'Nome', field: 'user', enableColumnMenus: false, cellTemplate: nameCellTemplate, width: '33%' },
-            { name: 'Pessoas', field: 'user', cellTemplate: usersCellTemplate, width: '33%' },
-            { name: 'Experiências', field: 'user', cellTemplate: experiencesCellTemplate, width: '33%' }
-          ],
-          data: []
-        };
-  
-        angular.forEach(projects, function(v, i){
-          gridData.data[i] = { project: v }
-        });
-        return gridData;
-      }
   
       $ctrl.update = function(skills) {
         $ctrl.skills = skills;
         var projects = [];
+        
         // TODO
-        $ctrl.gridData = $ctrl.mountGridData(projects);
+        $ctrl.projects = projects;
       }
 
       $ctrl.$onInit = function () {
-        $ctrl.gridData = { data:[] };
+        $ctrl.projects = [];
         $ctrl.update();
         $ctrl.listener = $rootScope.$on("search.updated", function(event, skills) {
             $ctrl.update(skills);

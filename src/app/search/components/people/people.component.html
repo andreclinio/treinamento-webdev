@@ -1,9 +1,24 @@
-
 <h4>
-    Pessoas
-    <tt-skill-subtitle></tt-skill-subtitle>
+  Pessoas
+  <tt-skill-subtitle></tt-skill-subtitle>
 </h4>
-<div id="people-grid" ui-grid="$ctrl.gridData" ui-grid-resize-columns class="grid"></div>
 
-
-  
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <th>Nome</th>
+      <th>Experiências</th>
+      <th>Projetos</th>
+      <th>Nível</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="su in $ctrl.searchUsers">
+        <td>{{su.getName()}}</td>
+        <td> <div ng-repeat="sk in su.getSearchSkills()"> {{sk.getName()}} <span class="badge">{{sk.getExperienceCount()}}</span></div></td>
+        <td> <div ng-repeat="sk in su.getSearchSkills()"> {{sk.getName()}} <span class="badge">{{sk.getProjectCount()}}</span></div></td>
+        <td> <div ng-repeat="sk in su.getSearchSkills()"><span ng-class="[badge, $ctrl.getBadgeClassForSkillLevel(sk.getLevel())]">{{sk.getName()}}</span></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

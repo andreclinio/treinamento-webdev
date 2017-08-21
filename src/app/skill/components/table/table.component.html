@@ -1,11 +1,37 @@
-<h4>
-  Competências
-  <span ng-click="$ctrl.openNewSkill()" class="fa fa-plus-circle"></span>
-</h4>
+<h4>Competências </h4>
 
-<div id="skills-grid" ui-grid="$ctrl.gridData" ui-grid-resize-columns class="grid"></div>
-<div class="text-right">
-  <button ng-disabled="$ctrl.getSelectionCount() <= 1" type="button" class="btn btn-primary " ng-click="$ctrl.mergeSelected()">Combinar</button>
-  <button ng-disabled="$ctrl.getSelectionCount() < 1" type="button" class="btn btn-primary " ng-click="$ctrl.deleteSelected()">Apagar</button>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Status</th>
+      <th>Pessoas</th>
+      <th>Experiências</th>
+      <th>Projetos</th>
+      <th>Ações</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="sk in $ctrl.skills">
+        <td><input type="checkbox" ng-model="sk.selected"></td>
+        <td>{{sk.getName()}} <span class="fa fa-pencil tt-fa-widget" ng-click="$ctrl.editTitle(sk)" title="Editar título"></span></td>
+        <td><span class="tt-badge {{ $ctrl.getSkillBadgeClass(sk) }}"> {{$ctrl.getSkillValidityName(sk) }}</span></td>
+        <td>--</td>
+        <td>--</td>
+        <td>--</td>
+        <td>
+          <span class="fa fa-trash tt-fa-widget" ng-click="$ctrl.delSkill(sk)" title="Apagar competência"></span>
+          <span class="fa fa-check-circle tt-fa-widget" ng-click="$ctrl.validateSkill(sk)" title="Validar competência"></span>
+          <span class="fa fa-tag tt-fa-widget" ng-click="$ctrl.editDescription(sk)" title="Editar descrição da competência"></span>
+          <span class="fa fa-eye tt-fa-widget" ng-click="$ctrl.showSkillDetails(sk)" title="Ver detalhes da competência"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
+<div class="text-right">
+  <button type="button" class="btn btn-primary " ng-click="$ctrl.openNewSkill()"><span class="fa fa-plus-circle tt-fa-button"></span>Criar</button>
+  <button ng-disabled="$ctrl.getSelectionCount() <= 1" type="button" class="btn btn-primary " ng-click="$ctrl.mergeSelected()"><span class="fa fa-compress tt-fa-button"></span>Combinar</button>
+  <button ng-disabled="$ctrl.getSelectionCount() < 1" type="button" class="btn btn-primary " ng-click="$ctrl.deleteSelected()"><span class="fa fa-trash tt-fa-button"></span>Apagar</button>
+</div>

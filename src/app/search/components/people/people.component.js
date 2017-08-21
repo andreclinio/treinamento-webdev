@@ -17,7 +17,7 @@
         return '<span ng-repeat="s in grid.getCellValue(row, col).getSearchSkills()">' + $sce.trustAsHtml(html) + '</span>';
     }
 
-    $scope.getBadgeClassForSkillLevel= function(level) {
+    $ctrl.getBadgeClassForSkillLevel= function(level) {
         return ttGuiUtilService.getBadgeClassForSkillLevel(level);
     }
 
@@ -77,23 +77,19 @@
       var prm = skillDataService.users(names);
       $log.log("n:", names);
       $log.log("s:", $ctrl.skills);
-      prm.then(function (users) {
-        $log.log("u:", users);
-        $ctrl.gridData = $ctrl.mountGridData(users);
-        // var elem = angular.element("#people-grid")[0];
-        // elem.load();
+      prm.then(function (searchUsers) {
+        $ctrl.searchUsers = searchUsers;
       }, function (obj) {
-        $ctrl.gridData = $ctrl.mountGridData([]);
+        $ctrl.searchUsers = [];
         ttGuiUtilService.showErrorMessage(null, "Falha na busca de pessoas: " + obj);
       }).catch(function (ex) {
-        $ctrl.gridData = $ctrl.mountGridData([]);
+        $ctrl.searchUsers = [];
         ttGuiUtilService.showErrorMessage(ex);
       })
-
     }
 
     $ctrl.$onInit = function () {
-      $ctrl.gridData = { data:[] };
+      $ctrl.searchUsers = [];
       $ctrl.update([]);
       $ctrl.listener = $rootScope.$on("search.updated", function(event, skills) {
           $ctrl.update(skills);

@@ -4,11 +4,10 @@
 
     <div class="row">
       <div class="col-sm-12 col-md-10 col-lg-8">
-        <label for="search">Digite a lista de competências:</label>
-        <div class="form-group input-group">
-          <span class="input-group-addon fa fa-search"></span>
+        <label for="search">Lista de competências:</label>
+        <div class="form-group input-group" style="width: 100%">
           <tags-input class="tt-bootstrap" ng-model="$ctrl.skills" add-on-paste="true" display-property="_name" add-from-autocomplete-only="true"
-            replace-spaces-with-dashes="false" placeholder="Adicione competências..." on-tag-removed="$ctrl.update()" on-tag-added="$ctrl.update()">
+            replace-spaces-with-dashes="false" placeholder="Escreva as competências a serem visualizadas..." on-tag-removed="$ctrl.update()" on-tag-added="$ctrl.update()">
             <auto-complete source="$ctrl.loadSkills($query)" min-length="0" debounce-delay="0"></auto-complete>
           </tags-input>
         </div>
