@@ -25,7 +25,7 @@
       }
 
       $ctrl.update = function() {
-        $rootScope.$emit("search.updated", $ctrl.skills);
+        $rootScope.$broadcast("search.updated", $ctrl.skills);
       }
     }
   

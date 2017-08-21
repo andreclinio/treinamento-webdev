@@ -10,7 +10,7 @@
       });
 
     /** @ngInject */
-    function controller($rootScope, $scope, $log, $state, skillDataService, ttGuiUtilService, ttModelUtilService) {
+    function controller($rootScope, $log, $state, skillDataService, ttGuiUtilService, ttModelUtilService) {
       var $ctrl = this;
 
       /**

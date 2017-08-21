@@ -65,10 +65,6 @@ textarea {
   resize: vertical;
 }
 
-.subtitle-table-style{
-  color:$tt-subtitle-color;
-}
-
 .panel-modal-header{
   border-radius:0px;
   background: $tt-footer-bgcolor !important;
@@ -149,6 +145,11 @@ tags-input .tags .tag-item .remove-button {
 // ----------------------------------------------------------------------------
 // Classes do próprio sistema
 // ----------------------------------------------------------------------------
+
+.tt-subtitle-table-style{
+  color:$tt-subtitle-color;
+}
+
 .tt-loading-indicator {
     display: block;
     width: 70px;
