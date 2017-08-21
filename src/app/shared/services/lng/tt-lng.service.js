@@ -8,14 +8,14 @@
 
   /** @ngInject */
   function Config($translateProvider) {
-    $translateProvider.translations('en', _getEN()); 
-    $translateProvider.translations('pt', _getPT()); 
-    $translateProvider.translations('fr', _getFR()); 
-    
+    $translateProvider.translations('en', _getEN());
+    $translateProvider.translations('pt', _getPT());
+    $translateProvider.translations('fr', _getFR());
+
     //temos que dizer qual é a default.
-    $translateProvider.preferredLanguage('pt'); 
+    $translateProvider.preferredLanguage('pt');
     $translateProvider.useSanitizeValueStrategy('escape');
-  } 
+  }
 
   /** @ngInject */
   function service($translate) {
@@ -60,7 +60,7 @@
   }
 
   function _getPT() {
-    return { 
+    return {
         'tt.cancel.button': 'Cancelar',
         'tt.confirm.button': 'Confirmar',
         'tt.back.button': 'Voltar',
@@ -85,16 +85,25 @@
 
         'recover.title': 'Recuperação de Senha',
         'recover.recover.button': 'Recuperar',
-        
+
         'register.title': 'Registro de Usuário',
         'register.email.mismatch.error': "Email e confimação estão diferentes!",
         'register.show.password.check': "Mostrar senhas",
         'register.register.button': "Cadastrar",
+
+        'profile.table.skills.head.skill' : "Competência",
+        'profile.table.skills.head.level' : "Nível",
+        'profile.table.skills.head.experience-project' : "Experiências/Projetos",
+        'profile.table.skills.head.actions' : "Ações",
+        'profile.table.skills.projects.item' : "Projetos",
+        'profile.table.skills.experiences.item' : "Experiências",
+        'profile.table.skills.action.remove.title' : "Apagar Competência",
+        'profile.table.skills.action.details.title' : "Ver detalhes da Competência",
     }
   }
 
   function _getEN() {
-    return { 
+    return {
         'tt.cancel.button': 'Cancel',
         'tt.confirm.button': 'Confirm',
         'tt.back.button': 'Back',
@@ -119,7 +128,7 @@
 
         'recover.title': 'Password Recovery',
         'recover.recover.button': 'Recover',
-        
+
         'register.title': 'User Registration',
         'register.email.mismatch.error': "Email and confirmation are different!",
         'register.show.password.check': "Show passwords",
@@ -129,7 +138,7 @@
 
 
   function _getFR() {
-    return { 
+    return {
         'tt.cancel.button': 'Annuler',
         'tt.confirm.button': 'Confirmer',
         'tt.back.button': 'Retourner',
@@ -153,7 +162,7 @@
         'login.show.password.check': 'Montrer le mot de passe',
 
         'recover.title': 'Récupération de mot de passe',
-        'recover.recover.button': 'Récupérer', 
+        'recover.recover.button': 'Récupérer',
 
         'register.title': 'Enregistrement de l\'utilisateur',
         'register.email.mismatch.error': "",

@@ -4,4 +4,33 @@
   <tt-skill-subtitle></tt-skill-subtitle>
 </h4>
 
-<div id="skills-grid" ui-grid="$ctrl.gridData" class="grid" ui-grid-resize-columns></div>
+
+<div class="table-responsive tt-table">
+  <table class="table table-condensed table-hover">
+    <thead>
+      <tr>
+        <th translate="profile.table.skills.head.skill"></th>
+        <th translate="profile.table.skills.head.level"></th>
+        <th translate="profile.table.skills.head.experience-project"></th>
+        <th translate="profile.table.skills.head.actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="sk in $ctrl.skillsData">
+        <td>{{ sk.skillName }}</td>
+        <td><span ng-class="[badge, $ctrl.getSkillBadgeClass(sk.skillLevel)]">{{ $ctrl.getSkillLevelText(sk.skillLevel); }}</span></td>
+        <td>
+          <span translate="profile.table.skills.experiences.item"></span>
+          <span class="badge tt-mouse-pointer" ng-click="$ctrl.showExperiencesDetails(sk.skillLine.experiences);">{{ sk.expCount }}</span>
+          <span translate="profile.table.skills.projects.item"></span>
+          <span class="badge tt-mouse-pointer" ng-click="$ctrl.showProjectsDetails(sk.skillLine.projects);">{{ sk.projCount }}</span>
+        </td>
+        <td>
+          <span class="fa fa-trash tt-fa-widget" ng-click="$ctrl.delSkill(sk.skillLine.skill)" title="{{ 'profile.table.skills.action.remove.title' | translate }}"></span>
+          <span class="fa fa-eye tt-fa-widget" ng-click="$ctrl.showSkillDetails(sk.skillLine)" title="{{ 'profile.table.skills.action.details.title' |  translate }}"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

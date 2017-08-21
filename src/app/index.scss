@@ -4,39 +4,28 @@
 $tt-primary-color: #8dabb9;
 $tt-primary-text-color: #ffffff;
 $tt-secondary-color: #385687;
-
 $tt-skill-advanced-color: #f76459;
 $tt-skill-medium-color: #FF9800;
 $tt-skill-basic-color: #4CAF50;
-
 $tt-skill-validated-color: #009900;
 $tt-skill-new-color: #990000;
-
 $tt-widget-color: #989c9e;
-
 $tt-ui-grid-canvas-color:#9E9E9E;
 $tt-ui-grid-header-canvas:#19688c;
-
 $tt-navbar-bgcolor: #d5eaf4;
 $tt-navbar-active-bgcolor: #03A9F4;
 $tt-navbar-active-fgcolor: #ffffff;
-
 $tt-footer-bgcolor: #19688c;
-
 $tt-addon-bgcolor: #337ab7;
 $tt-addon-fgcolor: #ffffff;
-
 $tt-subtitle-color:#19688c;
 $tt-border-color:#d4d4d4;
 $tt-white-color:#fff;
 $tt-color-fa-icon:#337ab7;
-
 $tt-title-forms-fgcolor: #068BC8;
-
 $tt-margin: 40px;
-
-$tt-font: 'Open Sans', sans-serif;
-
+$tt-font: 'Open Sans',
+sans-serif;
 // ----------------------------------------------------------------------------
 // Alterações globais de HTML
 // ----------------------------------------------------------------------------
@@ -65,14 +54,14 @@ textarea {
   resize: vertical;
 }
 
-.panel-modal-header{
-  border-radius:0px;
+.panel-modal-header {
+  border-radius: 0px;
   background: $tt-footer-bgcolor !important;
   border-color: $tt-footer-bgcolor !important;
 }
 
-.panel-bar-style{
-  border-radius:0px;
+.panel-bar-style {
+  border-radius: 0px;
 }
 
 // ----------------------------------------------------------------------------
@@ -99,13 +88,15 @@ textarea {
   margin: 7px;
 }
 
-.navbar-default .navbar-nav>li>a{
-  color:$tt-footer-bgcolor;
+.navbar-default .navbar-nav>li>a {
+  color: $tt-footer-bgcolor;
 }
 
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    background: #03a9f4 !important;
-    color: #fff;
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+  background: #03a9f4 !important;
+  color: #fff;
 }
 
 .alert {
@@ -145,26 +136,34 @@ tags-input .tags .tag-item .remove-button {
 // ----------------------------------------------------------------------------
 // Classes do próprio sistema
 // ----------------------------------------------------------------------------
+.tt-subtitle-table-style {
+  color: $tt-subtitle-color;
+}
 
-.tt-subtitle-table-style{
-  color:$tt-subtitle-color;
+.tt-mouse-pointer {
+  cursor: pointer;
+}
+
+.tt-table {
+  height: 296px;
+  overflow-y: auto;
 }
 
 .tt-loading-indicator {
-    display: block;
-    width: 70px;
-    position: fixed;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    top: 40%;
-    z-index: 100;
-    background-color: #FFF;
+  display: block;
+  width: 70px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 40%;
+  z-index: 100;
+  background-color: #FFF;
 }
 
 .tt-loading-indicator img {
-    width: 70px;
-    background-color: #FFF;
+  width: 70px;
+  background-color: #FFF;
 }
 
 .tt-cloud {
@@ -180,7 +179,7 @@ tags-input .tags .tag-item .remove-button {
   background: $tt-footer-bgcolor;
   height: 34px;
   padding-top: 7px;
-  color:$tt-white-color;
+  color: $tt-white-color;
 }
 
 .tt-navbar {
@@ -218,26 +217,25 @@ tt-profile-resume {
   }
 }
 
-.tt-active-color{
-  background:red;
-  color:$tt-white-color;
+.tt-active-color {
+  background: red;
+  color: $tt-white-color;
 }
 
-.tt-text-info{
-    margin-left: 20px;
+.tt-text-info {
+  margin-left: 20px;
 }
 
-.tt-image-thumb-style{
-    margin-top:20px;
+.tt-image-thumb-style {
+  margin-top: 20px;
 }
 
-
-.tt-color-icon{
-  color:$tt-color-fa-icon;
+.tt-color-icon {
+  color: $tt-color-fa-icon;
 }
 
-a{
-  color:$tt-color-fa-icon;
+a {
+  color: $tt-color-fa-icon;
 }
 
 .tt-primary-text {
@@ -337,8 +335,9 @@ a{
 }
 
 span.tt-fa-widget {
-  margin-left: 10px;
+  margin-left: 3px;
   color: $tt-widget-color;
+  cursor: pointer;
 }
 
 span.tt-fa-button {
