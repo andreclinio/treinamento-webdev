@@ -99,6 +99,13 @@
         'profile.table.skills.experiences.item' : "Experiências",
         'profile.table.skills.action.remove.title' : "Apagar Competência",
         'profile.table.skills.action.details.title' : "Ver detalhes da Competência",
+
+        'profile.table.experiences.head.title' : "Título",
+        'profile.table.experiences.head.start' : "Início",
+        'profile.table.experiences.head.end' : "Término",
+        'profile.table.experiences.head.skills' : "Competências",
+        'profile.table.experiences.head.project' : "Projeto",
+        'profile.table.experiences.head.actions' : "Ações"
     }
   }
 

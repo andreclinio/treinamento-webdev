@@ -13,10 +13,14 @@
     });
 
   /** @ngInject */
-  function controller($rootScope, $scope, $log, $state, userDataService, skillDataService, ttGuiUtilService) {
+  function controller($rootScope, $log, $state, userDataService, skillDataService, ttGuiUtilService) {
     var $ctrl = this;
 
-    $scope.getSkillBadgeClass = function(s) {
+    $ctrl.$onInit = function () {
+      $ctrl.experiences = $ctrl.user.getExperiences() || [];
+    }
+
+    $ctrl.getSkillBadgeClass = function(s) {
       return ttGuiUtilService.getBadgeClassForSkillLevel(s.getLevel());
     }
 
@@ -77,7 +81,7 @@
       return gData;
     }
 
-    $scope.delExperience = function (experience) {
+    $ctrl.delExperience = function (experience) {
       var title = experience.getTitle();
       var warnMsg = "Deseja realmente apagar a experiência '" + title + "'?";
       var promisse = ttGuiUtilService.confirmWarningMessage(null, warnMsg, "Apagar");
@@ -91,14 +95,14 @@
       });
     }
 
-    $scope.showSkillDetails = function (skill) {
+    $ctrl.showSkillDetails = function (skill) {
       var desc = skill.getDescription() || "(sem texto disponível)";
       var html = '<h2>' + skill.getName() + '</h2>' +
         '<p>' + desc + '</p>';
       ttGuiUtilService.showMessage("Competência de " + $ctrl.user.getName(), html);
     }
 
-    $scope.delSkill = function (experience, index) {
+    $ctrl.delSkill = function (experience, index) {
       var skills = experience.getSkills();
       var skill = skills[index];
       experience.removeSkill(skill);
@@ -115,7 +119,7 @@
       ttGuiUtilService.showInfoMessage(null, "Competência " + skillUser.getName() + " inserida");
     }
 
-    $scope.addSkill = function (experience) {
+    $ctrl.addSkill = function (experience) {
       var title = "Adição de Competência";
       var html = '<tt-profile-new-skill-user></tt-profile-new-skill-user>';
       var formName = "newSkillUserForm";
@@ -127,13 +131,13 @@
       ttGuiUtilService.runFormOperation($rootScope, formName, data, title, html, "Inserir", null, "md");
     }
 
-    $scope.delProject = function (experience) {
+    $ctrl.delProject = function (experience) {
       experience.setProject(null);
       userDataService.update($ctrl.user);
       ttGuiUtilService.showInfoMessage(null, "Projeto de removido");
     }
 
-    $scope.editProject = function (experience) {
+    $ctrl.editProject = function (experience) {
       var prm = ttGuiUtilService.chooseProject(experience.getProject());
       prm.then(function(prj) {
         $log.log("projeto selecionado: ", prj);
@@ -149,7 +153,7 @@
       });
     }
 
-    $scope.delStartDate = function (experience) {
+    $ctrl.delStartDate = function (experience) {
       try{
       experience.setStartDate(null);
       userDataService.update($ctrl.user);
@@ -160,7 +164,7 @@
       }
     }
 
-    $scope.delEndDate = function (experience) {
+    $ctrl.delEndDate = function (experience) {
       try{
       experience.setEndDate(null);
       userDataService.update($ctrl.user);
@@ -171,7 +175,7 @@
       }
     }
 
-    $scope.editStartDate = function (experience) {
+    $ctrl.editStartDate = function (experience) {
       var prm = ttGuiUtilService.chooseDate(null, null, experience.getStartDate());
       prm.then(function(date) {
         experience.setStartDate(date);
@@ -185,7 +189,7 @@
       });
     }
 
-    $scope.editEndDate = function (experience) {
+    $ctrl.editEndDate = function (experience) {
       var prm = ttGuiUtilService.chooseDate(null, null, experience.getEndDate());
       prm.then(function(date) {
         experience.setEndDate(date);
@@ -199,7 +203,7 @@
       });
     }
 
-    $scope.editDescription = function (experience) {
+    $ctrl.editDescription = function (experience) {
       var prm = ttGuiUtilService.chooseString("Descrição", "Entre com a nova descrição.", experience.getDescription(), true, false);
       prm.then(function(string) {
         experience.setDescription(string);
@@ -213,7 +217,7 @@
       });
     }
 
-    $scope.editTitle = function (experience) {
+    $ctrl.editTitle = function (experience) {
       var prm = ttGuiUtilService.chooseString("Título", "Entre com o novo título.", experience.getTitle(), false, true);
       prm.then(function(string) {
         experience.setTitle(string);
@@ -227,7 +231,7 @@
       });
     }
 
-    $scope.showProjectDetails = function (experience) {
+    $ctrl.showProjectDetails = function (experience) {
       var project = experience.getProject();
       if (!project) return;
       var desc = project.getDescription() || "(sem texto disponível)";
@@ -236,7 +240,7 @@
       ttGuiUtilService.showMessage("Projeto de " + $ctrl.user.getName(), html);
     }
 
-    $scope.showExperienceDetails = function (experience) {
+    $ctrl.showExperienceDetails = function (experience) {
       var desc = experience.getDescription() || "(sem texto de descrição disponível)";
       var prjName = experience.getProject() ? experience.getProject().getName() : "(sem projeto associado)";
       var html = '<h2>' + experience.getTitle() + '</h2>' +
@@ -250,9 +254,6 @@
       $state.go("private.profile.new-experience");
     }
 
-    $ctrl.$onInit = function () {
-      $ctrl.gridData = $ctrl.mountGridData($ctrl.user.getExperiences());
-    }
   }
 
 

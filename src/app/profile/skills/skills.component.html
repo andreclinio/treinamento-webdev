@@ -1,12 +1,11 @@
 <h4 class="tt-subtitle-table-style">
   Competências
-  <span class="fa fa-plus-circle text-right" ng-click="$ctrl.addSkillUser()"></span>
   <tt-skill-subtitle></tt-skill-subtitle>
 </h4>
 
 
 <div class="table-responsive tt-table">
-  <table class="table table-condensed table-hover">
+  <table class="table table-condensed table-striped">
     <thead>
       <tr>
         <th translate="profile.table.skills.head.skill"></th>
@@ -33,4 +32,9 @@
     </tbody>
   </table>
 </div>
+
+<div class="text-right">
+    <button type="button" class="btn btn-primary " ng-click="$ctrl.addSkillUser()"><span class="fa fa-plus-circle tt-fa-button"></span>Criar</button>
+</div>
+  
 

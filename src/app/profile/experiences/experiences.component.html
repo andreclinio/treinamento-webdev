@@ -1,8 +1,63 @@
 <h4 class="tt-subtitle-table-style">Experiências
-  <span class="fa fa-plus-circle" ng-click="$ctrl.addExperience()"></span>
   <tt-skill-subtitle></tt-skill-subtitle>
 </h4>
 
- <div id="experiences-grid" ui-grid="$ctrl.gridData" ui-grid-resize-columns class="grid"></div>
-  
+<!-- <div id="experiences-grid" ui-grid="$ctrl.gridData" ui-grid-resize-columns class="grid"></div> -->
 
+
+<div class="table-responsive tt-table">
+  <table class="table table-condensed table-striped">
+    <thead>
+      <tr>
+        <th translate="profile.table.experiences.head.title"></th>
+        <th translate="profile.table.experiences.head.start"></th>
+        <th translate="profile.table.experiences.head.end"></th>
+        <th translate="profile.table.experiences.head.skills"></th>
+        <th translate="profile.table.experiences.head.project"></th>
+        <th translate="profile.table.experiences.head.actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="ex in $ctrl.experiences">
+        <td>
+          <span> {{ex.getTitle()}}</span>
+          <span class="fa fa-pencil tt-fa-widget" ng-click="$ctrl.editTitle(ex)"></span>
+        <td>
+          <span>{{ex.getStartDate()}}</span> <span class="fa fa-pencil tt-fa-widget" ng-click="$ctrl.editStartDate(ex)" title="Editar data"></span>
+          <span class="fa fa-times tt-fa-widget" ng-click="$ctrl.delStartDate(ex)"></span>
+        </td>
+        <td>
+          <span>{{ex.getEndDate()}}</span> <span class="fa fa-pencil tt-fa-widget" ng-click="$ctrl.editEndtDate(ex)" title="Editar data"></span>
+          <span class="fa fa-times tt-fa-widget" ng-click="$ctrl.delEndDate(ex)"></span>
+        </td>
+        <td>
+          <span ng-repeat="s in ex.getSkills()" class="badge {{$ctrl.getSkillBadgeClass(ex.getSkills()[$index])}}">
+                <span class=" fa fa-times" ng-click="$ctrl.delSkill(ex, $index)"></span>
+          <span class=" fa fa-eye" ng-click="$ctrl.showSkillDetails(ex.getSkills()[$index])"></span>
+          <span>{{ex.getSkills()[$index].getName()}}</span>
+          </span>
+          <span class="fa fa-plus-circle tt-fa-widget" ng-click="$ctrl.addSkill(ex)"></span>
+        </td>
+        <td>
+          <span ng-if="ex.getProject()">
+            <span class="badge tt-badge-primary">
+              <span class=" fa fa-times" ng-click="$ctrl.delProject(ex)"></span>
+          <span class=" fa fa-eye" ng-click="$ctrl.showProjectDetails(ex)"></span> {{ex.getProject().getName()}}
+          </span>
+          </span>
+          <span class="fa fa-pencil tt-fa-widget" ng-click="$ctrl.editProject(ex)"></span>
+        </td>
+        <td>
+          <span class="fa fa-trash tt-fa-widget" ng-click="$ctrl.delExperience(ex)"></span>
+          <span class="fa fa-eye tt-fa-widget" ng-click="$ctrl.showExperienceDetails(ex)"></span>
+          <span class="fa fa-tag tt-fa-widget" ng-click="$ctrl.editDescription(ex)"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="text-right">
+  <button type="button" class="btn btn-primary " ng-click="$ctrl.addExperience()"><span class="fa fa-plus-circle tt-fa-button"></span>Criar</button>
+</div>
