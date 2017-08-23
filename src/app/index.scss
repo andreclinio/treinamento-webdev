@@ -1,15 +1,15 @@
 // ----------------------------------------------------------------------------
 // Atributos e cores predefinidas para o sistema
 // ----------------------------------------------------------------------------
-$tt-primary-color: #8dabb9;
+$tt-primary-color: rgba(185, 184, 184, 0.67);
 $tt-primary-text-color: #ffffff;
 $tt-secondary-color: #385687;
-$tt-skill-advanced-color: #f76459;
-$tt-skill-medium-color: #FF9800;
-$tt-skill-basic-color: #4CAF50;
+$tt-skill-advanced-color: #a4c2e0;
+$tt-skill-medium-color:#94a2b1;
+$tt-skill-basic-color: #d9e0e6;
 $tt-skill-validated-color: #009900;
 $tt-skill-new-color: #990000;
-$tt-widget-color: #989c9e;
+$tt-widget-color: #b1c3cc;
 $tt-ui-grid-canvas-color:#9E9E9E;
 $tt-ui-grid-header-canvas:#19688c;
 $tt-navbar-bgcolor: #d5eaf4;
@@ -24,6 +24,7 @@ $tt-white-color:#fff;
 $tt-color-fa-icon:#337ab7;
 $tt-color-table-body:rgba(218, 218, 218, 0.12);
 $tt-color-table-td:#efefef;
+$tt-button-style-create-hover:#0c7bad;
 $tt-title-forms-fgcolor: #068BC8;
 $tt-margin: 40px;
 $tt-font: 'Open Sans',
@@ -150,6 +151,16 @@ tags-input .tags .tag-item .remove-button {
 
 .tt-mouse-pointer {
   cursor: pointer;
+}
+
+.tt-button-style-create {
+  border-radius: 0px;
+  background:$tt-footer-bgcolor;
+}
+
+.tt-button-style-create:hover{
+  background:$tt-button-style-create-hover;
+  border-color:$tt-button-style-create-hover;
 }
 
 .tt-table {
