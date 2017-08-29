@@ -2,9 +2,9 @@
 <div class="container-fluid">
   <div class="row" ng-repeat="e in $ctrl.experiences | start: ($ctrl.pagCurrentPage - 1) * $ctrl.pagItemsPerPage | limitTo: $ctrl.pagItemsPerPage">
     <div class="col-xs-12">
-      <h3>Título: {{e.getTitle() }} </h3>
-      <h4>Início: {{ e.getStartDate() }} </h4>
-      <h4>Término: {{e.getEndDate() }}</h4>
+      <h3 class="tt-subtitle-table-style">Título: {{e.getTitle() }} </h3>
+      <h5>Início: {{ e.getStartDate() }} </h5>
+      <h5>Término: {{e.getEndDate() }}</h5>
     </div>
     <div class="text-center">
       <ul uib-pagination boundary-links="true" total-items="$ctrl.pagTotalItems" ng-model="$ctrl.pagCurrentPage" items-per-page="$ctrl.pagItemsPerPage"

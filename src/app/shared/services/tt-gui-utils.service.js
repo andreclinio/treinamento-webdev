@@ -136,7 +136,7 @@
           }
           $ctrl.options = _buildStdOptions(null, null, $ctrl.confirm, $ctrl.cancel);
         },
-        template: __buildTemplate(null, title, null, '<p>' + text + '</p>' + content)
+        template: __buildTemplate(null, title, null, '<p class="tt-title-modal">' + text + '</p>' + content)
       });
       return modalInstance.result;
     }
@@ -159,7 +159,7 @@
         widget += '<div ng-if="' + formName + '.string.$error.required && ' + formName+ '.string.$touched" class="alert alert-danger">Texto é obrigatório!</div>';
       }
 
-      var content = '<p>'+text+'</p>' + widget;
+      var content = '<p class="tt-title-modal">'+text+'</p>' + widget;
       var modalInstance = $uibModal.open({
         animation: true,
         size: sz,

@@ -2,8 +2,8 @@
 <div class="container-fluid">
   <div class="row" ng-repeat="p in $ctrl.projects | start: ($ctrl.pagCurrentPage - 1) * $ctrl.pagItemsPerPage | limitTo: $ctrl.pagItemsPerPage">
     <div class="col-xs-12">
-      <h3>Nome: {{p.getName() }} </h3>
-      <h4>Descrição: {{ p.getDescription() || "Não informada" }} </h4>
+      <h3 class="tt-subtitle-table-style">Nome: {{p.getName() }} </h3>
+      <h5>Descrição: {{ p.getDescription() || "Não informada" }} </h5>
     </div>
     <div class="text-center">
       <ul uib-pagination boundary-links="true" total-items="$ctrl.pagTotalItems" ng-model="$ctrl.pagCurrentPage" items-per-page="$ctrl.pagItemsPerPage"
