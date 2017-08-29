@@ -1,12 +1,12 @@
 // ----------------------------------------------------------------------------
 // Atributos e cores predefinidas para o sistema
 // ----------------------------------------------------------------------------
-$tt-primary-color: rgba(185, 184, 184, 0.67);
+$tt-primary-color: #cacaca;
 $tt-primary-text-color: #ffffff;
 $tt-secondary-color: #385687;
 $tt-skill-advanced-color: #19bc9d;
-$tt-skill-medium-color:#e84c3d;
-$tt-skill-basic-color:#ff884d ;
+$tt-skill-medium-color:#19688c;
+$tt-skill-basic-color:#25b2e8;
 $tt-skill-validated-color: #009900;
 $tt-skill-new-color: #990000;
 $tt-widget-color: #b1c3cc;
@@ -88,7 +88,11 @@ textarea {
 // ----------------------------------------------------------------------------
 .badge {
   background-color: $tt-primary-color;
+  color: $tt-white-color;
   margin: 7px;
+
+
+
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -329,6 +333,8 @@ a {
 .tt-badge-primary {
   @extend .tt-badge;
   background-color: $tt-primary-color;
+  color: $tt-white-color;
+
 }
 
 .tt-badge-skill-advanced {
