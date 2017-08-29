@@ -70,14 +70,14 @@
     $ctrl.showSkillDetails = function (skillLine) {
       var skill = skillLine.skill;
       var desc = skill.getDescription() || "(sem texto disponível)";
-      var html = '<h2>' + skill.getName()  + '</h2>' +
-                 '<h3>' + $scope.getSkillLevelText(skill.getLevel()) + '</h3>' +
+      var html = '<h3 class="tt-subtitle-table-style">' + skill.getName()  + '</h4>' +
+                 '<h4>' + $scope.getSkillLevelText(skill.getLevel()) + '</h3>' +
                  '<p>' + desc + '</p>';
       var htmlExps = getExperiencesHtml(skillLine.experiences);
       var htmlProjs = getProjectsHtml(skillLine.projects);
-      html += '<h2>Experiências</h2>' + htmlExps;
+      html += '<h3 class="tt-subtitle-table-style">Experiências</h3>' + htmlExps;
       html += '</br>';
-      html += '<h2>Projetos</h2>' + htmlProjs;
+      html += '<h3 class="tt-subtitle-table-style">Projetos</h3>' + htmlProjs;
       ttGuiUtilService.showMessage("Competência de " + $ctrl.user.getName(), html);
     }
 
@@ -165,9 +165,9 @@
       }
       else {
         experiences.forEach(function (e) {
-          html += '<h3>Título: ' + e.getTitle() + '</h3>';
-          html += '<h4>Início: ' + e.getStartDate() + '</h4>';
-          html += '<h4>Término: ' + e.getEndDate() + '</h4>';
+          html += '<h4>Título: ' + e.getTitle() + '</h4>';
+          html += '<h5>Início: ' + e.getStartDate() + '</h5>';
+          html += '<h5>Término: ' + e.getEndDate() + '</h5>';
         }, this);
       }
       html += '</div>';
@@ -182,8 +182,8 @@
       }
       else {
         projects.forEach(function (p) {
-          html += '<h3>Nome: ' + p.getName() + '</h3>';
-          html += '<h4>Descrição: ' + (p.getDescription() != undefined ? p.getDescription() : "Não informada") + '</h4>';
+          html += '<h4>Nome: ' + p.getName() + '</h4>';
+          html += '<h5>Descrição: ' + (p.getDescription() != undefined ? p.getDescription() : "Não informada") + '</h5>';
         }, this);
       }
       html += '</div>';
