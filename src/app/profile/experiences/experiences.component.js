@@ -235,7 +235,7 @@
       var project = experience.getProject();
       if (!project) return;
       var desc = project.getDescription() || "(sem texto disponível)";
-      var html = '<h2>' + project.getName() + '</h2>' +
+      var html = '<h3 class="tt-subtitle-table-style">' + project.getName() + '</h3>' +
         '<p>' + desc + '</p>';
       ttGuiUtilService.showMessage("Projeto de " + $ctrl.user.getName(), html);
     }
@@ -243,8 +243,8 @@
     $ctrl.showExperienceDetails = function (experience) {
       var desc = experience.getDescription() || "(sem texto de descrição disponível)";
       var prjName = experience.getProject() ? experience.getProject().getName() : "(sem projeto associado)";
-      var html = '<h2>' + experience.getTitle() + '</h2>' +
-        '<h3> Projeto: ' + prjName + '</h3>' +
+      var html = '<h3 class="tt-subtitle-table-style">' + experience.getTitle() + '</h3>' +
+        '<h4> Projeto: ' + prjName + '</h4>' +
         '<p>' + desc + '</p>';
       ttGuiUtilService.showMessage("Experiência de " + $ctrl.user.getName(), html);
     }
